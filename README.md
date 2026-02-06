@@ -4,10 +4,10 @@ Shared metadata and documentation for The Middle Way project. Platform implement
 
 ## Platforms
 
-- Web - Next.js 16 (App Router) + TypeScript
-- Backend - Placeholder (not initialized yet)
-- iOS - Placeholder (not initialized yet)
-- Android - Placeholder (not initialized yet)
+- [Web](https://github.com/oatrice/TheMiddleWay-Web) - Next.js 16 (App Router) + TypeScript
+- [Backend](https://github.com/oatrice/TheMiddleWay-Backend) - Placeholder (not initialized yet)
+- [iOS](https://github.com/oatrice/TheMiddleWay-IOS) - Placeholder (not initialized yet)
+- [Android](https://github.com/oatrice/TheMiddleWay-Android) - Placeholder (not initialized yet)
 
 ## Design System (Current Web)
 
