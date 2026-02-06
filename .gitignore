@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+
+# Node / JS
+node_modules/
+**/node_modules/
+.next/
+dist/
+build/
+coverage/
+
+# Env files
+.env
+.env.*
+
+# Platform repos are managed separately
+Platforms/
