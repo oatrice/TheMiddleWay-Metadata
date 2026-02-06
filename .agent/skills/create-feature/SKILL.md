@@ -25,7 +25,7 @@ Create an issue to track progress.
 
 ```bash
 # Create issue in Metadata repo (current directory)
-gh issue create --title "[Feature] <Feature Name>" --body "Objective: <Objective>\n\nStrategy: Mobile First (Mock Web -> Android -> Web)"
+gh issue create --title "[Feature] <Feature Name>" --body "## Objective\n<Objective>\n\n## Mobile First Checklist\n\n### 1. Mock UI (Web) 🎨\n- [ ] Create/Update Page/Component (Mobile View)\n- [ ] Verify Flow with Mock Data\n\n### 2. Android (Logic) 🤖\n- [ ] Implement UI (Compose)\n- [ ] Implement Business Logic (Repository/ViewModel)\n- [ ] Connect API/Database\n- [ ] Unit Tests\n\n### 3. Web (Integration) 🌐\n- [ ] Integrate Real API\n- [ ] Responsive Check (Mobile -> Desktop)\n\n### 4. iOS 🍎\n- [ ] (Pending)"
 ```
 
 ### Step 3: Create Branches (Web & Android Only)
