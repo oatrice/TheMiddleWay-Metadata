@@ -1,5 +1,5 @@
-# Role: Senior Android Developer
-# Task: Implement android components for Issue #4: [Design] Design System Implementation: Colors (#0A192F, #F59E0B) and Typography Use Kotlin/Jetpack Compose. Implement Mobile UI and ViewModel. IMPORTANT: Do NOT use ./gradlew directly. You MUST use scripts in ./Android/scripts/ (e.g. ./Android/scripts/run_tests.sh, ./Android/scripts/build.sh).
+# Role: Senior Ios Developer
+# Task: Implement ios components for Issue #4: [Design] Design System Implementation: Colors (#0A192F, #F59E0B) and Typography Use Swift/SwiftUI. Implement iOS UI + MVVM. Use XCTest.
 
 Please write the code for the following requirements.
 
@@ -337,7 +337,7 @@ As a **Developer**, I want to style a new UI component. Instead of hardcoding he
 
 
 ## Default Guidance (Use only if not specified in Plans)
-- Tech Stack: Kotlin/Jetpack Compose. Implement Mobile UI and ViewModel. IMPORTANT: Do NOT use ./gradlew directly. You MUST use scripts in ./Android/scripts/ (e.g. ./Android/scripts/run_tests.sh, ./Android/scripts/build.sh).
+- Tech Stack: Swift/SwiftUI. Implement iOS UI + MVVM. Use XCTest.
 - Follow Clean Architecture
 - Ensure TDD (Test Driven Development)
 

@@ -70,7 +70,7 @@ The current development process lacks a centralized and consistent design system
 flowchart TD
     A[Developer starts building a new UI component] --> B{Needs to style an element?}
     B -->|Yes| C[Imports theme variables/classes]
-    C --> D["Applies color token (e.g., `var(--color-primary)`) and typography class (e.g., `class='text-heading-1'`)"]
+    C --> D["Applies color tokens (Example: var(--color-primary)) and typography classes"]
     D --> E[Component is styled consistently with the design system]
     E --> F[Development continues]
     B -->|No| F
@@ -125,7 +125,9 @@ A phased approach will be used to minimize disruption:
 
 ---
 
-## 4. Feasib
+## 4. Feasibility Analysis
+
+### 4.1 Techn
 (truncated if too long)
 
 
