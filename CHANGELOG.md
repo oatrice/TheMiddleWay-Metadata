@@ -6,6 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.2.0] - 2026-02-09
+
+### Added
+
+- **Android Platform Initialized (v0.1.0)**
+  - Jetpack Compose with Material 3
+  - Hilt dependency injection
+  - Room database configuration
+  - Material Icons Extended
+  - HomeScreen with Welcome Card, Quick Actions, Recent Activity
+  - Bottom Navigation with 4 tabs
+
+- **iOS Platform Initialized (v0.1.0)**
+  - SwiftUI with iOS 17+ target
+  - MVVM architecture
+  - AppColors and AppTypography matching design system
+  - HomeView with full UI components
+  - TabView navigation with 4 tabs
+
+### Changed
+
+- Updated README with platform status table and quick start guides
+- All platforms now share consistent "Warm Modern Sanctuary" design system
+
+---
+
 ## [0.1.1] - 2026-02-06
 
 ### Changed

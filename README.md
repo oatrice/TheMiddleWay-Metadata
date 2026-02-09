@@ -1,78 +1,81 @@
 # The Middle Way - Metadata
 
-Shared metadata and documentation for The Middle Way project. Platform implementations live under `Platforms/`.
+Central repository for shared metadata, documentation, and multi-platform coordination for The Middle Way project.
 
-## Platforms
+## 🌐 Platforms
 
-- [Web](https://github.com/oatrice/TheMiddleWay-Web) - Next.js 16 (App Router) + TypeScript
-- [Backend](https://github.com/oatrice/TheMiddleWay-Backend) - Placeholder (not initialized yet)
-- [iOS](https://github.com/oatrice/TheMiddleWay-IOS) - Placeholder (not initialized yet)
-- [Android](https://github.com/oatrice/TheMiddleWay-Android) - Placeholder (not initialized yet)
+| Platform | Status | Stack | Repository |
+|----------|--------|-------|------------|
+| 🌐 **Web** | ✅ v0.1.0 | Next.js 16, Tailwind v4 | [TheMiddleWay-Web](https://github.com/oatrice/TheMiddleWay-Web) |
+| 📱 **Android** | ✅ v0.1.0 | Jetpack Compose, Material 3 | [TheMiddleWay-Android](https://github.com/oatrice/TheMiddleWay-Android) |
+| 🍎 **iOS** | ✅ v0.1.0 | SwiftUI, iOS 17+ | [TheMiddleWay-IOS](https://github.com/oatrice/TheMiddleWay-IOS) |
+| ⚙️ **Backend** | 🚧 Planned | TBD | [TheMiddleWay-Backend](https://github.com/oatrice/TheMiddleWay-Backend) |
 
-## Design System (Current Web)
+## 🎨 Design System
 
-**Warm Modern Sanctuary** palette:
+**Warm Modern Sanctuary** - A calming, nature-inspired palette shared across all platforms:
 
-| Token | Color | Usage |
-|-------|-------|-------|
-| Ivory | `#FCF9F6` | Background |
-| Sage | `#8B9D83` | Primary Accent |
-| Slate | `#2D3748` | Text |
-| Sand | `#F3F0ED` | Surface/Cards |
+| Token | Color | Hex | Usage |
+|-------|-------|-----|-------|
+| Ivory | ![#FCF9F6](https://placehold.co/15x15/FCF9F6/FCF9F6) | `#FCF9F6` | Background |
+| Sage | ![#8B9D83](https://placehold.co/15x15/8B9D83/8B9D83) | `#8B9D83` | Primary Accent |
+| Slate | ![#2D3748](https://placehold.co/15x15/2D3748/2D3748) | `#2D3748` | Primary Text |
+| Sand | ![#F3F0ED](https://placehold.co/15x15/F3F0ED/F3F0ED) | `#F3F0ED` | Surface/Cards |
 
 **Typography:**
-- Headings: Playfair Display (Serif)
-- Body: Inter (Sans-serif)
+| Platform | Headings | Body |
+|----------|----------|------|
+| Web | Playfair Display | Inter |
+| Android | System Default | System Default |
+| iOS | System Serif | System Sans |
 
-## Web Tech Stack
-
-- **Framework:** Next.js 16 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4
-- **Animations:** Framer Motion
-- **Icons:** Lucide React
-
-## Repository Structure
+## 📁 Repository Structure
 
 ```
 ├── Platforms/
-│   ├── Web/             # Next.js app
-│   ├── Backend/         # Placeholder
-│   ├── iOS/             # Placeholder
-│   └── Android/         # Placeholder
-├── docs/                # Documentation
-│   └── features/        # Feature docs
-├── README.md
-├── ROADMAP.md
-└── CHANGELOG.md
+│   ├── Web/             # Next.js 16 + Tailwind v4
+│   ├── Android/         # Jetpack Compose + Material 3
+│   ├── iOS/             # SwiftUI + iOS 17
+│   └── Backend/         # (Planned)
+├── docs/                # Shared documentation
+│   └── features/        # Feature specifications
+├── README.md            # This file
+├── ROADMAP.md           # Project roadmap
+└── CHANGELOG.md         # Changelog
 ```
 
-## Getting Started (Web)
+## 🚀 Quick Start
 
+### Web
 ```bash
 cd Platforms/Web
-
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+npm install && npm run dev
 ```
 
-Open `http://localhost:3000` in your browser.
+### Android
+```bash
+cd Platforms/Android
+./gradlew installDebug
+```
 
-## Documentation
+### iOS
+```bash
+cd Platforms/iOS
+open TheMiddleWay.xcodeproj
+# Press Cmd+R in Xcode
+```
 
-- Roadmap: `ROADMAP.md`
-- Changelog: `CHANGELOG.md`
-- Feature docs: `docs/features/`
+## 📋 Documentation
 
-## License
+- **[ROADMAP.md](./ROADMAP.md)** - Project milestones and timeline
+- **[CHANGELOG.md](./CHANGELOG.md)** - Version history
+- **[docs/features/](./docs/features/)** - Feature specifications
+
+## 🔗 Related
+
+- **Project Board:** [TheMiddleWay Kanban](https://github.com/users/oatrice/projects/8)
+- **Main Web Repo:** [mdwmediaworld072/TheMiddleWay](https://github.com/mdwmediaworld072/TheMiddleWay)
+
+## 📄 License
 
 MIT

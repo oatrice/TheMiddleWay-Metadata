@@ -1,4 +1,4 @@
-# Issue #3: Walkthrough ✅
+# Web: Walkthrough ✅
 
 Setup โปรเจค Next.js 14+ พร้อม TypeScript สำหรับแอป "The Middle Way" เรียบร้อยแล้ว!
 
@@ -49,7 +49,7 @@ Setup โปรเจค Next.js 14+ พร้อม TypeScript สำหรั�
 
 ### 4. Initial Shell
 
-![Homepage Demo](./homepage_demo_1770259578971.webp)
+![Homepage Demo](../homepage_demo_1770259578971.webp)
 
 **Mobile Navigation Bar** (fixed bottom):
 - 🏠 Home - Dashboard
@@ -73,7 +73,7 @@ Setup โปรเจค Next.js 14+ พร้อม TypeScript สำหรั�
 ## วิธีรัน
 
 ```bash
-cd "/Users/oatrice/Software-projects/The Middle Way"
+cd Platforms/Web
 npm run dev
 ```
 

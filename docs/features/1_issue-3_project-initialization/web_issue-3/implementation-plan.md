@@ -1,4 +1,4 @@
-# Issue #3: Implementation Plan
+# Web: Implementation Plan
 
 สร้างโปรเจค Next.js 14+ (App Router) พร้อม TypeScript สำหรับแอป "The Middle Way" ที่มี Design System แบบ Warm Modern Sanctuary
 

@@ -16,3 +16,6 @@ coverage/
 # Platform repos are managed separately
 Platforms/
 The Middle Way -Metadata.code-workspace
+
+# Git Worktrees
+worktrees/
