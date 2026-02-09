@@ -9,10 +9,11 @@
 ### Component View
 > [!IMPORTANT]
 > **Platform Scope Policy:**
-> - **Android**: Full implementation with production-ready code and tests.
 > - **Web**: Mock UI only for this phase.
+> - **Android**: Full implementation with production-ready code and tests.
+> - **iOS**: Full implementation with production-ready code and tests.
 >
-> **Development Order:** Web Mock UI FIRST → Android Full Implementation SECOND.
+> **Development Order:** Web Mock UI FIRST → Android Full Implementation SECOND → iOS Full Implementation THIRD.
 
 - **Modified Components**: ...
 - **New Components**: ...
