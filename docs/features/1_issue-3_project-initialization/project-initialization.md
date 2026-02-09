@@ -13,11 +13,16 @@ Initialize all platforms for "The Middle Way" application with the shared **Warm
 
 ## Platforms
 
-| Platform | Version | Status | Docs |
-|----------|---------|--------|------|
-| 🌐 Web | 0.1.0 | ✅ Complete | [See below](#web-implementation) |
+| Platform | Version | Status | Documentation |
+|----------|---------|--------|---------------|
+| 🌐 Web | 0.1.0 | ✅ Complete | [web/](./web/) |
 | 📱 Android | 0.1.0 | ✅ Complete | [android/](./android/) |
 | 🍎 iOS | 0.1.0 | ✅ Complete | [ios/](./ios/) |
+
+Each platform folder contains:
+- `implementation-plan.md` - Technical plan
+- `task.md` - Checklist
+- `walkthrough.md` - Summary & verification
 
 ---
 
@@ -30,7 +35,8 @@ Initialize all platforms for "The Middle Way" application with the shared **Warm
 | Slate | `#2D3748` | Text |
 | Sand | `#F3F0ED` | Surface/Cards |
 
-**Typography:**
+**Typography by Platform:**
+
 | Platform | Headings | Body |
 |----------|----------|------|
 | Web | Playfair Display | Inter |
@@ -39,50 +45,20 @@ Initialize all platforms for "The Middle Way" application with the shared **Warm
 
 ---
 
-## Web Implementation
-
-### Requirements
-- [x] Next.js 14+ with App Router + TypeScript
-- [x] Tailwind CSS for styling
-- [x] Framer Motion for animations
-- [x] Lucide React for icons
-- [x] Mobile-first responsive configuration
-
-### Files Created/Modified
-
-| File | Type | Description |
-|------|------|-------------|
-| `app/globals.css` | Modified | Design tokens, custom colors |
-| `app/layout.tsx` | Modified | Root layout with fonts + nav |
-| `app/page.tsx` | Modified | Dashboard placeholder |
-| `components/layout/MobileNavigation.tsx` | New | Bottom navigation bar |
-| `app/library/page.tsx` | New | Library placeholder |
-| `app/courses/page.tsx` | New | Courses placeholder |
-| `app/profile/page.tsx` | New | Profile placeholder |
-
-### Verification
-
-```bash
-✓ npm run build - Compiled successfully
-✓ TypeScript - No errors
-✓ Static pages generated: /, /library, /courses, /profile
-✓ Dev server - http://localhost:3000 working
-```
-
----
-
 ## Demo
 
-![Homepage](./homepage_demo_1770259578971.webp)
+![Homepage Demo](./homepage_demo_1770259578971.webp)
 
 ---
 
 ## Related PRs
 
-- **Metadata:** [#8](https://github.com/oatrice/TheMiddleWay-Metadata/pull/8)
-- **Web:** [#1](https://github.com/oatrice/TheMiddleWay-Web/pull/1)
-- **Android:** [#2](https://github.com/oatrice/TheMiddleWay-Android/pull/2)
-- **iOS:** [#1](https://github.com/oatrice/TheMiddleWay-IOS/pull/1)
+| Repo | PR | Status |
+|------|-----|--------|
+| 📁 Metadata | [#8](https://github.com/oatrice/TheMiddleWay-Metadata/pull/8) | Open |
+| 🌐 Web | [#1](https://github.com/oatrice/TheMiddleWay-Web/pull/1) | Open |
+| 📱 Android | [#2](https://github.com/oatrice/TheMiddleWay-Android/pull/2) | Open |
+| 🍎 iOS | [#1](https://github.com/oatrice/TheMiddleWay-IOS/pull/1) | Open |
 
 ---
 
