@@ -13,11 +13,11 @@ Initialize all platforms for "The Middle Way" application with the shared **Warm
 
 ## Platforms
 
-| Platform | Version | Status | Documentation |
-|----------|---------|--------|---------------|
-| 🌐 Web | 0.1.0 | ✅ Complete | [web/](./web/) |
-| 📱 Android | 0.1.0 | ✅ Complete | [android/](./android/) |
-| 🍎 iOS | 0.1.0 | ✅ Complete | [ios/](./ios/) |
+| Platform | Version | Issue | Status | Documentation |
+|----------|---------|-------|--------|---------------|
+| 🌐 Web | 0.1.0 | #3 | ✅ Complete | [web_issue-3/](./web_issue-3/) |
+| 📱 Android | 0.1.0 | #4 | ✅ Complete | [android_issue-4/](./android_issue-4/) |
+| 🍎 iOS | 0.1.0 | #7 | ✅ Complete | [ios_issue-7/](./ios_issue-7/) |
 
 Each platform folder contains:
 - `implementation-plan.md` - Technical plan
