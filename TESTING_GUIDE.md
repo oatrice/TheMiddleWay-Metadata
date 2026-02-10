@@ -15,11 +15,22 @@
 
 ## 📊 สถานะแต่ละ Platform
 
+### 🛠️ สำหรับนักพัฒนา (Development Builds)
+หากต้องการทดสอบฟีเจอร์ล่าสุดที่ยังไม่ได้ปล่อย Release:
+
+1. **Android:** ไปที่ [Actions Tab](https://github.com/oatrice/TheMiddleWay-Android/actions) > เลือก Workflow ล่าสุด > โหลด `app-debug` จาก Artifacts
+2. **Web:** ไปที่ [Pull Requests](https://github.com/oatrice/TheMiddleWay-Web/pulls) > เลือก PR ที่ต้องการ > ดูลิงก์ **Visit Preview** จาก Vercel bot
+3. **iOS:** ตรวจสอบสถานะการ Build ที่ [Actions Tab](https://github.com/oatrice/TheMiddleWay-IOS/actions) (ยังไม่มี Artifact ให้โหลด)
+
+---
+
+## 📊 สถานะแต่ละ Platform (Release)
+
 | Platform | สถานะ | วิธีติดตั้ง |
 |----------|--------|------------|
-| 🤖 Android | ✅ พร้อมทดสอบ | ดาวน์โหลด APK จาก GitHub |
+| 🤖 Android | ✅ พร้อมทดสอบ | ดาวน์โหลด APK จาก GitHub Releases หรือ Actions |
 | 🍎 iOS | ⏳ กำลังตั้งค่า TestFlight | รอลิงก์จากทีมพัฒนา |
-| 🌐 Web | ⏳ กำลัง deploy ขึ้น Vercel | เปิดจาก Browser ได้เลย (เมื่อพร้อม) |
+| 🌐 Web | ✅ Deploy เรียบร้อย | เปิดจาก Vercel Preview URL (ใน PR) |
 
 ---
 
@@ -67,9 +78,8 @@
 
 1. เปิด Browser (Chrome, Safari, หรือ Firefox) ได้ทั้งจากมือถือและคอม
 2. ไปที่ลิงก์:  
-   👉 *(กำลัง deploy ขึ้น Vercel — จะอัปเดตลิงก์เร็วๆ นี้)*
-   <!-- TODO: ใส่ URL จริงเมื่อ deploy เสร็จ (Issue #5) -->
-   <!-- 👉 [**เปิดแอป The Middle Way**](https://the-middle-way.vercel.app) -->
+   👉 **Version ล่าสุด (Production):** [https://the-middle-way.vercel.app](https://the-middle-way.vercel.app)  
+   👉 **Version ทดสอบ (Preview):** ดูลิงก์ใน Comment ของ PR แต่ละอัน
 
 3. เปิดได้เลย ไม่ต้องติดตั้งอะไร! 🎉
 
