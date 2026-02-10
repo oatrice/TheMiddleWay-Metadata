@@ -1,4 +1,6 @@
-Closes https://github.com/[owner]/[repo]/issues/4
+Closes: https://github.com/oatrice/TheMiddleWay-Metadata/issues/4
+Related: https://github.com/oatrice/TheMiddleWay-Metadata/issues/13
+Related: https://github.com/oatrice/TheMiddleWay-Metadata/issues/14
 
 ### Summary
 
@@ -27,14 +29,14 @@ This pull request introduces the foundational elements of our new design system,
 #### Web
 | Light Mode | Dark Mode |
 | :---: | :---: |
-| <img src="docs/design_system/screenshots/web_light.png" alt="Web Light Mode" width="400"> | <img src="docs/design_system/screenshots/web_dark.png" alt="Web Dark Mode" width="400"> |
+| <img src="docs/features/3_issue-13_light-dark-theme/screenshots/web_light.png" alt="Web Light Mode" width="400"> | <img src="docs/features/3_issue-13_light-dark-theme/screenshots/web_dark.png" alt="Web Dark Mode" width="400"> |
 
 #### iOS
 | Light Mode | Dark Mode |
 | :---: | :---: |
-| <img src="docs/design_system/screenshots/ios_light.png" alt="iOS Light Mode" width="250"> | <img src="docs/design_system/screenshots/ios_dark.png" alt="iOS Dark Mode" width="250"> |
+| <img src="docs/features/3_issue-13_light-dark-theme/screenshots/ios_light.png" alt="iOS Light Mode" width="250"> | <img src="docs/features/3_issue-13_light-dark-theme/screenshots/ios_dark.png" alt="iOS Dark Mode" width="250"> |
 
 #### Android
 | Light Mode | Dark Mode |
 | :---: | :---: |
-| <img src="docs/design_system/screenshots/android_light.png" alt="Android Light Mode" width="250"> | <img src="docs/design_system/screenshots/android_dark.png" alt="Android Dark Mode" width="250"> |
+| <img src="docs/features/3_issue-13_light-dark-theme/screenshots/android_light.png" alt="Android Light Mode" width="250"> | <img src="docs/features/3_issue-13_light-dark-theme/screenshots/android_dark.png" alt="Android Dark Mode" width="250"> |
