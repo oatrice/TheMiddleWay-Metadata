@@ -1,13 +1,21 @@
 {
   "version": "1.0",
   "project_key": "6",
-  "phase": "idle",
-  "active_issue": null,
-  "active_branch": null,
-  "started_at": null,
+  "phase": "coding",
+  "active_issue": {
+    "number": 6,
+    "title": "[Infrastructure] Persistence Layer: LocalStorage System for Progress Tracking",
+    "html_url": "https://github.com/mdwmediaworld072/TheMiddleWay/issues/6",
+    "body": "",
+    "project_item_id": "PVTI_lAHOATfKEM4BOWVDzgk3Kxs",
+    "project_id": "PVT_kwHOATfKEM4BOWVD",
+    "repository": "mdwmediaworld072/TheMiddleWay"
+  },
+  "active_branch": "feat/6-localstorage-persistence-layer",
+  "started_at": "2026-02-10T17:37:01.704061",
   "checklist": {},
   "context": {},
   "pr_url": null,
   "pr_number": null,
-  "last_updated": "2026-02-10T17:30:53.467196"
+  "last_updated": "2026-02-10T17:37:04.005784"
 }
