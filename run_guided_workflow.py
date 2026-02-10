@@ -1,10 +1,11 @@
-
 import sys
 import os
-import json
 
-# Add path to Luma
-sys.path.insert(0, "/Users/oatrice/Software-projects/Luma")
+# Add path to Luma using a relative path for portability
+# This assumes the 'Luma' project is in a sibling directory to this script's parent directory.
+script_dir = os.path.dirname(os.path.abspath(__file__))
+luma_path = os.path.abspath(os.path.join(script_dir, '..', 'Luma'))
+sys.path.insert(0, luma_path)
 
 # Mock simple-term-menu just in case actions.py uses it inside
 # Wait, actions.py uses simple-term-menu inside interactive functions?
@@ -13,7 +14,7 @@ from luma_core.state_manager import load_state, save_state
 from luma_core.config import PROJECTS
 import luma_core.actions as actions
 
-def run_workflow():
+def run_workflow() -> None:
     project_key = "6"
     project = PROJECTS[project_key]
     
