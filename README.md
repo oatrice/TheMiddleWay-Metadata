@@ -6,21 +6,23 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 
 | Platform | Status | Stack | Repository |
 |----------|--------|-------|------------|
-| 🌐 **Web** | ✅ v0.1.0 | Next.js 16, Tailwind v4 | [TheMiddleWay-Web](https://github.com/oatrice/TheMiddleWay-Web) |
-| 📱 **Android** | ✅ v0.1.0 | Jetpack Compose, Material 3 | [TheMiddleWay-Android](https://github.com/oatrice/TheMiddleWay-Android) |
-| 🍎 **iOS** | ✅ v0.1.0 | SwiftUI, iOS 17+ | [TheMiddleWay-IOS](https://github.com/oatrice/TheMiddleWay-IOS) |
+| 🌐 **Web** | ✅ v0.2.0-dev | Next.js 16, Tailwind v4 | [TheMiddleWay-Web](https://github.com/oatrice/TheMiddleWay-Web) |
+| 📱 **Android** | ✅ v0.2.0-dev | Jetpack Compose, Material 3 | [TheMiddleWay-Android](https://github.com/oatrice/TheMiddleWay-Android) |
+| 🍎 **iOS** | ✅ v0.2.0-dev | SwiftUI, iOS 17+ | [TheMiddleWay-IOS](https://github.com/oatrice/TheMiddleWay-IOS) |
 | ⚙️ **Backend** | 🚧 Planned | TBD | [TheMiddleWay-Backend](https://github.com/oatrice/TheMiddleWay-Backend) |
 
 ## 🎨 Design System
 
-**Warm Modern Sanctuary** - A calming, nature-inspired palette shared across all platforms:
+**Bright Sky (Light)** - A clean, vibrant blue palette focusing on clarity and calmness:
 
 | Token | Color | Hex | Usage |
 |-------|-------|-----|-------|
-| Ivory | ![#FCF9F6](https://placehold.co/15x15/FCF9F6/FCF9F6) | `#FCF9F6` | Background |
-| Sage | ![#8B9D83](https://placehold.co/15x15/8B9D83/8B9D83) | `#8B9D83` | Primary Accent |
-| Slate | ![#2D3748](https://placehold.co/15x15/2D3748/2D3748) | `#2D3748` | Primary Text |
-| Sand | ![#F3F0ED](https://placehold.co/15x15/F3F0ED/F3F0ED) | `#F3F0ED` | Surface/Cards |
+| Sky White | ![#EFF6FF](https://placehold.co/15x15/EFF6FF/EFF6FF) | `#EFF6FF` | Background |
+| Bright Blue | ![#2563EB](https://placehold.co/15x15/2563EB/2563EB) | `#2563EB` | Primary / Accent |
+| Deep Blue | ![#1E3A5F](https://placehold.co/15x15/1E3A5F/1E3A5F) | `#1E3A5F` | Text Primary |
+| Sky Surface | ![#DBEAFE](https://placehold.co/15x15/DBEAFE/DBEAFE) | `#DBEAFE` | Surface/Cards |
+
+> **Note:** Also supports **Deep Cosmos (Dark Mode)**. See details in [THEME_OVERVIEW.md](./THEME_OVERVIEW.md).
 
 **Typography:**
 | Platform | Headings | Body |
@@ -46,29 +48,28 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 
 ## 🚀 Quick Start
 
-### Web
-```bash
-cd Platforms/Web
-npm install && npm run dev
-```
+### 🌐 Web
+Deploying to **Vercel**.
+- **Live Demo:** *(Waiting for Deploy)*
+- **Local Dev:** `cd Platforms/Web && npm run dev`
 
-### Android
-```bash
-cd Platforms/Android
-./gradlew installDebug
-```
+### 🤖 Android
+Available via **GitHub Releases**.
+- **Download APK:** [Latest Release](https://github.com/oatrice/TheMiddleWay-Android/releases/latest)
+- **Local Build:** `cd Platforms/Android && ./gradlew installDebug`
 
-### iOS
-```bash
-cd Platforms/iOS
-open TheMiddleWay.xcodeproj
-# Press Cmd+R in Xcode
-```
+### 🍎 iOS
+Available via **TestFlight** (Coming Soon).
+- **TestFlight:** [Track Status #2](https://github.com/oatrice/TheMiddleWay-IOS/issues/2)
+- **Local Build:** Open `Platforms/iOS/TheMiddleWay.xcodeproj` in Xcode (Cmd+R)
 
 ## 📋 Documentation
 
 - **[ROADMAP.md](./ROADMAP.md)** - Project milestones and timeline
 - **[CHANGELOG.md](./CHANGELOG.md)** - Version history
+- **[THEME_OVERVIEW.md](./THEME_OVERVIEW.md)** - Light/Dark mode implementation details
+- **[TESTING_GUIDE.md](./TESTING_GUIDE.md)** - Manual testing procedures and platform status
+- **[code_review.md](./code_review.md)** - Luma AI code review and issue report
 - **[docs/features/](./docs/features/)** - Feature specifications
 
 ## 🔗 Related

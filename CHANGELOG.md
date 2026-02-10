@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.3.0] - 2026-02-10
+
+### Added
+
+- **Design System Foundation:** Implemented the foundational colors and typography, establishing the core visual identity for the project.
+- **Development Workflow & Documentation:**
+  - Introduced structured templates for feature analysis, planning, and specifications to streamline development.
+  - Added a comprehensive `TESTING_GUIDE.md` with manual testing steps for Light/Dark theme functionality.
+  - Created `THEME_OVERVIEW.md` to document the Light/Dark mode implementation details.
+  - Added a `code_review.md` report to track and document critical issues.
+
+### Changed
+
+- **Roadmap:** Updated `ROADMAP.md` to restructure the v0.2.0 milestone, prioritizing architecture and theme implementation.
+- **Developer Prompts:** Standardized and enhanced prompt templates for all platforms (Android, iOS, Frontend, Backend) to improve development consistency and clarity.
+
+### Fixed
+
+- **Documentation:** Corrected formatting issues with truncated headers in various documentation files.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
