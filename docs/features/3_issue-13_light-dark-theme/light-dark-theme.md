@@ -57,7 +57,7 @@
 
 | Light Mode (Bright Sky ☀️) | Dark Mode (Deep Cosmos 🌙) |
 |---|---|
-| ![Web Light](./screenshots/web_light.png) | ![Web Dark](./screenshots/web_dark.png) |
+| <img src="./screenshots/web_light.png" width="300" alt="Web Light"> | <img src="./screenshots/web_dark.png" width="300" alt="Web Dark"> |
 
 ---
 
@@ -66,9 +66,11 @@
 | Component | File | Role |
 |-----------|------|------|
 | Color Palette | `ui/theme/Color.kt` | `AppColors.Light` + `AppColors.Dark` |
-| Theme Composable | `ui/theme/Theme.kt` | `WarmSanctuaryColorScheme` + `DeepCosmosColorScheme` |
+| Theme Composable | `ui/theme/Theme.kt` | `BrightSkyColorScheme` + `DeepCosmosColorScheme` |
 | Theme State | `ui/theme/ThemeState.kt` | `ThemeViewModel` + SharedPreferences |
-| Toggle Button | `ui/screens/home/HomeScreen.kt` | Sun/Moon icon in TopAppBar |
+| Toggle Button | `ui/screens/home/HomeScreen.kt` | Lucide-style Sun/Moon icon in TopAppBar |
+| Icon - Sun | `res/drawable/ic_sun.xml` | VectorDrawable — Lucide Sun (circle + 8 rays) |
+| Icon - Moon | `res/drawable/ic_moon.xml` | VectorDrawable — Lucide Moon (crescent) |
 
 **Persistence:** `SharedPreferences` key `isDarkMode`
 
@@ -76,7 +78,7 @@
 
 | Light Mode (Bright Sky ☀️) | Dark Mode (Deep Cosmos 🌙) |
 |---|---|
-| ![Android Light](./screenshots/android_light.png) | ![Android Dark](./screenshots/android_dark.png) |
+| <img src="./screenshots/android_light.png" width="300" alt="Android Light"> | <img src="./screenshots/android_dark.png" width="300" alt="Android Dark"> |
 
 > 📸 *Screenshots จะเพิ่มจาก Emulator/อุปกรณ์จริงเร็วๆ นี้*
 
@@ -97,7 +99,7 @@
 
 | Light Mode (Bright Sky ☀️) | Dark Mode (Deep Cosmos 🌙) |
 |---|---|
-| ![iOS Light](./screenshots/ios_light.png) | ![iOS Dark](./screenshots/ios_dark.png) |
+| <img src="./screenshots/ios_light.png" width="300" alt="iOS Light"> | <img src="./screenshots/ios_dark.png" width="300" alt="iOS Dark"> |
 
 > 📸 *Screenshots จะเพิ่มจาก Simulator เร็วๆ นี้*
 
@@ -106,13 +108,22 @@
 ## 🔧 Technical Details
 
 ### Default Theme
-เริ่มต้นทุก platform ด้วย **Light Mode (Bright Sky)** — เปลี่ยนได้เร็วๆ นี้ผ่าน config:
+เริ่มต้นทุก platform ด้วย **Light Mode (Bright Sky)** — เปลี่ยนได้ผ่าน config:
 
 | Platform | Config Location | Default |
 |----------|----------------|---------|
 | Web | `hooks/useTheme.ts` → `DEFAULT_THEME` | `"light"` |
 | Android | `ThemeState.kt` → `DEFAULT_IS_DARK` | `false` |
 | iOS | `@AppStorage` default | `false` |
+
+### 🎯 Icon Consistency
+
+ทุก platform ใช้ไอคอน **Lucide-style** ที่ตรงกัน:
+
+| สถานะ | Icon | Web (Lucide) | iOS (SF Symbols) | Android (VectorDrawable) |
+|--------|------|-------------|-----------------|-------------------------|
+| Dark Mode (กดเพื่อ→Light) | ☀️ Sun | `<Sun>` | `sun.max.fill` | `ic_sun.xml` — circle + 8 rays |
+| Light Mode (กดเพื่อ→Dark) | 🌙 Moon | `<Moon>` | `moon.fill` | `ic_moon.xml` — crescent |
 
 ### Cross-Platform Consistency
 
@@ -132,11 +143,26 @@ iOS (SwiftUI)     → "#EFF6FF" / "#2563EB" / "#DBEAFE"
 |-------|-------|----------|
 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | Design System Implementation | Provides color foundation |
 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | Persistence Layer | Theme uses localStorage/UserDefaults/SharedPrefs |
+| [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) | iOS TestFlight Setup | ให้ผู้ทดสอบติดตั้ง iOS ได้ |
+| [iOS#2](https://github.com/oatrice/TheMiddleWay-IOS/issues/2) | TestFlight Setup & Distribution | Platform-specific issue |
+
+---
+
+## ✅ Changelog
+
+| วันที่ | รายการ |
+|--------|--------|
+| 2026-02-10 | สร้าง feature doc, screenshots Web |
+| 2026-02-10 | เปลี่ยน default theme → Light (Bright Sky) ทุก platform |
+| 2026-02-10 | แก้ Android icon เป็น Lucide-style (sun/moon) |
+| 2026-02-10 | สร้าง TestFlight issue [iOS#2] |
 
 ---
 
 ## Next Steps
 
 - [ ] Capture real screenshots จาก Android Emulator + iOS Simulator
+- [ ] ตั้งค่า TestFlight สำหรับ iOS ([Issue #18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18))
+- [ ] Upload APK ไป GitHub Release สำหรับ Android
 - [ ] เพิ่ม theme animations (matching Issue #17)
 - [ ] เพิ่ม system theme auto-detect (follow OS setting)
