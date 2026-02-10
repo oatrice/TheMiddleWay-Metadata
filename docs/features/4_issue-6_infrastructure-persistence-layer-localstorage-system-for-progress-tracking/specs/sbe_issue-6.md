@@ -1,7 +1,7 @@
 # SBE: Local Storage Progress Persistence
 
 > 📅 Created: 2026-02-10
-> 🔗 Issue: https://github.com/mdwmediaworld072/TheMiddleWay/issues/6
+> 🔗 Issue: https://github.com/oatrice/TheMiddleWay-Metadata/issues/15
 
 ---
 

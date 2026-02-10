@@ -1,13 +1,13 @@
-```markdown
+
 # Specification: LocalStorage Persistence for Progress Tracking
 
 | | |
 | --- | --- |
 | **Title** | [Infrastructure] Persistence Layer: LocalStorage System for Progress Tracking |
-| **Issue URL** | [#6](https://github.com/mdwmediaworld072/TheMiddleWay/issues/6) |
+| **Issue URL** | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) |
 | **Status** | **Draft** |
 | **Author** | Expert Product Manager |
-| **Last Updated** | 2023-10-27 |
+| **Last Updated** | 2026-02-10 |
 
 ---
 
@@ -129,4 +129,3 @@ As a user of "The Middle Way", I want my progress to be saved automatically in m
 1.  What is the definitive list of user actions that should trigger a save operation? (e.g., lesson completion, quiz submission, video watched).
 2.  What is the final, agreed-upon data structure for the progress object? The examples use `completedLessons`, but will we also need to track quiz scores, module progress, etc.?
 3.  Where in the UI will the "Reset Progress" button be located? Is a confirmation dialog required?
-```
