@@ -2,7 +2,7 @@
 
 แผนพัฒนาแอปพลิเคชัน "The Middle Way" สำหรับการเรียนรู้และ mindfulness
 
-**อัปเดตล่าสุด:** 2026-02-09
+**อัปเดตล่าสุด:** 2026-02-10
 
 ---
 
@@ -30,22 +30,25 @@
 
 | ID | Title | Status |
 |---|---|---|
-| #3 | [Setup] Project Scaffolding: React + Tailwind CSS | ✅ Complete |
-| #4 | [Setup] Android Project Scaffolding | ✅ Complete |
-| #7 | [Setup] iOS Project Scaffolding | ✅ Complete |
+| [#3](https://github.com/oatrice/TheMiddleWay-Metadata/issues/3) | [Setup] Project Scaffolding: React + Tailwind CSS | ✅ Complete |
+| [#4](https://github.com/oatrice/TheMiddleWay-Metadata/issues/4) | [Setup] Android Project Scaffolding | ✅ Complete |
+| [#7](https://github.com/oatrice/TheMiddleWay-Metadata/issues/7) | [Setup] iOS Project Scaffolding | ✅ Complete |
 
 ---
 
 ### 📌 [v0.2.0 - Foundation](https://github.com/oatrice/TheMiddleWay-Metadata/milestone/1) 🔄 IN PROGRESS
-**Target:** 2026-02-16 | **Issues:** 4 open
+**Target:** 2026-02-16 | **Issues:** 7 open
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | #4 | [Design] Design System Implementation | 🔲 Todo |
-| 2 | #6 | [Infrastructure] Persistence Layer: LocalStorage | 🔲 Todo |
-| 3 | #5 | [Data] CSV Data Ingestion & Logic | 🔲 Todo |
-| 4 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | 🔲 Todo |
-| 5 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
+| 1 | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | Implement Light/Dark Theme Support (Warm Modern vs Deep Cosmos) | 🔄 In Progress (iOS ✅) |
+| 2 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | [Design] Design System Implementation | 🔲 Todo |
+| 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | 🔲 Todo |
+| 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | 🔲 Todo |
+| 5 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
+| 6 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
+| 7 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | 🔲 Todo |
+| 8 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
 
 ---
 
@@ -67,7 +70,7 @@
 | Priority | ID | Title | Status |
 |----------|---|---|---|
 | 1 | #7 | Bilingual Support (i18n): EN/TH | 🔲 Todo |
-| 2 | #13 | Micro-interactions: Framer Motion | 🔲 Todo |
+| 2 | [#17](https://github.com/oatrice/TheMiddleWay-Metadata/issues/17) | [Animation] Micro-interactions & Motion Design | 🔲 Todo |
 | 3 | #8 | The Wisdom Wheel: Radial Progress | 🔲 Todo |
 
 ---
@@ -122,6 +125,7 @@
 - `[Infrastructure]` - Backend, persistence, APIs
 - `[DevOps]` - CI/CD, testing, deployment
 - `[Animation]` - Motion and interactions
+- `[Architecture]` - Code structure, modularization
 - `[UI/UX]` - User interface improvements
 
 ---
@@ -129,7 +133,7 @@
 ## 📝 Notes
 
 - **Mobile-first approach** สำหรับทุก feature
-- **Design System ที่กำหนดไว้** ใช้อย่างสม่ำเสมอ (Warm Sanctuary)
+- **Design System ที่กำหนดไว้** ใช้อย่างสม่ำเสมอ (Warm Sanctuary / Deep Cosmos)
 - **TDD (Test-Driven Development)** สำหรับ core logic
 - **Cross-platform consistency** - Web, Android, iOS ต้องมี UI/UX เหมือนกัน
 
