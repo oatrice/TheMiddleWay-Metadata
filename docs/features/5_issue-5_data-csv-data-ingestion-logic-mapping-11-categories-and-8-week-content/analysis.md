@@ -57,7 +57,7 @@ flowchart TD
     D --> E[Perform upsert operation into the database]
     E --> F[Log success and number of records processed]
     F --> G[End]
-    C -->|❌ Invalid| H[Log detailed errors (e.g., row number, error message)]
+    C -->|❌ Invalid| H["Log detailed errors (e.g., row number, error message)"]
     H --> G
 ```
 
@@ -94,12 +94,12 @@ flowchart TD
 
 ### 3.1 Affected Components
 
-| Component | Impact Level | Description |
-|-----------|--------------|-------------|
-| **Backend (Python/Go)** | 🔴 High | Requires a new module/service for CSV parsing, data validation, business logic for mapping, and database interaction. |
-| **Database Schema** | 🔴 High | May require new tables (e.g., `program_content`, `categories`) or modification of existing ones to store the structured content. Schema must be finalized before development. |
-| **API Gateway** | 🟢 Low | A new route may need to be configured and secured for the ingestion endpoint. |
-| **Web/Mobile Apps** | 🟢 Low | No direct changes. The apps will consume the data populated by this feature, so they will benefit from having up-to-date content. |
+|Component|Impact Level|Description|
+|---|---|---|
+|**Backend (Go)**|🔴 High|Requires a new service using **Gin** and **GORM** for CSV parsing, validation, and database interaction.|
+|**Database Schema**|🔴 High|New `weekly_contents` table required. Schema will be managed via GORM AutoMigrate.|
+|**API Gateway**|🟢 Low|A new route may need to be configured and secured for the ingestion endpoint.|
+|**Web/Mobile Apps**|🟢 Low|No direct changes. The apps will consume the data populated by this feature, so they will benefit from having up-to-date content.|
 
 ### 3.2 Breaking Changes
 
