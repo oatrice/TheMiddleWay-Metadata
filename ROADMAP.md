@@ -38,7 +38,7 @@
 ---
 
 ### 📌 [v0.2.0 - Foundation](https://github.com/oatrice/TheMiddleWay-Metadata/milestone/1) 🔄 IN PROGRESS
-**Target:** 2026-02-16 | **Issues:** 5 open, 5 closed
+**Target:** 2026-02-16 | **Issues:** 4 open, 5 closed
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
@@ -46,31 +46,32 @@
 | 2 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | [Design] Design System Implementation | ✅ Complete |
 | 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | ✅ Complete |
 | 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | ✅ Complete |
-| 5 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
-| 6 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
-| 7 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | ✅ Complete |
-| 8 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
-| 9 | [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) | [DevOps] iOS TestFlight Setup & Distribution | 🔲 Todo |
-| 10 | [#20](https://github.com/oatrice/TheMiddleWay-Metadata/issues/20) | [DevOps] Android CI/CD & Automated APK Build | 🔲 Todo |
-| 11 | [#24](https://github.com/oatrice/TheMiddleWay-Metadata/issues/24) | [Quality] Epic: Observability & Reliability | 🔲 Todo |
-| 12 | [#21](https://github.com/oatrice/TheMiddleWay-Metadata/issues/21) | [Quality][Android] Logging + Crashlytics + LeakCanary | 🔲 Todo |
-| 13 | [#22](https://github.com/oatrice/TheMiddleWay-Metadata/issues/22) | [Quality][iOS] Logging + Crashlytics | 🔲 Todo |
-| 14 | [#23](https://github.com/oatrice/TheMiddleWay-Metadata/issues/23) | [Quality][Web] Logging + Monitoring | 🔲 Todo |
+| 5 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | ✅ Complete |
+| 6 | [#1](https://github.com/mdwmediaworld072/TheMiddleWay/issues/1) | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | 🔲 Todo |
+| 7 | [#2](https://github.com/mdwmediaworld072/TheMiddleWay/issues/2) | 📝 ห้องปฏิบัติธรรม (Weekly Practices & Checklist) | 🔲 Todo |
+| 8 | [#12](https://github.com/mdwmediaworld072/TheMiddleWay/issues/12) | Navigation System: Bottom Tab Bar & Week Navigation | 🔲 Todo |
+| 9 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | 🔲 Todo |
 
 ---
 
-### 📌 [v0.3.0 - Core Features](https://github.com/oatrice/TheMiddleWay-Metadata/milestone/2)
+### 📌 [v0.3.0 - Infrastructure & Quality](https://github.com/oatrice/TheMiddleWay-Metadata/milestone/2)
 **Target:** 2026-02-28
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | [#1](https://github.com/mdwmediaworld072/TheMiddleWay/issues/1) | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | 🔲 Todo |
-| 2 | [#2](https://github.com/mdwmediaworld072/TheMiddleWay/issues/2) | 📝 ห้องปฏิบัติธรรม (Weekly Practices & Checklist) | 🔲 Todo |
-| 3 | [#12](https://github.com/mdwmediaworld072/TheMiddleWay/issues/12) | Navigation System: Bottom Tab Bar & Week Navigation | 🔲 Todo |
-| 4 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | 🔲 Todo |
-| 5 | [#28](https://github.com/oatrice/TheMiddleWay-Metadata/issues/28) | [Feature] Category Management UI: CRUD for 11 Core Categories | 🔲 Todo |
-| 6 | [#27](https://github.com/oatrice/TheMiddleWay-Metadata/issues/27) | [Feature] Multi-format Data Import: Excel & JSON | 🔲 Todo |
-| 7 | [#29](https://github.com/oatrice/TheMiddleWay-Metadata/issues/29) | [Feature] Data Deletion & Cleanup: Remove/Archive Ingested Content | 🔲 Todo |
+| 1 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
+| 2 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
+| 3 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
+| 4 | [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) | [DevOps] iOS TestFlight Setup & Distribution | 🔲 Todo |
+| 5 | [#20](https://github.com/oatrice/TheMiddleWay-Metadata/issues/20) | [DevOps] Android CI/CD & Automated APK Build | 🔲 Todo |
+| 6 | [#24](https://github.com/oatrice/TheMiddleWay-Metadata/issues/24) | [Quality] Epic: Observability & Reliability | 🔲 Todo |
+| 7 | [#21](https://github.com/oatrice/TheMiddleWay-Metadata/issues/21) | [Quality][Android] Logging + Crashlytics + LeakCanary | 🔲 Todo |
+| 8 | [#22](https://github.com/oatrice/TheMiddleWay-Metadata/issues/22) | [Quality][iOS] Logging + Crashlytics | 🔲 Todo |
+| 9 | [#23](https://github.com/oatrice/TheMiddleWay-Metadata/issues/23) | [Quality][Web] Logging + Monitoring | 🔲 Todo |
+| 10 | [#26](https://github.com/oatrice/TheMiddleWay-Metadata/issues/26) | [Process] Feature Time Tracking: Estimated vs Actual | 🔲 Todo |
+| 11 | [#28](https://github.com/oatrice/TheMiddleWay-Metadata/issues/28) | [Feature] Category Management UI: CRUD for 11 Core Categories | 🔲 Todo |
+| 12 | [#27](https://github.com/oatrice/TheMiddleWay-Metadata/issues/27) | [Feature] Multi-format Data Import: Excel & JSON | 🔲 Todo |
+| 13 | [#29](https://github.com/oatrice/TheMiddleWay-Metadata/issues/29) | [Feature] Data Deletion & Cleanup: Remove/Archive Ingested Content | 🔲 Todo |
 
 ---
 
