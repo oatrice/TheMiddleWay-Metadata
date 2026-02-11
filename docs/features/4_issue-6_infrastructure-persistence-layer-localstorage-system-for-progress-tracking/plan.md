@@ -1,8 +1,13 @@
 # Implementation Plan: LocalStorage Persistence for Progress Tracking
 
 > **Refers to**: [#15 Persistence Layer: LocalStorage/UserDefaults/DataStore](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15)
-> **Status**: Ready
+> **Status**: Completed
 > **Last Updated**: 2026-02-10
+
+## Implementation Status
+- [x] **Web (Next.js)**: Implemented using `PersistenceService` (localStorage) and `ProgressProvider`. Fully tested with Vitest (100% pass) and manually verified.
+- [x] **Android (Kotlin)**: Implemented `PersistenceRepository` using DataStore Preferences and Kotlin Serialization. Hilt DI module created. Manually verified via Logcat injection.
+- [x] **iOS (Swift)**: Implemented `PersistenceService` using UserDefaults and Codable `UserProgress` model. Manually verified via App init injection.
 
 ## 1. Architecture & Design
 The implementation will be encapsulated within a dedicated `PersistenceService` module. This service will act as the sole interface for all `LocalStorage` operations related to user progress, abstracting the underlying mechanism from the rest of the application. This approach promotes separation of concerns, simplifies testing, and makes it easier to swap out the persistence layer in the future if needed (e.g., to a backend API).
@@ -153,35 +158,35 @@ How will we verify success?
 
 ### Automated Tests
 - **File**: `src/services/persistenceService.test.ts`
-- [ ] **Unit Test 1**: `saveProgress` should correctly stringify an object and call `localStorage.setItem`.
-- [ ] **Unit Test 2**: `loadProgress` should return a parsed object when valid data exists.
-- [ ] **Unit Test 3**: `loadProgress` should return `null` when no data exists for the key.
-- [ ] **Unit Test 4**: `loadProgress` should return `null` and not throw an error when data is malformed JSON.
-- [ ] **Unit Test 5**: `resetProgress` should call `localStorage.removeItem` with the correct key.
-- [ ] **Unit Test 6**: All methods should handle cases where `localStorage` is not available (e.g., throws an error on access) and fail gracefully.
+- [x] **Unit Test 1**: `saveProgress` should correctly stringify an object and call `localStorage.setItem`.
+- [x] **Unit Test 2**: `loadProgress` should return a parsed object when valid data exists.
+- [x] **Unit Test 3**: `loadProgress` should return `null` when no data exists for the key.
+- [x] **Unit Test 4**: `loadProgress` should return `null` and not throw an error when data is malformed JSON.
+- [x] **Unit Test 5**: `resetProgress` should call `localStorage.removeItem` with the correct key.
+- [x] **Unit Test 6**: All methods should handle cases where `localStorage` is not available (e.g., throws an error on access) and fail gracefully.
 
 ### Manual Verification
-- [ ] **Scenario 1: First-Time User**
+- [x] **Scenario 1: First-Time User**
     - Open the app in a fresh incognito window.
     - Verify the app starts from the beginning.
     - Verify `LocalStorage` is empty for the app's domain.
-- [ ] **Scenario 2: Saving Progress**
+- [x] **Scenario 2: Saving Progress**
     - Complete Lesson 1.
     - Verify `theMiddleWay.progress` key in `LocalStorage` contains `{"version":1,"completedLessons":["lesson-1-id"]}`.
-- [ ] **Scenario 3: Loading Progress**
+- [x] **Scenario 3: Loading Progress**
     - With progress saved from Scenario 2, refresh the page.
     - Verify the app loads with Lesson 1 already marked as complete.
     - Verify the user is guided to start Lesson 2.
-- [ ] **Scenario 4: Updating Progress**
+- [x] **Scenario 4: Updating Progress**
     - Complete Lesson 2.
     - Verify `theMiddleWay.progress` in `LocalStorage` is updated to include both lesson IDs.
-- [ ] **Scenario 5: Resetting Progress**
+- [x] **Scenario 5: Resetting Progress**
     - Navigate to the settings page and click "Reset Progress".
     - Confirm the action in the dialog.
     - Verify the `theMiddleWay.progress` key is removed from `LocalStorage`.
     - Verify the application UI immediately reflects the reset state (back to the beginning).
-- [ ] **Scenario 6: Browser Compatibility**
+- [x] **Scenario 6: Browser Compatibility**
     - Perform a quick check of Scenarios 1-3 in the latest versions of Chrome and Firefox.
-- [ ] **Scenario 7: Graceful Failure**
+- [x] **Scenario 7: Graceful Failure**
     - Disable cookies/site data in browser settings (which often disables `LocalStorage`).
     - Load the application and verify it still runs without crashing, simply operating as a single-session experience without persistence.
