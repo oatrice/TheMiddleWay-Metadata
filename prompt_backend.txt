@@ -1,5 +1,5 @@
 # Role: Senior Backend Developer
-# Task: Implement backend components for Issue #1: 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard) Use Go/Python. Implement API endpoints and business logic.
+# Task: Implement backend components for Issue #1: 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard) Use Go. Implement API endpoints and business logic.
 
 Please write the code for the following requirements.
 
@@ -66,7 +66,6 @@ Issue นี้คือการสร้าง **"หน้าแรก"** ข
 ## Architecture & Plans (AUTHORITATIVE)
 The following content is from the approved design documents. **You MUST follow this design.**
 
-
 ## Reference: plan.md
 # Implementation Plan: 🌿 Wisdom Garden Dashboard
 
@@ -88,21 +87,21 @@ For this initial phase, all data will be mocked and bundled with the application
 > **Development Order:** Web Mock UI FIRST → Android Full Implementation SECOND → iOS Full Implementation THIRD.
 
 - **Modified Components**:
-  - None. This is a new feature.
+- None. This is a new feature.
 
 - **New Components**:
-  - `WisdomGardenScreen`: The main container screen that holds all other components and manages the overall state.
-  - `AppHeader`: A reusable header component containing the language switcher and week selector.
-  - `LanguageSwitcher`: A button to toggle between 'TH' and 'EN'.
-  - `WeekSelector`: A component to display and select weeks 1-8.
-  - `WisdomGardenVisualization`: Displays the tree/flower graphic and the score. It will react to score changes.
-  - `PracticeChecklist`: A scrollable list that renders `PracticeCategory` sections.
-  - `PracticeCategory`: A header component for a group of practices (e.g., "Giving").
-  - `PracticeCard`: A component for an individual practice item, containing the description and an interactive checkbox.
+- `WisdomGardenScreen`: The main container screen that holds all other components and manages the overall state.
+- `AppHeader`: A reusable header component containing the language switcher and week selector.
+- `LanguageSwitcher`: A button to toggle between 'TH' and 'EN'.
+- `WeekSelector`: A component to display and select weeks 1-8.
+- `WisdomGardenVisualization`: Displays the tree/flower graphic and the score. It will react to score changes.
+- `PracticeChecklist`: A scrollable list that renders `PracticeCategory` sections.
+- `PracticeCategory`: A header component for a group of practices (e.g., "Giving").
+- `PracticeCard`: A component for an individual practice item, containing the description and an interactive checkbox.
 
 - **Dependencies**:
-  - **Web**: No new external libraries needed. Standard React/Vue/Svelte setup.
-  - **Android/iOS**: No new external libraries are anticipated. Standard UI toolkits (Compose/SwiftUI) are sufficient.
+- **Web**: No new external libraries needed. Standard React/Vue/Svelte setup.
+- **Android/iOS**: No new external libraries are anticipated. Standard UI toolkits (Compose/SwiftUI) are sufficient.
 
 ### Data Model Changes
 We will define new data structures to represent the practice data. This data will be hardcoded in a mock data source file.
@@ -112,26 +111,26 @@ We will define new data structures to represent the practice data. This data wil
 
 // Represents a single practice item
 interface PracticeItem {
-  id: string;
-  title: { en: string; th: string };
-  points: number;
-  isCompleted: boolean;
+id: string                           ;
+title: { en: string                  ; th: string };
+points: number                       ;
+isCompleted: boolean                 ;
 }
 
 // Represents a category of practices
 interface PracticeCategory {
-  id: string;
-  title: { en: string; th: string };
-  items: PracticeItem[];
+id: string                            ;
+title: { en: string                   ; th: string };
+items: PracticeItem[]                 ;
 }
 
 // Represents the entire state for a given week
 interface WeeklyData {
-  weekNumber: number;
-  categories: PracticeCategory[];
-  // Calculated properties
-  currentScore: number;
-  maxScore: number;
+weekNumber: number                              ;
+categories: PracticeCategory[]                  ;
+// Calculated properties
+currentScore: number                            ;
+maxScore: number                                ;
 }
 ```
 
@@ -144,36 +143,34 @@ interface WeeklyData {
 #### Step 1: Project Scaffolding & Data Modeling
 - **Description**: Set up a basic React project structure. Define the data models in TypeScript and create a mock data service that provides hardcoded data for all 8 weeks.
 - **Files**:
-  - `src/models/practice.ts`: Define `PracticeItem`, `PracticeCategory`, `WeeklyData` interfaces.
-  - `src/data/mockData.ts`: Create and export an array of `WeeklyData` for weeks 1-8.
-  - `src/services/i18n.ts`: Create a simple translation service with JSON objects for 'en' and 'th' strings.
+- `src/models/practice.ts`: Define `PracticeItem`, `PracticeCategory`, `WeeklyData` interfaces.
+- `src/data/mockData.ts`: Create and export an array of `WeeklyData` for weeks 1-8.
+- `src/services/i18n.ts`: Create a simple translation service with JSON objects for 'en' and 'th' strings.
 - **Verification**:
-  - Run the project without errors.
-  - Unit test the mock data service to ensure it returns data in the correct format.
+- Run the project without errors.
+- Unit test the mock data service to ensure it returns data in the correct format.
 
 #### Step 2: Build Static UI Components
 - **Description**: Create the visual components for the dashboard. These components will be stateless and receive all data via props. The tree visualization will be a set of static images (e.g., `tree-0.svg`, `tree-1.svg`, etc.) representing different growth stages.
 - **Files**:
-  - `src/components/AppHeader.tsx`
-  - `src/components/WeekSelector.tsx`
-  - `src/components/LanguageSwitcher.tsx`
-  - `src/components/WisdomGardenVisualization.tsx`
-  - `src/components/PracticeChecklist.tsx`
-  - `src/components/PracticeCard.tsx`
+- `src/components/AppHeader.tsx`
+- `src/components/WeekSelector.tsx`
+- `src/components/LanguageSwitcher.tsx`
+- `src/components/WisdomGardenVisualization.tsx`
+- `src/components/PracticeChecklist.tsx`
+- `src/components/PracticeCard.tsx`
 - **Verification**:
-  - Use Storybook or a similar tool to render each component with mock data.
-  - Verify that components match the design specified in NFR-1 (colors, layout).
-  - Verify responsiveness on mobile and desktop viewport sizes.
+- Use Storybook or a similar tool to render each component with mock data.
+- Verify that components match the design specified in NFR-1 (colors, layout).
+- Verify responsiveness on mobile and desktop viewport sizes.
 
 #### Step 3: Implement Screen State & Interactivity
 - **Description**: Create the main `WisdomGardenScreen` component. Use React hooks (`useState`, `useContext`) to manage the current week, language, and the user's progress data. Wire up the event handlers (`onClick`, `onChange`) to update the state.
 - **Files**:
-  - `src/screens/WisdomGardenScreen.tsx`:
-    - Manage state for `selectedWeek` and `currentLanguage`.
-    - Fetch data from `mockData.ts` based on `selectedWeek`.
-    - Implement the `handleCheckItem` function which
-(truncated if too long)
-
+- `src/screens/WisdomGardenScreen.tsx`:
+- Manage state for `selectedWeek` and `currentLanguage`.
+- Fetch data from `mockData.ts` based on `selectedWeek`.
+- Implement the `handleCheckItem` function which
 
 ## Reference: spec.md
 # Specification
@@ -190,22 +187,21 @@ As a practitioner, I want to see a visual representation of my spiritual progres
 
 ### 2. User Journey
 
-1.  **Arrival:** The user opens the application and lands on the "Wisdom Garden" dashboard for the current week.
-2.  **Observation:** The user immediately sees a visual representation of their progress (a growing tree or flower) and their total score for the week (e.g., "14/70").
-3.  **Reviewing Tasks:** The user scrolls down to the "Daily Practices Checklist" to see what needs to be done. The list is organized by categories like "Giving" (ทาน) and "Ethics" (ศีล).
-4.  **Action & Feedback:** The user identifies a practice they have just completed and taps its checkbox.
-5.  **Instant Gratification:** The checkbox is marked as complete with a subtle, satisfying animation or sound. Simultaneously, the total score at the top of the screen increases, and the tree graphic grows slightly, providing immediate positive reinforcement.
-6.  **Reflection:** The user decides to review a previous week's progress. They tap the "Week Selector" at the top and choose a past week number (e.g., "2").
-7.  **Viewing History:** The entire dashboard updates to show the data for the selected week, including the final score, the state of the tree, and the completed checklist items for that period.
+1. **Arrival:** The user opens the application and lands on the "Wisdom Garden" dashboard for the current week.
+2. **Observation:** The user immediately sees a visual representation of their progress (a growing tree or flower) and their total score for the week (e.g., "14/70").
+3. **Reviewing Tasks:** The user scrolls down to the "Daily Practices Checklist" to see what needs to be done. The list is organized by categories like "Giving" (ทาน) and "Ethics" (ศีล).
+4. **Action & Feedback:** The user identifies a practice they have just completed and taps its checkbox.
+5. **Instant Gratification:** The checkbox is marked as complete with a subtle, satisfying animation or sound. Simultaneously, the total score at the top of the screen increases, and the tree graphic grows slightly, providing immediate positive reinforcement.
+6. **Reflection:** The user decides to review a previous week's progress. They tap the "Week Selector" at the top and choose a past week number (e.g., "2").
+7. **Viewing History:** The entire dashboard updates to show the data for the selected week, including the final score, the state of the tree, and the completed checklist items for that period.
 
 ### 3. Functional Requirements
 
-| ID    | Requirement                               | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+| ID | Requirement | Details
 (truncated if too long)
 
-
 ## Default Guidance (Use only if not specified in Plans)
-- Tech Stack: Go/Python. Implement API endpoints and business logic.
+- Tech Stack: Go. Implement API endpoints and business logic.
 - Follow Clean Architecture
 - Ensure TDD (Test Driven Development)
 
