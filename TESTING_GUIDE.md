@@ -102,6 +102,7 @@
 | Feature | Issue | คู่มือทดสอบ |
 |---------|-------|------------|
 | 🎨 Light/Dark Theme | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | [📋 testing-guide.md](./docs/features/3_issue-13_light-dark-theme/testing-guide.md) |
+| 💾 Persistence Layer | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [📋 testing-guide.md](./docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/testing-guide.md) |
 
 > 💡 เมื่อมี feature ใหม่ จะเพิ่ม testing guide เฉพาะ feature ไว้ใน `docs/features/<feature>/testing-guide.md`
 
