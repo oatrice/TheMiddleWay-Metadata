@@ -1,42 +1,31 @@
-Closes: https://github.com/oatrice/TheMiddleWay-Metadata/issues/4
-Related: https://github.com/oatrice/TheMiddleWay-Metadata/issues/13
-Related: https://github.com/oatrice/TheMiddleWay-Metadata/issues/14
+Closes https://github.com/mdwmediaworld072/TheMiddleWay/issues/6, https://github.com/oatrice/TheMiddleWay-Metadata/issues/15
 
-### Summary
+## Description
 
-This pull request introduces the foundational elements of our new design system, "Bright Sky". It implements the core color palette and typography, establishing a consistent and modern visual identity across all platforms (Web, iOS, and Android). This work includes full support for both light and dark themes, providing a more accessible and user-friendly experience.
+This pull request establishes the complete technical and strategic foundation for the application's persistence layer. While it does not contain the final implementation code for the client applications, it introduces the comprehensive documentation, analysis, and specifications required for a consistent cross-platform rollout.
 
-### Key Changes
+The core of this PR is the creation of a detailed feature documentation suite that outlines the problem, solution, API contracts, and data schema for storing user progress locally.
 
-*   **🎨 Design System Implementation:**
-    *   Established the primary color palette with `#0A192F` (Navy) for dark backgrounds and `#F59E0B` (Amber) as the main accent color.
-    *   Implemented the base typography styles and hierarchy to ensure consistent and readable text.
-    *   Introduced full support for **Light and Dark Modes**, which can be toggled by the user.
+Additionally, this work includes significant project-level updates to improve developer and QA workflows, including a major refactoring of the testing guide and updates to the project roadmap and changelog to reflect recent progress.
 
-*   **📚 Extensive Documentation:**
-    *   Added a comprehensive "Bright Sky" design system overview, including specifications and guidelines.
-    *   Created a new `THEME_OVERVIEW.md` explaining the light/dark mode implementation.
-    *   Updated the `TESTING_GUIDE.md` with detailed instructions for manually testing the new themes on all platforms.
-    *   Added a `v0.3.0` entry to the `CHANGELOG.md` to reflect these significant changes.
+## Key Changes
 
-*   **🛠️ Developer Tooling & Refinements:**
-    *   Added a `run_guided_workflow.py` script to streamline development with the Luma dependency.
-    *   Refactored the Luma dependency to use relative paths for improved project portability.
-    *   Standardized prompt templates for development across different platforms.
+### Persistence Layer Foundation
+- **Technical Analysis:** A new `analysis.md` document has been added, defining the problem statement, user stories, and technical requirements for local data persistence.
+- **Implementation Plan:** A `plan.md` outlines the phased approach for implementation across Web, Android, and iOS platforms.
+- **Technical Specification:** A `spec.md` defines the `UserProgress` data schema and the `PersistenceService` API contract, ensuring all platforms adhere to the same interface for saving, loading, and clearing data.
+- **Proactive Code Review:** A `code_review.md` has been included to identify and address potential issues with the proposed `UserProgress` schema upfront, such as the need for versioning and handling of complex data types.
 
-### Screenshots
+### Project Documentation & Infrastructure
+- **Roadmap Update:** The `ROADMAP.md` has been updated to `v0.2.0-dev`, marking the CI/CD pipeline setup as complete and reflecting the current status of foundational tasks.
+- **Changelog:** A new entry for `v0.4.0` has been added to `CHANGELOG.md` to formally log the documentation and infrastructure changes introduced in this PR.
+- **Testing Guide Refactor:**
+    - The main `TESTING_GUIDE.md` has been streamlined to focus on how to access development builds (CI artifacts, Vercel previews).
+    - The detailed test cases for the Light/Dark theme have been moved into their own dedicated guide (`docs/features/3_issue-13_light-dark-theme/testing-guide.md`) to create a more modular and scalable testing structure.
+- **Developer Prompts:** The internal prompts for AI-assisted development (`prompt_*.txt`) have been significantly simplified and overhauled to improve efficiency.
 
-#### Web
-| Light Mode | Dark Mode |
-| :---: | :---: |
-| <img src="docs/features/3_issue-13_light-dark-theme/screenshots/web_light.png" alt="Web Light Mode" width="400"> | <img src="docs/features/3_issue-13_light-dark-theme/screenshots/web_dark.png" alt="Web Dark Mode" width="400"> |
+## Rationale
 
-#### iOS
-| Light Mode | Dark Mode |
-| :---: | :---: |
-| <img src="docs/features/3_issue-13_light-dark-theme/screenshots/ios_light.png" alt="iOS Light Mode" width="250"> | <img src="docs/features/3_issue-13_light-dark-theme/screenshots/ios_dark.png" alt="iOS Dark Mode" width="250"> |
-
-#### Android
-| Light Mode | Dark Mode |
-| :---: | :---: |
-| <img src="docs/features/3_issue-13_light-dark-theme/screenshots/android_light.png" alt="Android Light Mode" width="250"> | <img src="docs/features/3_issue-13_light-dark-theme/screenshots/android_dark.png" alt="Android Dark Mode" width="250"> |
+- **Clear Path Forward:** By creating a detailed specification and plan *before* implementation, we ensure that all development teams (Web, Android, iOS) have a clear and consistent blueprint to follow. This minimizes ambiguity and reduces the risk of platform-specific inconsistencies.
+- **Improved Quality:** The proactive code review on the data schema helps us build a more robust and future-proof system by addressing potential design flaws early in the process.
+- **Enhanced Developer & QA Experience:** Refactoring the testing guide makes it easier for team members to find relevant test cases and access the latest builds for verification. This change speeds up the development and feedback cycle.

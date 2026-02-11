@@ -1,348 +1,97 @@
 # Role: Senior Android Developer
-# Task: Implement android components for Issue #4: [Design] Design System Implementation: Colors (#0A192F, #F59E0B) and Typography Use Kotlin/Jetpack Compose. Implement Mobile UI and ViewModel. IMPORTANT: Do NOT use ./gradlew directly. You MUST use scripts in ./Android/scripts/ (e.g. ./Android/scripts/run_tests.sh, ./Android/scripts/build.sh).
-
-Please write the code for the following requirements.
+# Task: Implement Android persistence layer for Issue #15: [Infrastructure] Persistence Layer
+# Platform: Kotlin + Jetpack Compose + DataStore Preferences
+# Issue: https://github.com/oatrice/TheMiddleWay-Metadata/issues/15
 
 ## Context
-Project: TheMiddleWay-Root
-Issue: #4 [Design] Design System Implementation: Colors (#0A192F, #F59E0B) and Typography
-Body:
-No details provided.
+Project: The Middle Way (ทางสายกลาง)
+Feature: Client-side persistence to save user progress using Android DataStore Preferences.
+This is a **client-side only** feature — no backend required.
 
 ## Architecture & Plans (AUTHORITATIVE)
-The following content is from the approved design documents. **You MUST follow this design.**
+The following approved design documents define the implementation. **You MUST follow this design.**
 
-
-## Reference: analysis.md
-# Analysis Template
-
-> 📋 Template สำหรับการวิเคราะห์ก่อนเริ่มพัฒนา Feature
-
----
-
-## 📌 Feature Information
-
-| รายการ | รายละเอียด |
-|--------|-----------|
-| **Feature Name** | Design System Foundation: Colors and Typography |
-| **Issue URL** | [#4](https://github.com/owner/repo/issues/4) |
-| **Date** | 2023-10-27 |
-| **Analyst** | Luma AI (Senior Technical Analyst) |
-| **Priority** | 🔴 High |
-| **Status** | 📝 Draft |
+📂 **Full Documents Path:**
+- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/spec.md`
+- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/plan.md`
+- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/analysis.md`
+- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/specs/sbe_issue-6.md`
 
 ---
 
-## 1. Requirement Analysis
+## Android-Specific Implementation Plan
 
-### 1.1 Problem Statement
+### Tech Stack
+- **Language:** Kotlin
+- **UI:** Jetpack Compose
+- **Storage API:** DataStore Preferences (NOT SharedPreferences)
+- **Serialization:** Kotlinx Serialization (JSON)
+- **Architecture:** MVVM + Repository Pattern
+- **DI:** Hilt or Manual
+- **Testing:** JUnit 5 + MockK
 
-> อธิบายปัญหาที่ต้องการแก้ไข
-
-```
-The current development process lacks a centralized and consistent design system. This results in UI inconsistencies across different pages and components, as developers manually select colors and typography styles. This slows down development, increases maintenance overhead, and weakens the brand's visual identity.
-```
-
-### 1.2 User Stories
-
-| # | As a | I want to | So that |
-|---|------|-----------|---------|
-| 1 | Developer | use predefined color variables (e.g., primary, secondary, text, background) | I can apply consistent branding across all components without hardcoding hex values. |
-| 2 | Developer | use predefined typography styles or components (e.g., H1, Body, Caption) | I can ensure consistent font sizes, weights, and line heights throughout the application. |
-| 3 | Designer | have the implemented colors and typography match the design specifications exactly | the final product is visually aligned with the brand guidelines and user experience is cohesive. |
-
-### 1.3 Acceptance Criteria
-
-- [ ] **AC1:** A global theme or CSS variable file is created defining the core color palette, including primary (`#0A192F`), secondary (`#F59E0B`), and their variations (e.g., light, dark, text, background, error, success).
-- [ ] **AC2:** A global CSS file or theme configuration defines a typography scale for headings (h1-h6), body text, and other common text elements.
-- [ ] **AC3:** The new color and typography tokens are easily accessible for developers to use in CSS, SCSS, or JS-in-CSS contexts.
-- [ ] **AC4:** A documentation page (e.g., in Storybook) is created to showcase the color palette and typography scale for easy reference.
-
----
-
-## 2. Feature Analysis
-
-### 2.1 User Flow
-
-> This flow describes the developer experience when using the new design system.
-
-```mermaid
-flowchart TD
-    A[Developer starts building a new UI component] --> B{Needs to style an element?}
-    B -->|Yes| C[Imports theme variables/classes]
-    C --> D["Applies color tokens (Example: var(--color-primary)) and typography classes"]
-    D --> E[Component is styled consistently with the design system]
-    E --> F[Development continues]
-    B -->|No| F
+### Data Schema (v1)
+```kotlin
+// data/model/UserProgress.kt
+@Serializable
+data class UserProgress(
+    val version: Int = 1,
+    val themeMode: String = "light",  // "light" | "dark"
+    val language: String = "th",      // "th" | "en"
+    val completedLessons: List<String> = emptyList(),
+    val bookmarks: List<String> = emptyList(),
+    val lastVisited: String = "" // ISO 8601 datetime
+)
 ```
 
-### 2.2 Screen/Page Requirements
+### Files to Create/Modify
+| File | Action | Description |
+|------|--------|-------------|
+| `data/model/UserProgress.kt` | Create | Data class for persistence |
+| `data/repository/PersistenceRepository.kt` | Create | Interface for persistence operations |
+| `data/repository/PersistenceRepositoryImpl.kt` | Create | DataStore implementation |
+| `data/repository/PersistenceRepositoryTest.kt` | Create | Unit tests (TDD — write tests FIRST) |
+| `ui/theme/ThemeViewModel.kt` | Modify | Integrate with persistence |
 
-| หน้าจอ | Actions | Components |
-|--------|---------|------------|
-| Design System Docs (Storybook) | View available colors and their variable names. View typography styles and their class/component names. | Color Palette Swatches, Typography Specimen (showing H1, H2, Body, etc.) |
-
-### 2.3 Input/Output Specification
-
-> Not applicable for this feature, as it does not involve user input or data processing. It is a foundational setup for the codebase.
-
-#### Inputs
-
-| Field | Type | Required | Validation |
-|-------|------|----------|------------|
-| N/A | - | - | - |
-
-#### Outputs
-
-| Field | Type | Description |
-|-------|------|-------------|
-| N/A | - | - |
-
----
-
-## 3. Impact Analysis
-
-### 3.1 Affected Components
-
-| Component | Impact Level | Description |
-|-----------|--------------|-------------|
-| **Global Styles / Theme Provider** | 🔴 High | This is the core implementation area. New files will be created or existing ones (e.g., `globals.css`, `ThemeProvider`) will be heavily modified to define the design tokens. |
-| **All Existing UI Components** | 🟡 Medium | All existing buttons, inputs, cards, layouts, etc., will need to be refactored over time to use the new design tokens instead of hardcoded styles. This is a broad but low-complexity change per component. |
-| **Frontend Build Configuration** | 🟢 Low | May require minor adjustments to import new CSS files or configure a theming library (e.g., `tailwind.config.js`). |
-
-### 3.2 Breaking Changes
-
-- [ ] **BC1:** Applying new global typography styles (e.g., for `body`, `h1`) might override existing component-specific styles, potentially causing visual regressions in un-refactored parts of the application.
-
-### 3.3 Backward Compatibility Plan
-
-```
-A phased approach will be used to minimize disruption:
-1.  **Implementation:** Create and merge the core design system files (colors, typography) into the main branch.
-2.  **Adoption for New Work:** Mandate that all *new* features and components built from this point forward must use the new design tokens.
-3.  **Gradual Refactoring:** Create technical debt tickets in the backlog to refactor existing pages and components one by one. This allows for controlled updates and easier visual regression testing.
+### DataStore Key
+```kotlin
+val PROGRESS_KEY = stringPreferencesKey("theMiddleWay.progress")
 ```
 
----
-
-## 4. Feasibility Analysis
-
-### 4.1 Techn
-(truncated if too long)
-
-
-## Reference: plan.md
-# Implementation Plan: Design System Foundation - Colors & Typography
-
-> **Refers to**: [Spec] Design System Implementation: Colors (#0A192F, #F59E0B) and Typography
-> **Status**: Draft
-
-## 1. Architecture & Design
-The implementation will establish a foundational design system using pure CSS, ensuring framework-agnostic compatibility and ease of use.
-
-We will use **CSS Custom Properties** (variables) for the color system. This allows for a centralized, themeable, and easily maintainable color palette. Colors will be defined in two tiers: a primitive palette (the raw hex values) and a semantic palette (aliasing primitives for specific use cases like `background-primary`). This approach makes future theme updates trivial.
-
-For the typography system, we will create a set of **utility classes** (e.g., `.h1`, `.h2`, `.body-text`) that apply the specified font properties. We will also apply these styles directly to the corresponding HTML tags (`h1`, `h2`, etc.) for sensible defaults and improved semantic HTML styling.
-
-All new styles will be organized within a dedicated `src/styles/design-system` directory to keep them isolated and maintainable. A main `index.css` file within this directory will act as the entry point for importing all design system modules.
-
-- **Modified Components**:
-    - `src/styles.css` (or equivalent global stylesheet): To import the new design system styles.
-- **New Components**:
-    - `src/styles/design-system/_colors.css`: Defines all color tokens as CSS custom properties.
-    - `src/styles/design-system/_typography.css`: Defines the typographic scale via utility classes.
-    - `src/styles/design-system/index.css`: Imports and aggregates all design system styles.
-- **Dependencies**:
-    - The `Inter` font family is specified. This plan assumes the font is already loaded into the application. The implementation of the font loading mechanism is out of scope.
-
-### Data Model Changes
-```python
-# No data model changes are required for this feature.
+### API Contract
+```kotlin
+interface PersistenceRepository {
+    suspend fun saveProgress(progress: UserProgress): Boolean
+    suspend fun loadProgress(): UserProgress?
+    suspend fun clearProgress(): Boolean
+    fun observeProgress(): Flow<UserProgress?>
+}
 ```
 
----
+### Error Handling
+- DataStore unavailable → catch IOException, return default
+- Corrupt JSON → catch SerializationException, return null, log warning
+- All operations are `suspend` — never block main thread
 
-## 2. Step-by-Step Implementation
+### Acceptance Criteria
+- [ ] AC1: `PersistenceRepository` created with save/load/clear + Flow
+- [ ] AC2: Unit tests pass (TDD — tests written first)
+- [ ] AC3: App loads saved data on startup and restores state
+- [ ] AC4: First-time users get clean default state (no errors)
+- [ ] AC5: Theme preference persists across sessions
+- [ ] AC6: Data uses versioned JSON schema (v1)
+- [ ] AC7: All I/O runs on background thread (Dispatchers.IO)
 
-### Step 1: Set Up Design System File Structure
-This step creates the foundational directory structure for our design tokens, ensuring a clean and scalable organization.
-
-- **Code**:
-    1.  Create a new directory: `src/styles/design-system/`.
-    2.  Inside this new directory, create the following empty files:
-        - `_colors.css`
-        - `_typography.css`
-        - `index.css`
-- **Verification**:
-    - Run `ls -R src/styles/design-system` and confirm the directory and all three CSS files exist.
-
-### Step 2: Implement Color Tokens
-This step defines the core color palette as specified, using a two-tiered system of primitive and semantic tokens for maximum flexibility.
-
-- **Code**:
-    - **File**: `src/styles/design-system/_colors.css`
-    - **Content**: Add the following CSS to define the color variables on the `:root` element.
-
-    ```css
-    /* src/styles/design-system/_colors.css */
-
-    :root {
-      /* --- Primitive Color Palette --- */
-      /* Do not use these directly in components. Use semantic tokens instead. */
-      --primitive-color-navy-900: #0A192F;
-      --primitive-color-amber-500: #F59E0B;
-      --primitive-color-slate-200: #E2E8F0; /* A light color for text on dark backgrounds */
-      --primitive-color-white: #FFFFFF;
-
-      /* --- Semantic Color Tokens --- */
-      /* These tokens describe the intended use of a color. */
-
-      /* Background Colors */
-      --color-background-page: var(--primitive-color-navy-900);
-
-      /* Text Colors */
-      --color-text-primary: var(--primitive-color-slate-200);
-      --color-text-inverted: var(--primitive-color-white);
-      --color-text-accent: var(--primitive-color-amber-500);
-
-      /* Action/Accent Colors */
-      --color-action-primary: var(--primitive-color-amber-500);
-    }
-    ```
-- **Verification**:
-    - After integrating in Step 4, open the browser's developer tools.
-    - Select the `<html>` or `<body>` element.
-    - In the "Computed" or "Styles" panel, verify that the CSS custom properties (e.g., `--color-background-page`) are defined and have the correct hex values.
-
-### Step 3: Implement Typography Scale
-This step defines the typographic styles for headings and body text, making them available as both direct element styles and reusable utility classes.
-
-- **Code**:
-    - **File**: `src/styles/design-system/_typography.css`
-    - **Content**: Add the following CSS to define the typography scale.
-
-    ```css
-    /* src/styles/design-system/_typography.css */
-
-    /* H1 / .h1 */
-    .h1, h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    /* H2 / .h2 */
-    .h2, h2 {
-      font-family: 'Inter', sans-serif;
-      font-size: 36px;
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    /* H3 / .h3 */
-    .h3, h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    /* H4 / .h4 */
-   
-(truncated if too long)
-
-
-## Reference: spec.md
-```markdown
-# Specification
-
-**Title:** [Design] Design System Implementation: Colors (#0A192F, #F59E0B) and Typography
-**URL:** https://github.com/mdwmediaworld072/TheMiddleWay/issues/4
+### IMPORTANT
+- Do NOT use `./gradlew` directly. You MUST use scripts in `./Android/scripts/` (e.g., `./Android/scripts/run_tests.sh`, `./Android/scripts/build.sh`)
 
 ---
 
-## 1. Goal
-
-To establish a foundational and consistent visual identity for the application by defining and implementing a core set of design tokens for colors and typography. This will ensure visual cohesion across all user interfaces, improve developer efficiency by providing reusable styles, and simplify future design updates.
-
-## 2. Actors
-
-*   **Developer:** The primary user of this system, who will consume the defined tokens to style UI components.
-*   **Designer:** The stakeholder who defines the visual language and relies on its faithful implementation.
-*   **End-User:** The beneficiary who experiences a polished, predictable, and visually appealing application.
-
-## 3. User Journey
-
-As a **Developer**, I want to style a new UI component. Instead of hardcoding hex values or pixel sizes, I need a simple and predictable way to apply the official brand styles.
-
-1.  **Discovery:** I consult the design system documentation (or codebase) to find the appropriate token for my use case (e.g., I need the primary background color or the style for a level-two heading).
-2.  **Application:** I reference the token by its semantic name (e.g., `color-background-primary` or `typography-h2`) in my styling code (CSS, SCSS, component styles, etc.).
-3.  **Verification:** The component renders on the screen with the correct color and font styles, matching the design specifications perfectly.
-4.  **Maintenance:** When a designer decides to update the brand's primary color, the change is made in one central token definition file. My component, along with all others using that token, updates automatically on the next build without any code changes on my part.
-
-## 4. Requirements
-
-### 4.1. Color System
-
-*   A centralized color palette must be defined and made available as design tokens.
-*   Tokens must have semantic names that describe their intended use (e.g., `background-primary`, `text-default`, `action-primary`) rather than their literal color (e.g., `dark-navy`, `bright-orange`).
-*   The system must include the following colors, mapped to semantic roles:
-    *   `#0A192F` (A dark navy blue)
-    *   `#F59E0B` (A vibrant amber/orange)
-*   The color tokens must be easily accessible throughout the application's styling layer (e.g., as CSS custom properties, theme variables, or utility classes).
-
-### 4.2. Typography System
-
-*   A typographic scale must be defined for all common text elements (e.g., headings H1-H6, body text, captions, labels).
-*   Each typographic style in the scale must be available as a token or a reusable style class.
-*   Each style definition must include the following properties:
-    *   `font-family`
-    *   `font-size`
-    *   `font-weight`
-    *   `line-height`
-    *   `letter-spacing` (optional, where appropriate)
-
-## 5. Specification by Example (SBE)
-
-### Scenario 1: Styling a Primary Call-to-Action Button
-
-**Context:** A developer is building a "Sign Up" button, which is the most important action on the page.
-**Trigger:** The developer needs to apply the brand's primary action color to the button's background.
-**Expectation:** The developer uses a semantic color token, and the button renders with the correct, centrally-managed color.
-
-**Example:**
-
-| Token Name              | Token Value | Example Application      | Rendered CSS Property      |
-| ----------------------- | ----------- | ------------------------ | -------------------------- |
-| `color-action-primary`  | `#F59E0B`   | `button.primary`         | `background-color: #F59E0B` |
-| `color-text-inverted`   | `#FFFFFF`   | `button.primary`         | `color: #FFFFFF`           |
-| `color-background-page` | `#0A192F`   | `body` or `main wrapper` | `background-color: #0A192F` |
-
----
-
-### Scenario 2: Creating a Main Page Title
-
-**Context:** A developer is adding the main heading to the "Welcome" page.
-**Trigger:** The developer needs to style the text "Welcome to The Middle Way" as a level-one heading (H1).
-**Expectation:** The developer applies the `h1` typography style, and the text is rendered with the predefined font properties for that level.
-
-**Example:**
-
-| Token/Style Name | Property        | Value           | Example Application | Rendered CSS                                                                                               |
-| ---------------- | --------------- | --------------- | ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `typography-h1`  | `font-family`   | `'Inter', sans-serif` | `<h1>` or `.h1`     | `font-family: 'Inter', sans-serif;`                                                                        |
-|                  | `font-size`     | `48px`          |                     | `font-size: 48px;`                                           
-(truncated if too long)
-
-
-## Default Guidance (Use only if not specified in Plans)
-- Tech Stack: Kotlin/Jetpack Compose. Implement Mobile UI and ViewModel. IMPORTANT: Do NOT use ./gradlew directly. You MUST use scripts in ./Android/scripts/ (e.g. ./Android/scripts/run_tests.sh, ./Android/scripts/build.sh).
-- Follow Clean Architecture
-- Ensure TDD (Test Driven Development)
-
-**IMPORTANT CONFLICT RESOLUTION:**
-If the 'Architecture & Plans' section conflicts with the 'Default Guidance', **FOLLOW THE PLANS**.
+## TDD Mode (REQUIRED)
+Follow strict TDD cycle:
+1. 🟥 RED: Write failing test first
+2. 🟢 GREEN: Write simplest code to pass
+3. ✨ REFACTOR: Clean up, ensure all tests pass
 
 ## Output Format
 Please provide the full code files wrapped in XML tags:

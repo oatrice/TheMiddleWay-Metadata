@@ -17,9 +17,9 @@
 ### Current Versions
 | Platform | Version | Status |
 |----------|---------|--------|
-| Web | 0.1.0 | ✅ Scaffolding |
-| Android | 0.1.0 | ✅ Scaffolding |
-| iOS | 0.1.0 | ✅ Scaffolding |
+| Web | 0.2.0-dev | 🔄 Foundation (Vercel Deploy ✅) |
+| Android | 0.2.0-dev | 🔄 Foundation (CI ✅) |
+| iOS | 0.2.0-dev | 🔄 Foundation (CI ✅) |
 
 ---
 
@@ -37,18 +37,20 @@
 ---
 
 ### 📌 [v0.2.0 - Foundation](https://github.com/oatrice/TheMiddleWay-Metadata/milestone/1) 🔄 IN PROGRESS
-**Target:** 2026-02-16 | **Issues:** 7 open
+**Target:** 2026-02-16 | **Issues:** 9 open, 1 closed
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | Implement Light/Dark Theme Support (Warm Modern vs Deep Cosmos) | 🔄 In Progress (iOS ✅) |
-| 2 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | [Design] Design System Implementation | 🔲 Todo |
-| 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | 🔲 Todo |
+| 1 | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | Implement Light/Dark Theme Support (Bright Sky vs Deep Cosmos) | ✅ Complete |
+| 2 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | [Design] Design System Implementation | ✅ Complete |
+| 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | ✅ Complete |
 | 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | 🔲 Todo |
 | 5 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
 | 6 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
-| 7 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | 🔲 Todo |
+| 7 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | 🔄 In Progress |
 | 8 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
+| 9 | [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) | [DevOps] iOS TestFlight Setup & Distribution | 🔲 Todo |
+| 10 | [#20](https://github.com/oatrice/TheMiddleWay-Metadata/issues/20) | [DevOps] Android CI/CD & Automated APK Build | 🔲 Todo |
 
 ---
 
@@ -102,9 +104,9 @@
 ### CI/CD Pipeline
 | Platform | Tool | Status | Issue |
 |----------|------|--------|-------|
-| Web | GitHub Actions + Vercel | 🔲 Not configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) |
-| Android | GitHub Actions + Firebase | 🔲 Not configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) |
-| iOS | GitHub Actions + TestFlight | 🔲 Not configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) |
+| Web | GitHub Actions + Vercel | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) |
+| Android | GitHub Actions (APK Artifact) | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9), [#20](https://github.com/oatrice/TheMiddleWay-Metadata/issues/20) |
+| iOS | GitHub Actions (Build only) | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9), [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) |
 
 ### Automated Testing
 | Type | Tool | Status | Issue |
@@ -133,9 +135,11 @@
 ## 📝 Notes
 
 - **Mobile-first approach** สำหรับทุก feature
-- **Design System ที่กำหนดไว้** ใช้อย่างสม่ำเสมอ (Warm Sanctuary / Deep Cosmos)
+- **Design System ที่กำหนดไว้** ใช้อย่างสม่ำเสมอ (Bright Sky / Deep Cosmos)
 - **TDD (Test-Driven Development)** สำหรับ core logic
 - **Cross-platform consistency** - Web, Android, iOS ต้องมี UI/UX เหมือนกัน
+- **Testing Guide** — ดูที่ [TESTING_GUIDE.md](./TESTING_GUIDE.md)
+- **Feature Docs** — ดูที่ [docs/features/](./docs/features/)
 
 ---
 
@@ -149,3 +153,5 @@
 | 🌐 **Web Repo** | [TheMiddleWay-Web](https://github.com/oatrice/TheMiddleWay-Web) |
 | 📱 **Android Repo** | [TheMiddleWay-Android](https://github.com/oatrice/TheMiddleWay-Android) |
 | 🍎 **iOS Repo** | [TheMiddleWay-IOS](https://github.com/oatrice/TheMiddleWay-IOS) |
+| 🌍 **Web (Vercel)** | [the-middle-way-web.vercel.app](https://the-middle-way-web.vercel.app) |
+| 📋 **Testing Guide** | [TESTING_GUIDE.md](./TESTING_GUIDE.md) |
