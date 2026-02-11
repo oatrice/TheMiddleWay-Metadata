@@ -78,9 +78,6 @@
 4. Refresh หน้าเว็บ
 5. **คาดหวัง:** แอปกลับไปเป็นค่าเริ่มต้น (Light Mode, 0 Progress)
 
-#### Screenshot
-![Web Testing](./screenshots/web.png)
-
 ---
 
 ## ✅ Checklist สำหรับ QA
