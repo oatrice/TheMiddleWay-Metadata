@@ -64,18 +64,22 @@
 ## 🌐 Web Testing
 
 ### Case 1: LocalStorage Verification
-1. เปิดหน้าเว็บ (Chrome/Safari)
-2. เปลี่ยน Theme เป็น Dark Mode
-3. กดปุ่ม Complete Lesson
-4. กด Refresh หน้าเว็บ (F5)
-5. **คาดหวัง:** Theme ยังเป็น Dark และ Progress ยังคงอยู่
+1. เปิดหน้าเว็บ (Chrome/Safari) แล้วไปที่หน้า **/profile**
+2. มองหา Section **"🛠️ Debug: Persistence Control"**
+3. กดปุ่ม **"✅ Complete Lesson (Random)"**
+4. สังเกตว่าค่า Progress ใน JSON เปลี่ยนไป
+5. กด Refresh หน้าเว็บ (F5)
+6. **คาดหวัง:** ค่า Progress JSON ยังคงเดิม
 
 ### Case 2: DevTools Verification (Optional)
 1. กด F12 เปิด Developer Tools -> Application -> Local Storage
-2. หา Key `the-middle-way-storage` (หรือชื่อที่ตั้งไว้)
+2. หา Key `theMiddleWay.progress`
 3. ลองลบ Key นี้ด้วยตนเอง
 4. Refresh หน้าเว็บ
 5. **คาดหวัง:** แอปกลับไปเป็นค่าเริ่มต้น (Light Mode, 0 Progress)
+
+#### Screenshot
+![Web Testing](./screenshots/web.png)
 
 ---
 
