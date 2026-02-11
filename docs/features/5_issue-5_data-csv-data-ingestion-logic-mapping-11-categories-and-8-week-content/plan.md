@@ -83,8 +83,8 @@ type WeeklyContent struct {
         4. Return 200 OK with summary, or 400 Bad Request with Validation Errors.
 
 ### Step 5: Frontend Integration (Future/Optional)
-- Update the Next.js Admin Page (`csvProcessor.ts`) to upload the file to this API instead of local processing.
-- (For now, testing can be done via Postman/Curl).
+- [x] Update the Next.js Admin Page (`csvProcessor.ts`) to upload the file to this API instead of local processing.
+- [x] (For now, testing can be done via Postman/Curl).
 
 ## 3. Verification Plan
 
