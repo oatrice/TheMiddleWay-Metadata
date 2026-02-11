@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.0] - 2026-02-11
+
+### Added
+
+- **Persistence Layer Documentation:** Introduced comprehensive documentation for the persistence layer, including analysis, planning, and technical specifications.
+- **Code Review Process:** Added a formal code review report to identify and track key issues, starting with the `UserProgress` data schema.
+- **Feature Testing Guide:** Created a dedicated testing guide for the Light/Dark theme feature.
+
+### Changed
+
+- **Project Roadmap:** Updated `ROADMAP.md` to reflect progress on CI/CD and to outline the development plan towards v0.2.0.
+- **Testing Guide:** Refined the main `TESTING_GUIDE.md` to better support development builds.
+- **Developer Prompts:** Overhauled and simplified developer prompts for Android, iOS, and Frontend to streamline the development process.
+
 ## [0.3.0] - 2026-02-10
 
 ### Added
