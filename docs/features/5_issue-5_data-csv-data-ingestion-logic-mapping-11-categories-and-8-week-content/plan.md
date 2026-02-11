@@ -97,7 +97,7 @@ type WeeklyContent struct {
     - Verify DB state after request.
 
 ### Manual Verification
-- [ ] **Setup**: Run Go server `go run cmd/api/main.go`.
-- [ ] **Happy Path**: Use Postman to POST `content_upload.csv` -> Expect 200 OK.
-- [ ] **Validation Error**: POST `content_errors.csv` -> Expect 400 Bad Request with JSON error list.
-- [ ] **Persistence**: Restart server -> Data remains in SQLite file.
+- [x] **Setup**: Run Go server `go run cmd/server/main.go`.
+- [x] **Happy Path**: Use Postman to POST `content_upload.csv` -> Expect 200 OK.
+- [x] **Validation Error**: POST `content_errors.csv` -> Expect 400 Bad Request with JSON error list.
+- [x] **Persistence**: Restart server -> Data remains in SQLite file.
