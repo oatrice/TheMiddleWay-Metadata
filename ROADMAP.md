@@ -43,7 +43,7 @@
 |----------|---|---|---|
 | 1 | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | Implement Light/Dark Theme Support (Bright Sky vs Deep Cosmos) | ✅ Complete |
 | 2 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | [Design] Design System Implementation | ✅ Complete |
-| 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | 🔲 Todo |
+| 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | ✅ Complete |
 | 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | 🔲 Todo |
 | 5 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
 | 6 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
