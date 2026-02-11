@@ -34,6 +34,32 @@
 
 ---
 
+## 📦 วิธีเข้าถึง Build (Specific Versions)
+
+เพื่อให้การทดสอบแม่นยำ กรุณาเลือก Build ให้ตรงกับ Version หรือ Commit ที่ต้องการทดสอบ:
+
+### 🤖 Android
+- **Latest Release (แนะนำ):**  
+  [👉 Download Latest APK](https://github.com/oatrice/TheMiddleWay-Android/releases/latest/download/app-release.apk)
+- **Specific Version:**  
+  สามารถเปลี่ยน `TAG` ในลิงก์เป็นเวอร์ชันที่ต้องการ:  
+  `https://github.com/oatrice/TheMiddleWay-Android/releases/download/<TAG>/app-release.apk`  
+  (ตัวอย่าง: `.../v0.1.0/app-release.apk`)  
+  หรือไปเลือกเองที่หน้า [Releases Page](https://github.com/oatrice/TheMiddleWay-Android/releases)
+
+### 🌐 Web
+- **Production (ล่าสุด):** [the-middle-way.vercel.app](https://the-middle-way.vercel.app)
+- **Preview (Specific Commit/PR):**  
+  ลิงก์จะอยู่ใน **Comment ของ PR** ใน GitHub หรือเช็คที่ Deployment Dashboard  
+  Format: `https://the-middle-way-git-<branch-name>-oatrice.vercel.app`
+
+### 🍎 iOS
+- **TestFlight (Recommended):**  
+  รอรับอีเมลเชิญ หรือลิงก์ Public Link (เมื่อเปิดใช้งาน)  
+  *Build จะระบุ Version และ Build Number ชัดเจนในแอป TestFlight*
+
+---
+
 ## 📥 วิธีดาวน์โหลดและติดตั้ง
 
 ### 🤖 Android (โทรศัพท์ Android)
