@@ -7,12 +7,15 @@
 - **Persistence Layer Documentation:** Introduced comprehensive documentation for the persistence layer, including analysis, planning, and technical specifications.
 - **Code Review Process:** Added a formal code review report to identify and track key issues, starting with the `UserProgress` data schema.
 - **Feature Testing Guide:** Created a dedicated testing guide for the Light/Dark theme feature.
+- **CI:** Implemented a new GitHub Actions workflow to automatically create and push Git tags when the `VERSION` file is updated.
+- **Documentation:** Created `DEPLOYMENT_URLS.md` to provide a central reference for application links for QA and users.
 
 ### Changed
 
 - **Project Roadmap:** Updated `ROADMAP.md` to reflect progress on CI/CD and to outline the development plan towards v0.2.0.
 - **Testing Guide:** Refined the main `TESTING_GUIDE.md` to better support development builds.
 - **Developer Prompts:** Overhauled and simplified developer prompts for Android, iOS, and Frontend to streamline the development process.
+- **Documentation:** Updated the persistence layer testing guide by removing a reference to a missing screenshot.
 
 ## [0.3.0] - 2026-02-10
 
