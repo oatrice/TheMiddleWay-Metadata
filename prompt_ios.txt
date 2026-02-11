@@ -1,107 +1,332 @@
-# Role: Senior iOS Developer
-# Task: Implement iOS persistence layer for Issue #15: [Infrastructure] Persistence Layer
-# Platform: Swift + SwiftUI + @AppStorage / UserDefaults
-# Issue: https://github.com/oatrice/TheMiddleWay-Metadata/issues/15
+# Role: Senior Ios Developer
+# Task: Implement ios components for Issue #5: [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content Use Swift/SwiftUI. Implement iOS UI + MVVM. Use XCTest.
+
+Please write the code for the following requirements.
 
 ## Context
-Project: The Middle Way (ทางสายกลาง)
-Feature: Client-side persistence to save user progress using iOS UserDefaults / @AppStorage.
-This is a **client-side only** feature — no backend required.
+Project: TheMiddleWay-Root
+Issue: #5 [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content
+Body:
+No details provided.
 
 ## Architecture & Plans (AUTHORITATIVE)
-The following approved design documents define the implementation. **You MUST follow this design.**
+The following content is from the approved design documents. **You MUST follow this design.**
 
-📂 **Full Documents Path:**
-- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/spec.md`
-- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/plan.md`
-- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/analysis.md`
-- `docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/specs/sbe_issue-6.md`
 
----
+## Reference: analysis.md
+# Analysis Template
 
-## iOS-Specific Implementation Plan
-
-### Tech Stack
-- **Language:** Swift 5.9+
-- **UI:** SwiftUI
-- **Storage API:** `UserDefaults` for complex data, `@AppStorage` for simple preferences
-- **Serialization:** `Codable` (JSONEncoder/JSONDecoder)
-- **Architecture:** MVVM
-- **Testing:** XCTest
-
-### Data Schema (v1)
-```swift
-// Core/Models/UserProgress.swift
-struct UserProgress: Codable, Equatable {
-    var version: Int = 1
-    var themeMode: String = "light"  // "light" | "dark"
-    var language: String = "th"      // "th" | "en"
-    var completedLessons: [String] = []
-    var bookmarks: [String] = []
-    var lastVisited: String = ""     // ISO 8601 datetime
-
-    static let `default` = UserProgress()
-}
-```
-
-### Files to Create/Modify
-| File | Action | Description |
-|------|--------|-------------|
-| `Core/Models/UserProgress.swift` | Create | Codable struct for persistence |
-| `Core/Services/PersistenceService.swift` | Create | Protocol + UserDefaults implementation |
-| `Core/Services/PersistenceServiceTests.swift` | Create | Unit tests (TDD — write tests FIRST) |
-| `Core/Theme/ThemeManager.swift` | Modify | Integrate with persistence (theme already exists) |
-
-### UserDefaults Key
-```swift
-static let storageKey = "theMiddleWay.progress"
-```
-
-### API Contract
-```swift
-protocol PersistenceServiceProtocol {
-    func saveProgress(_ progress: UserProgress) -> Bool
-    func loadProgress() -> UserProgress?
-    func clearProgress() -> Bool
-}
-
-class PersistenceService: PersistenceServiceProtocol {
-    private let defaults: UserDefaults
-    
-    init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-    }
-    // ...
-}
-```
-
-### Error Handling
-- Encoding failure → catch `EncodingError`, log warning, return `false`
-- Decoding failure → catch `DecodingError`, log warning, return `nil`, use default state
-- UserDefaults unavailable → very rare on iOS, but handle gracefully
-
-### Integration with Existing Theme
-```swift
-// ThemeManager.swift ใช้ @AppStorage สำหรับ themeMode อยู่แล้ว (#13)
-// ต้องย้ายมาใช้ PersistenceService เพื่อรวมข้อมูลทั้งหมดไว้ที่เดียว
-```
-
-### Acceptance Criteria
-- [ ] AC1: `PersistenceService` created with save/load/clear methods
-- [ ] AC2: Unit tests pass (TDD — tests written first) using XCTest
-- [ ] AC3: App loads saved data on startup and restores state
-- [ ] AC4: First-time users get clean default state (no errors)
-- [ ] AC5: Theme preference persists across sessions (integrate with existing #13)
-- [ ] AC6: Data uses versioned Codable schema (v1)
-- [ ] AC7: `PersistenceService` is injectable (protocol-based) for testability
+> 📋 Template สำหรับการวิเคราะห์ก่อนเริ่มพัฒนา Feature
 
 ---
 
-## TDD Mode (REQUIRED)
-Follow strict TDD cycle:
-1. 🟥 RED: Write failing test first
-2. 🟢 GREEN: Write simplest code to pass
-3. ✨ REFACTOR: Clean up, ensure all tests pass
+## 📌 Feature Information
+
+| รายการ | รายละเอียด |
+|--------|-----------|
+| **Feature Name** | CSV Data Ingestion for 8-Week Content Program |
+| **Issue URL** | [#5](https://github.com/owner/repo/issues/5) |
+| **Date** | 2023-10-27 |
+| **Analyst** | Luma AI (Senior Technical Analyst) |
+| **Priority** | 🔴 High |
+| **Status** | 📝 Draft |
+
+---
+
+## 1. Requirement Analysis
+
+### 1.1 Problem Statement
+
+> อธิบายปัญหาที่ต้องการแก้ไข
+
+```
+ปัจจุบันไม่มีกระบวนการที่เป็นระบบสำหรับการนำเข้าข้อมูลเนื้อหา (Content) จำนวนมากเข้าสู่ระบบ โดยเฉพาะข้อมูลโปรแกรม 8 สัปดาห์ที่มีโครงสร้างซับซ้อน (แบ่งเป็น 11 หมวดหมู่) ทำให้ทีม Content ต้องเพิ่มข้อมูลด้วยตนเองซึ่งช้าและเสี่ยงต่อความผิดพลาด ระบบจึงต้องการกลไกในการนำเข้าข้อมูลจากไฟล์ CSV เพื่อเพิ่มความรวดเร็ว ลดข้อผิดพลาด และทำให้การจัดการข้อมูลมีประสิทธิภาพมากขึ้น
+```
+
+### 1.2 User Stories
+
+| # | As a | I want to | So that |
+|---|------|-----------|---------|
+| 1 | Content Manager | upload a CSV file containing the 8-week program content | I can quickly populate or update the application's content without manual data entry. |
+| 2 | System Administrator | have a backend process that parses, validates, and maps CSV data to the database | data integrity is maintained and the process is reliable and auditable. |
+
+### 1.3 Acceptance Criteria
+
+- [ ] **AC1:** ระบบต้องมี Script หรือ API Endpoint สำหรับรับไฟล์ CSV เพื่อประมวลผล
+- [ ] **AC2:** Script/Endpoint ต้องสามารถตรวจสอบความถูกต้องของโครงสร้างไฟล์ CSV (เช่น ชื่อคอลัมน์, ประเภทข้อมูล) และเนื้อหา (เช่น Category ทั้ง 11 ประเภทต้องถูกต้อง, ข้อมูลครบ 8 สัปดาห์)
+- [ ] **AC3:** ข้อมูลที่ผ่านการตรวจสอบแล้ว จะต้องถูกบันทึกลงในตารางฐานข้อมูลที่เกี่ยวข้องอย่างถูกต้องตามโครงสร้าง Category และ Week
+- [ ] **AC4:** ในกรณีที่ไฟล์หรือข้อมูลไม่ถูกต้อง ระบบจะต้องจัดการข้อผิดพลาดอย่างเหมาะสม เช่น ไม่บันทึกข้อมูลส่วนที่ผิดพลาดลงฐานข้อมูล และมีการบันทึก Log ของข้อผิดพลาดอย่างละเอียด
+
+---
+
+## 2. Feature Analysis
+
+### 2.1 User Flow
+
+> **Note:** This is a backend process, likely triggered by an admin or a scheduled job.
+
+```mermaid
+flowchart TD
+    A[Start: Admin triggers ingestion process via API/CLI] --> B[System reads the provided CSV file]
+    B --> C{Validate CSV structure and data}
+    C -->|✅ Valid| D[Parse and map data to database models]
+    D --> E[Perform upsert operation into the database]
+    E --> F[Log success and number of records processed]
+    F --> G[End]
+    C -->|❌ Invalid| H[Log detailed errors (e.g., row number, error message)]
+    H --> G
+```
+
+### 2.2 Screen/Page Requirements
+
+| หน้าจอ | Actions | Components |
+|--------|---------|------------|
+| N/A (Backend Process) | - Trigger ingestion via API call or CLI command.<br>- Provide path to CSV file. | - API Endpoint (e.g., `POST /api/v1/admin/content/ingest`)<br>- Command-Line Interface (CLI) script |
+
+> **Assumption:** A user-facing UI for file upload is not in the scope of this issue. If required, an "Admin Panel" with a file upload form would be a separate feature.
+
+### 2.3 Input/Output Specification
+
+#### Inputs
+
+| Field | Type | Required | Validation |
+|-------|------|----------|------------|
+| `csv_file` | File | ✅ | - Must be a valid `.csv` file.<br>- UTF-8 encoding.<br>- Max file size: 5MB (assumed).<br>- Must contain required columns: `week`, `day`, `category_name`, `content_title`, `content_body`. |
+
+#### Outputs
+
+> API Response Body (Example)
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `status` | string | "success" or "error" |
+| `message` | string | Summary of the operation, e.g., "Successfully processed 560 records." |
+| `records_processed` | number | The total number of rows successfully ingested. |
+| `errors` | array | An array of error objects if validation fails, e.g., `[{ "row": 15, "error": "Invalid category 'Health'" }]` |
+
+---
+
+## 3. Impact Analysis
+
+### 3.1 Affected Components
+
+| Component | Impact Level | Description |
+|-----------|--------------|-------------|
+| **Backend (Python/Go)** | 🔴 High | Requires a new module/service for CSV parsing, data validation, business logic for mapping, and database interaction. |
+| **Database Schema** | 🔴 High | May require new tables (e.g., `program_content`, `categories`) or modification of existing ones to store the structured content. Schema must be finalized before development. |
+| **API Gateway** | 🟢 Low | A new route may need to be configured and secured for the ingestion endpoint. |
+| **Web/Mobile Apps** | 🟢 Low | No direct changes. The apps will consume the data populated by this feature, so they will benefit from having up-to-date content. |
+
+### 3.2 Breaking Changes
+
+- [ ] **BC1:** None. This is an additive feature creating a new data ingestion pathway and does not alter existing APIs or functionalities for end-users.
+
+### 3.3 Backward Compatibility Plan
+
+```
+Not applicable as this is a new, internal-facing feature.
+```
+
+---
+
+## 4. Feasibility Analysis
+
+### 4.1 Technical Feasibility
+
+| คำถาม | คำตอบ | หมายเหตุ |
+|-------|-
+(truncated if too long)
+
+
+## Reference: plan.md
+# Implementation Plan: CSV Content Ingestion System
+
+> **Refers to**: [Spec Link](./spec.md)
+> **Status**: Draft
+
+## 1. Architecture & Design
+The implementation will consist of a new backend API endpoint responsible for receiving, validating, and processing a CSV file. The logic will be encapsulated within dedicated services for validation and data import to ensure separation of concerns and testability. The entire import process will be wrapped in a single database transaction to guarantee atomicity as required by **FR4**.
+
+The frontend will be a minimal, mock UI on the web-based admin panel, providing a simple file upload interface.
+
+### Component View
+> [!IMPORTANT]
+> **Platform Scope Policy:**
+> - **Web**: Mock UI only for this phase. The UI will provide the upload mechanism for the Content Manager.
+> - **Android**: No direct changes. The Android app will consume the content populated by this feature at a later stage.
+> - **iOS**: No direct changes. The iOS app will consume the content populated by this feature at a later stage.
+>
+> **Development Order:** Web Mock UI FIRST → Backend API & Services SECOND.
+
+- **Modified Components**:
+    - `admin/routes.py`: To add the new API endpoint route.
+    - `admin/templates/content_management.html`: To add the file upload form.
+
+- **New Components**:
+    - **Backend**:
+        - `models/content.py`: A new `Content` model to store the weekly categorized content.
+        - `api/content_upload_controller.py`: A new controller to handle the `/api/admin/content/upload` endpoint.
+        - `services/csv_processor.py`: A service containing two main classes:
+            - `CsvValidator`: Responsible for all validation logic (**FR2, FR3, FR5**).
+            - `ContentImporter`: Responsible for the transactional database upsert logic (**FR4, FR6**).
+        - `constants/content_categories.py`: A file to store the list of 11 predefined categories.
+    - **Database**:
+        - A new `content` table in the database.
+
+- **Dependencies**:
+    - `pandas`: A Python library will be used on the backend for efficient CSV parsing and data validation.
+
+### Data Model Changes
+A new `Content` model will be created. The combination of `week` and `category` will be enforced as a unique key at the database level to facilitate the upsert logic.
+
+```python
+# File: models/content.py
+
+from django.db import models
+
+class Content(models.Model):
+    """
+    Stores the content for a specific week and category.
+    """
+    week = models.IntegerField(
+        help_text="The week number, from 1 to 8."
+    )
+    category = models.CharField(
+        max_length=100,
+        help_text="One of the 11 predefined content categories."
+    )
+    title = models.CharField(
+        max_length=255,
+        help_text="The title of the content piece."
+    )
+    content = models.TextField(
+        help_text="The main body of the content."
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        # Enforces the unique key for the upsert logic (FR6)
+        unique_together = ('week', 'category')
+        verbose_name = "Weekly Content"
+        verbose_name_plural = "Weekly Content"
+
+    def __str__(self):
+        return f"Week {self.week} - {self.category}: {self.title}"
+```
+
+---
+
+## 2. Step-by-Step Implementation
+
+### Step 1: Backend Foundation - Data Model and Constants
+- **Description**: Define the `Content` data model and the list of valid categories. Create and apply the database migration.
+- **Code**:
+    - Create `models/content.py` with the `Content` class as defined above.
+    - Create `constants/content_categories.py` to export the list of 11 category strings.
+    - Run `python manage.py makemigrations` and `python manage.py migrate` to apply the schema changes.
+- **Verification**:
+    - The migration runs successfully.
+    - Inspect the database schema to confirm the `content` table exists with the correct columns, types, and a unique constraint on `(week, category)`.
+
+### Step 2: Backend Logic - CSV Validation Service
+- **Description**: Implement the service responsible for validating the CSV file's structure and data content. This service will not interact with the database.
+- **Code**:
+    - Create `services/csv_processor.py`.
+    - Implement the `CsvValidator` class within this file.
+    - The validator will have a primary method, `validate(file_stream)`, which performs the following checks:
+        1.  **Header Validation (FR2)**: Reads the CSV header and ensures `Week`, `Category`, `Title`, and `Content` are all present.
+        2.  **Row-by-Row Data Validation (FR3)**: Iterates through each row and validates:
+            - `Week` is an integer between 1 and 8.
+            - `Category` is present in the list from `constants/content_categories.py`.
+            - `Title` is not null or empty.
+    - The `validate` method will return a list of structured error messages (e.g., `[{'row': 3, 'error': 'Invalid category: Mindful
+(truncated if too long)
+
+
+## Reference: spec.md
+```markdown
+# Specification Document: spec.md
+
+| | |
+| --- | --- |
+| **Title** | [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content |
+| **URL** | https://github.com/mdwmediaworld072/TheMiddleWay/issues/5 |
+| **State** | `DRAFT` |
+| **Author** | @expert-pm |
+| **Reviewers** | @dev-lead, @qa-lead |
+| **Last Updated** | 2023-10-27 |
+
+---
+
+### 1. Goal (The "Why")
+
+**User Story:** As a Content Manager, I want to upload a single CSV file containing 8 weeks of content across 11 distinct categories, so that the system can automatically populate the application's content structure, saving time and preventing manual data entry errors.
+
+**Problem:** Manually creating, organizing, and linking content for 88 unique combinations (8 weeks x 11 categories) is a highly repetitive, time-consuming, and error-prone process. A small mistake can lead to inconsistent or incorrect content being displayed to end-users.
+
+**Benefit:** This feature will automate the entire content population process. It will ensure data consistency, dramatically reduce the time required for content setup, and enable easy bulk updates by simply modifying and re-uploading the CSV file.
+
+---
+
+### 2. Actors (The "Who")
+
+*   **Content Manager (Admin):** The primary user who prepares the CSV file according to a defined template and uploads it into the system.
+*   **System:** The application responsible for receiving the file, validating its structure and content, processing the data, and storing it in the appropriate data model.
+
+---
+
+### 3. User Journey (The "How")
+
+1.  The **Content Manager** prepares a CSV file containing the content for all 8 weeks and 11 categories. The file must adhere to a specific format and column structure.
+2.  The **Content Manager** navigates to the "Content Import" section of the admin dashboard.
+3.  They click an "Upload CSV" button and select the prepared file from their local machine.
+4.  The **System** receives the file and immediately performs a validation check on its structure and data.
+5.  **Happy Path:**
+    *   If the validation is successful, the **System** processes each row.
+    *   For each row, it identifies the `Week` and `Category` and either creates a new content entry or updates an existing one (upsert logic).
+    *   Upon completion, the **System** displays a success message to the **Content Manager**, such as: "Success! 88 content items were imported/updated."
+6.  **Unhappy Path:**
+    *   If any part of the validation fails (e.g., missing columns, invalid week number, unrecognized category), the **System** halts the import process *before* making any changes to the database.
+    *   The **System** displays specific, actionable error messages to the **Content Manager**, detailing which row and column caused the failure (e.g., "Error on Row 5: The value 'Mindfullness' in the 'Category' column is not a valid category.").
+    *   The **Content Manager** corrects the errors in their CSV file and re-attempts the upload.
+
+---
+
+### 4. Requirements (The "What")
+
+#### Functional Requirements (FR)
+
+| ID | Requirement | Details |
+| --- | --- | --- |
+| **FR1** | **CSV Upload Interface** | The system must provide a user interface for an authenticated Content Manager to upload a file with a `.csv` extension. |
+| **FR2** | **CSV Structure Validation** | The system must validate that the uploaded CSV contains the following required header columns: `Week`, `Category`, `Title`, `Content`. The column order should not matter. |
+| **FR3** | **Data Type & Value Validation** | The system must validate the data in each row *before* processing the import: <br> - `Week`: Must be an integer between `1` and `8` (inclusive). <br> - `Category`: Must be one of the 11 predefined, case-sensitive category names. <br> - `Title`: Must not be empty. |
+| **FR4** | **Atomic Import Process** | The entire import operation must be atomic. If even one row fails validation, the entire process must be aborted, and no data should be saved or modified in the database. |
+| **FR5** | **Actionable Error Reporting** | If validation fails, the system must return clear, user-friendly error messages that specify the row number and the exact nature of the error. |
+| **FR6** | **Data Mapping & Upsert Logic** | For each valid row, the system must map the data to the internal content model. It will use the combination of `Week` and `Category` as a unique key. <br> - If an entry for that `Week`/`Category` combination already exists, it will be **updated** with the new `Title` and `Content`. <br> - If no entry exists, a **new** one will be created. |
+| **FR7** | **Success Confirmation** | Upon successful completion of the import, the system must display a confirmation message indicating the total number of records processed. |
+
+#### Predefined Categories
+The 11 valid, case-sensitive values for the `Category` column are:
+1.  `Mindfulness`
+2.  `Nutrition`
+3.  `Fitness`
+4.  `Sleep`
+5.  `Stress Management`
+6.  `Productivity`
+7.  `Relationships`
+
+(truncated if too long)
+
+
+## Default Guidance (Use only if not specified in Plans)
+- Tech Stack: Swift/SwiftUI. Implement iOS UI + MVVM. Use XCTest.
+- Follow Clean Architecture
+- Ensure TDD (Test Driven Development)
+
+**IMPORTANT CONFLICT RESOLUTION:**
+If the 'Architecture & Plans' section conflicts with the 'Default Guidance', **FOLLOW THE PLANS**.
 
 ## Output Format
 Please provide the full code files wrapped in XML tags:

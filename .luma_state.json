@@ -1,23 +1,21 @@
 {
   "version": "1.0",
   "project_key": "6",
-  "phase": "pr_pending",
+  "phase": "coding",
   "active_issue": {
-    "number": 6,
-    "title": "[Infrastructure] Persistence Layer: LocalStorage System for Progress Tracking",
-    "html_url": "https://github.com/mdwmediaworld072/TheMiddleWay/issues/6",
+    "number": 5,
+    "title": "[Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content",
+    "html_url": "https://github.com/mdwmediaworld072/TheMiddleWay/issues/5",
     "body": "",
-    "project_item_id": "PVTI_lAHOATfKEM4BOWVDzgk3Kxs",
+    "project_item_id": "PVTI_lAHOATfKEM4BOWVDzgk3KxE",
     "project_id": "PVT_kwHOATfKEM4BOWVD",
     "repository": "mdwmediaworld072/TheMiddleWay"
   },
-  "active_branch": "feat/6-localstorage-persistence-layer",
-  "started_at": "2026-02-10T17:37:01.704061",
+  "active_branch": "feat/5-csv-data-ingestion",
+  "started_at": "2026-02-11T13:53:23.482217",
   "checklist": {},
-  "context": {
-    "last_feature_dir": "/Users/oatrice/Software-projects/The Middle Way -Metadata/docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking"
-  },
-  "pr_url": "https://github.com/oatrice/TheMiddleWay-Metadata/pull/25",
+  "context": {},
+  "pr_url": null,
   "pr_number": null,
-  "last_updated": "2026-02-11T13:47:50.861689"
+  "last_updated": "2026-02-11T13:53:25.372533"
 }

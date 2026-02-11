@@ -1,5 +1,5 @@
-# Role: Senior Frontend Developer
-# Task: Implement frontend components for Issue #5: [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content Use React/Vue/Web technologies. Focus on UI implementation.
+# Role: Senior Backend Developer
+# Task: Implement backend components for Issue #5: [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content Use Go/Python. Implement API endpoints and business logic.
 
 Please write the code for the following requirements.
 
@@ -321,7 +321,7 @@ The 11 valid, case-sensitive values for the `Category` column are:
 
 
 ## Default Guidance (Use only if not specified in Plans)
-- Tech Stack: React/Vue/Web technologies. Focus on UI implementation.
+- Tech Stack: Go/Python. Implement API endpoints and business logic.
 - Follow Clean Architecture
 - Ensure TDD (Test Driven Development)
 
