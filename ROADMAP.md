@@ -15,11 +15,12 @@
 - PATCH: Bug fixes
 
 ### Current Versions
-| Platform | Version | Status |
-|----------|---------|--------|
-| Web | 0.2.0-dev | 🔄 Foundation (Vercel Deploy ✅) |
-| Android | 0.2.0-dev | 🔄 Foundation (CI ✅) |
-| iOS | 0.2.0-dev | 🔄 Foundation (CI ✅) |
+| Platform | Version | Tag | Status |
+|----------|---------|-----|--------|
+| Web | 0.4.0 | `v0.4.0` | 🔄 Foundation (Vercel Deploy ✅) |
+| Android | 0.3.1 | `v0.3.1` | 🔄 Foundation (CI ✅) |
+| iOS | 0.3.1 | `v0.3.1` | 🔄 Foundation (CI ✅) |
+| Backend | 0.1.0 | — | 🔄 Foundation (CI ✅) |
 
 ---
 
@@ -37,14 +38,14 @@
 ---
 
 ### 📌 [v0.2.0 - Foundation](https://github.com/oatrice/TheMiddleWay-Metadata/milestone/1) 🔄 IN PROGRESS
-**Target:** 2026-02-16 | **Issues:** 6 open, 4 closed
+**Target:** 2026-02-16 | **Issues:** 5 open, 5 closed
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
 | 1 | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | Implement Light/Dark Theme Support (Warm Modern vs Deep Cosmos) | ✅ Complete |
 | 2 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | [Design] Design System Implementation | ✅ Complete |
 | 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | ✅ Complete |
-| 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | 🔄 In Progress |
+| 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | ✅ Complete |
 | 5 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
 | 6 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
 | 7 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | ✅ Complete |
@@ -67,6 +68,9 @@
 | 2 | [#2](https://github.com/mdwmediaworld072/TheMiddleWay/issues/2) | 📝 ห้องปฏิบัติธรรม (Weekly Practices & Checklist) | 🔲 Todo |
 | 3 | [#12](https://github.com/mdwmediaworld072/TheMiddleWay/issues/12) | Navigation System: Bottom Tab Bar & Week Navigation | 🔲 Todo |
 | 4 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | 🔲 Todo |
+| 5 | [#28](https://github.com/oatrice/TheMiddleWay-Metadata/issues/28) | [Feature] Category Management UI: CRUD for 11 Core Categories | 🔲 Todo |
+| 6 | [#27](https://github.com/oatrice/TheMiddleWay-Metadata/issues/27) | [Feature] Multi-format Data Import: Excel & JSON | 🔲 Todo |
+| 7 | [#29](https://github.com/oatrice/TheMiddleWay-Metadata/issues/29) | [Feature] Data Deletion & Cleanup: Remove/Archive Ingested Content | 🔲 Todo |
 
 ---
 
@@ -89,6 +93,7 @@
 | 1 | [#9](https://github.com/mdwmediaworld072/TheMiddleWay/issues/9) | Audio Library: Meditation Players for Urban Lifestyles | 🔲 Todo |
 | 2 | [#10](https://github.com/mdwmediaworld072/TheMiddleWay/issues/10) | AI Dhamma: Soft-bubble Chat Interface | 🔲 Todo |
 | 3 | [#14](https://github.com/mdwmediaworld072/TheMiddleWay/issues/14) | 🔐 User Authentication & Sync | 🔲 Todo |
+| 4 | [#30](https://github.com/oatrice/TheMiddleWay-Metadata/issues/30) | [Future] Admin UI for Content Management (iOS/Android) | 🔲 Todo |
 
 ---
 
@@ -106,11 +111,12 @@
 ## 🔧 DevOps & Infrastructure
 
 ### CI/CD Pipeline
-| Platform | Tool | Status | Issue |
-|----------|------|--------|-------|
-| Web | GitHub Actions + Vercel | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) |
-| Android | GitHub Actions (APK Artifact) | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9), [#20](https://github.com/oatrice/TheMiddleWay-Metadata/issues/20) |
-| iOS | GitHub Actions (Build only) | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9), [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) |
+| Platform | Tool | Auto-Tag | Status | Issue |
+|----------|------|----------|--------|-------|
+| Web | GitHub Actions + Vercel | ✅ `v0.4.0` | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) |
+| Backend | GitHub Actions (Go CI) | ✅ (VERSION file) | ✅ Configured | — |
+| Android | GitHub Actions (APK Artifact) | ✅ `v0.3.1` | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9), [#20](https://github.com/oatrice/TheMiddleWay-Metadata/issues/20) |
+| iOS | GitHub Actions (Build only) | ✅ `v0.3.1` | ✅ Configured | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9), [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) |
 
 ### Automated Testing
 | Type | Tool | Status | Issue |
@@ -133,6 +139,8 @@
 - `[Animation]` - Motion and interactions
 - `[Architecture]` - Code structure, modularization
 - `[UI/UX]` - User interface improvements
+- `[Quality]` - Logging, monitoring, crashlytics
+- `[Process]` - Development workflow and tracking
 
 ---
 
@@ -157,5 +165,6 @@
 | 🌐 **Web Repo** | [TheMiddleWay-Web](https://github.com/oatrice/TheMiddleWay-Web) |
 | 📱 **Android Repo** | [TheMiddleWay-Android](https://github.com/oatrice/TheMiddleWay-Android) |
 | 🍎 **iOS Repo** | [TheMiddleWay-IOS](https://github.com/oatrice/TheMiddleWay-IOS) |
+| ⚙️ **Backend Repo** | [TheMiddleWay-Backend](https://github.com/oatrice/TheMiddleWay-Backend) |
 | 🌍 **Web (Vercel)** | [the-middle-way-web.vercel.app](https://the-middle-way-web.vercel.app) |
 | 📋 **Testing Guide** | [TESTING_GUIDE.md](./TESTING_GUIDE.md) |
