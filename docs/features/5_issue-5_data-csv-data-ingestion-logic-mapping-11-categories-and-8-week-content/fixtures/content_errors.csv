@@ -1,0 +1,5 @@
+Week,Category,Title,Content
+1,Fitness,"Valid Entry","This one is fine."
+9,Nutrition,"Invalid Week","This week is out of range."
+2,Mindfullness,"Typo in Category","The category name is misspelled."
+3,Sleep,,"This entry is missing a title."

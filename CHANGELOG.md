@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.5.0] - 2026-02-11
+
+### Added
+
+- **CSV Ingestion Documentation:** Introduced comprehensive planning for the CSV data ingestion feature, including analysis, technical specifications, and test data fixtures.
+- **Backend Architecture:** Finalized and documented the Go backend architecture.
+- **CI:** Implemented a GitHub Actions workflow to automatically create and push Git tags when the `VERSION` file is updated.
+- **Deployment Documentation:** Created `DEPLOYMENT_URLS.md` to provide a central reference for application links for QA and users.
+- **Code Review:** Added a formal `code_review.md` report with initial suggestions for CSV testing.
+
+### Changed
+
+- **Project Roadmap:** Updated `ROADMAP.md` to prioritize the CSV data ingestion feature.
+- **Developer Prompts:** Overhauled prompts for Android, iOS, Backend, and Frontend to align with new architectural decisions and improve development guidance.
+
+### Fixed
+
+- **Documentation:** Removed a reference to a missing screenshot in a feature testing guide.
+
 ## [0.4.0] - 2026-02-11
 
 ### Added
@@ -7,12 +26,15 @@
 - **Persistence Layer Documentation:** Introduced comprehensive documentation for the persistence layer, including analysis, planning, and technical specifications.
 - **Code Review Process:** Added a formal code review report to identify and track key issues, starting with the `UserProgress` data schema.
 - **Feature Testing Guide:** Created a dedicated testing guide for the Light/Dark theme feature.
+- **CI:** Implemented a new GitHub Actions workflow to automatically create and push Git tags when the `VERSION` file is updated.
+- **Documentation:** Created `DEPLOYMENT_URLS.md` to provide a central reference for application links for QA and users.
 
 ### Changed
 
 - **Project Roadmap:** Updated `ROADMAP.md` to reflect progress on CI/CD and to outline the development plan towards v0.2.0.
 - **Testing Guide:** Refined the main `TESTING_GUIDE.md` to better support development builds.
 - **Developer Prompts:** Overhauled and simplified developer prompts for Android, iOS, and Frontend to streamline the development process.
+- **Documentation:** Updated the persistence layer testing guide by removing a reference to a missing screenshot.
 
 ## [0.3.0] - 2026-02-10
 

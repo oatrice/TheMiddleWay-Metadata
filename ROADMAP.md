@@ -2,7 +2,7 @@
 
 แผนพัฒนาแอปพลิเคชัน "The Middle Way" สำหรับการเรียนรู้และ mindfulness
 
-**อัปเดตล่าสุด:** 2026-02-10
+**อัปเดตล่าสุด:** 2026-02-11
 
 ---
 
@@ -37,20 +37,24 @@
 ---
 
 ### 📌 [v0.2.0 - Foundation](https://github.com/oatrice/TheMiddleWay-Metadata/milestone/1) 🔄 IN PROGRESS
-**Target:** 2026-02-16 | **Issues:** 9 open, 1 closed
+**Target:** 2026-02-16 | **Issues:** 6 open, 4 closed
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | Implement Light/Dark Theme Support (Bright Sky vs Deep Cosmos) | ✅ Complete |
+| 1 | [#13](https://github.com/oatrice/TheMiddleWay-Metadata/issues/13) | Implement Light/Dark Theme Support (Warm Modern vs Deep Cosmos) | ✅ Complete |
 | 2 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | [Design] Design System Implementation | ✅ Complete |
 | 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | ✅ Complete |
-| 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | 🔲 Todo |
+| 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | 🔄 In Progress |
 | 5 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
 | 6 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
-| 7 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | 🔄 In Progress |
+| 7 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | ✅ Complete |
 | 8 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
 | 9 | [#18](https://github.com/oatrice/TheMiddleWay-Metadata/issues/18) | [DevOps] iOS TestFlight Setup & Distribution | 🔲 Todo |
 | 10 | [#20](https://github.com/oatrice/TheMiddleWay-Metadata/issues/20) | [DevOps] Android CI/CD & Automated APK Build | 🔲 Todo |
+| 11 | [#24](https://github.com/oatrice/TheMiddleWay-Metadata/issues/24) | [Quality] Epic: Observability & Reliability | 🔲 Todo |
+| 12 | [#21](https://github.com/oatrice/TheMiddleWay-Metadata/issues/21) | [Quality][Android] Logging + Crashlytics + LeakCanary | 🔲 Todo |
+| 13 | [#22](https://github.com/oatrice/TheMiddleWay-Metadata/issues/22) | [Quality][iOS] Logging + Crashlytics | 🔲 Todo |
+| 14 | [#23](https://github.com/oatrice/TheMiddleWay-Metadata/issues/23) | [Quality][Web] Logging + Monitoring | 🔲 Todo |
 
 ---
 
@@ -59,10 +63,10 @@
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | #1 | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | 🔲 Todo |
-| 2 | #2 | 📝 ห้องปฏิบัติธรรม (Weekly Practices) | 🔲 Todo |
-| 3 | #12 | Navigation System: Bottom Tab Bar | 🔲 Todo |
-| 4 | #11 | Onboarding: Welcome Screen | 🔲 Todo |
+| 1 | [#1](https://github.com/mdwmediaworld072/TheMiddleWay/issues/1) | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | 🔲 Todo |
+| 2 | [#2](https://github.com/mdwmediaworld072/TheMiddleWay/issues/2) | 📝 ห้องปฏิบัติธรรม (Weekly Practices & Checklist) | 🔲 Todo |
+| 3 | [#12](https://github.com/mdwmediaworld072/TheMiddleWay/issues/12) | Navigation System: Bottom Tab Bar & Week Navigation | 🔲 Todo |
+| 4 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | 🔲 Todo |
 
 ---
 
@@ -71,9 +75,9 @@
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | #7 | Bilingual Support (i18n): EN/TH | 🔲 Todo |
-| 2 | [#17](https://github.com/oatrice/TheMiddleWay-Metadata/issues/17) | [Animation] Micro-interactions & Motion Design | 🔲 Todo |
-| 3 | #8 | The Wisdom Wheel: Radial Progress | 🔲 Todo |
+| 1 | [#7](https://github.com/mdwmediaworld072/TheMiddleWay/issues/7) | Bilingual Support (i18n): EN/TH Toggle Framework | 🔲 Todo |
+| 2 | [#17](https://github.com/oatrice/TheMiddleWay-Metadata/issues/17), [#13](https://github.com/mdwmediaworld072/TheMiddleWay/issues/13) | [Animation] Micro-interactions & Motion Design | 🔲 Todo |
+| 3 | [#8](https://github.com/mdwmediaworld072/TheMiddleWay/issues/8) | The Wisdom Wheel: Radial Progress Chart Visualization | 🔲 Todo |
 
 ---
 
@@ -82,9 +86,9 @@
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | #9 | Audio Library: Meditation Players | 🔲 Todo |
-| 2 | #10 | AI Dhamma: Chat Interface | 🔲 Todo |
-| 3 | #14 | User Authentication & Sync | 🔲 Todo |
+| 1 | [#9](https://github.com/mdwmediaworld072/TheMiddleWay/issues/9) | Audio Library: Meditation Players for Urban Lifestyles | 🔲 Todo |
+| 2 | [#10](https://github.com/mdwmediaworld072/TheMiddleWay/issues/10) | AI Dhamma: Soft-bubble Chat Interface | 🔲 Todo |
+| 3 | [#14](https://github.com/mdwmediaworld072/TheMiddleWay/issues/14) | 🔐 User Authentication & Sync | 🔲 Todo |
 
 ---
 
