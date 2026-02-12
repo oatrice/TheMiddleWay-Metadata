@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "project_key": "6",
-  "phase": "coding",
+  "phase": "pr_pending",
   "active_issue": {
     "number": 11,
     "title": "[Feature] Onboarding: Welcome Screen & \"Authentic Wisdom\" Introduction",
@@ -14,8 +14,10 @@
   "active_branch": "feat/11-onboarding-welcome-screen",
   "started_at": "2026-02-12T18:12:29.186576",
   "checklist": {},
-  "context": {},
-  "pr_url": null,
+  "context": {
+    "last_feature_dir": "/Users/oatrice/Software-projects/The Middle Way -Metadata/docs/features/8_issue-11_feature-onboarding-welcome-screen-authentic-wisdom-introduction"
+  },
+  "pr_url": "https://github.com/oatrice/TheMiddleWay-Metadata/pull/40",
   "pr_number": null,
-  "last_updated": "2026-02-12T18:12:32.066070"
+  "last_updated": "2026-02-12T22:53:36.567906"
 }

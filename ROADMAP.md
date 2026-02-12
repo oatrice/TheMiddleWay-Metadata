@@ -50,7 +50,7 @@
 | 6 | [#1](https://github.com/mdwmediaworld072/TheMiddleWay/issues/1) | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | ✅ Complete |
 | 7 | [#2](https://github.com/mdwmediaworld072/TheMiddleWay/issues/2) | 📝 ห้องปฏิบัติธรรม (Weekly Practices & Checklist) | ✅ Complete |
 | 8 | [#12](https://github.com/mdwmediaworld072/TheMiddleWay/issues/12) | Navigation System: Bottom Tab Bar & Week Navigation | ✅ Complete |
-| 9 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | 🔲 Todo |
+| 9 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | ✅ Complete |
 
 ---
 
