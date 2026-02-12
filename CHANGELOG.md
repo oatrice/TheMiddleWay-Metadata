@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.6.0] - 2026-02-12
+
+### Added
+- **Wisdom Garden Dashboard (All Platforms):** logic and UI implementation for the Wisdom Garden feature.
+  - **Android:**
+    - Full implementation of `WisdomGardenScreen` with `WisdomTree` (visualization), `WeekSelector`, and `PracticeChecklist`.
+    - Room Database integration for persisting weekly progress and scores.
+    - **Auto-seeding logic:** Database automatically populates with 8 weeks of initial data on first launch via `RoomDatabase.Callback`.
+  - **Web:**
+    - `WisdomGardenVisualization` component with dynamic tree growth stages.
+    - Interactive `PracticeChecklist` with immutable state management.
+    - Dynamic `maxScore` calculation based on actual practice items.
+- **Test Plan:** Created `TEST_PLAN.md` incorporating rigorous test cases from code reviews (Persistence, Localization, Workflows).
+
+### Fixed
+- **Android Compilation:** Resolved critical issue with `toggleTheme` signature mismatch in `MainViewModel`.
+- **Android Architecture:** Refactored `WisdomGardenScreen` to properly separate ViewModel injection using `WisdomGardenRoute` wrapper.
+- **Android UI:** Restored high-fidelity Bottom Navigation with custom theming in `MainScreenBackup`.
+- **Web Logic:** Fixed `maxScore` being hardcoded to 70 (now dynamically calculated to 40).
+- **Web State Mutation:** Fixed anti-pattern in `handleCheckItem` by implementing proper immutable state updates.
+- **CI/CD (iOS):** Fixed `auto-tag.yml` workflow to correctly strip quotes from `MARKETING_VERSION` and strictly validate unique project files to prevent ambiguity.
+
+### Changed
+- **Documentation:** Updated `code_review.md` findings and resolutions.
+
 ## [0.5.0] - 2026-02-11
 
 ### Added
