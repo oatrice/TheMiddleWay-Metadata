@@ -1,55 +1,70 @@
-# Implementation Plan - Wisdom Garden Web UI Refactor
+# Implementation Plan - Wisdom Garden Android
 
-Isolate the "Doing" (Weekly Practices) from the "Viewing" (Dashboard) to improve UX and code maintainability.
+Mirror the Web implementation: Separation of "Viewing" (Dashboard) and "Doing" (Practice Room).
 
-## User Review Required
-
-> [!IMPORTANT]
-> This change splits the existing Dashboard into two pages. The Checklist on the Dashboard will become Read-Only (or a summary), and a new "Weekly Practices" page will be created for user interaction.
+## Architecture
+- **MVVM**: ViewModel holds the `WeeklyData` state.
+- **Repository**: Provides data (Mock/Local Room).
+- **UI**: Jetpack Compose.
 
 ## Proposed Changes
 
-### Logic & State
-#### [NEW] [wisdom-garden.ts](file:///Users/oatrice/Software-projects/The%20Middle%20Way%20-Metadata/Platforms/Web/lib/logic/wisdom-garden.ts)
-- Implement pure function `togglePracticeItem(data, itemId)` to handle immutable state updates.
-- Centralize logic currently in `page.tsx`.
+### 1. Data Layer
+#### [NEW] Data Models
+- `data/model/PracticeItem.kt`: id, title, points, isCompleted
+- `data/model/PracticeCategory.kt`: id, title, items
+- `data/model/WeeklyData.kt`: weekNumber, categories
 
-#### [NEW] [useWisdomGarden.ts](file:///Users/oatrice/Software-projects/The%20Middle%20Way%20-Metadata/Platforms/Web/hooks/useWisdomGarden.ts)
-- Custom hook to manage `WeeklyData` state.
-- Handles `localStorage` persistence (read/write).
-- Provides `toggleItem` function.
+### 2. Repository
+#### [NEW] WisdomGardenRepository
+- Interface: `getWeeklyData(week: Int): Flow<WeeklyData>`, `toggleItem(week: Int, itemId: String)`
+- Implementation: `MockWisdomGardenRepository` (Hardcoded similar to Web's `wisdom-garden-data.ts`)
 
-### UI Components
-#### [MODIFY] [page.tsx](file:///Users/oatrice/Software-projects/The%20Middle%20Way%20-Metadata/Platforms/Web/app/page.tsx)
-- Remove interactive `handleCheckItem` logic (move to hook).
-- Use `useWisdomGarden` hook for data.
-- Pass `readOnly={true}` to `PracticeChecklist` (need to update component props).
-- Add "Go to Practice Room" button linking to `/weekly-practices`.
+### 3. ViewModel
+#### [MODIFY] WisdomGardenViewModel
+- Expose `uiState` with `WeeklyData`.
+- Function `togglePractice(itemId: String)` -> calls Repository.
 
-#### [NEW] [page.tsx](file:///Users/oatrice/Software-projects/The%20Middle%20Way%20-Metadata/Platforms/Web/app/weekly-practices/page.tsx)
-- New page for "Weekly Practices & Checklist".
-- Uses `PracticeChecklist` (Interactive).
-- Uses `WeekSelector`.
-- Uses `useWisdomGarden` hook.
+### 4. UI Components
+#### [NEW] `Checklist` Components
+- `ui/wisdomgarden/components/PracticeCard.kt`:
+    - Props: `item`, `onCheck`, `readOnly`
+    - Logic: If `readOnly`, click shows Toast/Warning.
+- `ui/wisdomgarden/components/PracticeChecklist.kt`:
+    - Renders categories & items.
+
+#### [MODIFY] WisdomGardenScreen (Dashboard)
+- Use `PracticeChecklist` with `readOnly = true`.
+- Add Button: "Go to Practice Room".
+
+#### [NEW] WeeklyPracticesScreen (Practice Room)
+- Route: `weekly_practices`
+- Use `PracticeChecklist` with `readOnly = false`.
+- Back button to Dashboard.
 
 ## Verification Plan
 
 ### Automated Tests
-- Run unit tests for logic:
-  ```bash
-  npm run test -- Platforms/Web/lib/logic/wisdom-garden.test.ts
-  ```
+- [x] Run `./gradlew assembleDebug` (Android)
+- [x] Backend `go build` and `curl` tests.
 
 ### Manual Verification
-1.  **Dashboard (Home):**
-    - Verify checklist items are visible but **cannot** be clicked/toggled.
-    - Click "Go to Practice Room".
-2.  **Weekly Practices Page:**
-    - Verify checklist items **can** be toggled.
-    - Check an item (e.g., "Morning Chanting").
-    - Verify progress bar updates.
-    - Reload page -> Item should remain checked.
-3.  **Sync Check:**
-    - Go back to Dashboard.
-    - Verify the item checked in step 2 is also shown as checked (Read-only).
-    - Verify the tree/score visualization reflects the score.
+- [x] Android: Verified Read-only Dashboard and Interactive Checkbox.
+- [x] Backend: Verified API endpoints.
+- [ ] iOS: Verify similar behavior in Simulator.
+
+## Phase 4: iOS Implementation (SwiftUI)
+
+### Architecture
+- **MVVM**: `WisdomGardenViewModel` -> `WisdomGardenScreen`.
+- **Repository**: `NetworkWisdomGardenRepository` using `URLSession`.
+- **UI**: SwiftUI Components mirroring Android/Web.
+
+### Steps
+1.  **Data**: Define `Codable` structs matching Backend JSON.
+2.  **Repo**: Implement network calls to `http://localhost:8080`.
+3.  **UI**: Build `WisdomGardenScreen` with `WeekSelector`, `WisdomTree`, and `PracticeChecklist`.
+4.  **Navigation**: Implement Read-only Dashboard and Interactive Practice Room.k items toggle state.
+    - Check score updates.
+3.  **Sync**:
+    - Return to Dashboard -> verify state reflects changes.

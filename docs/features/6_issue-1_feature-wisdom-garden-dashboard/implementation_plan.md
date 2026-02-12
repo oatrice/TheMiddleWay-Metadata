@@ -87,5 +87,53 @@ Create new directory for feature-specific components:
 - [x] Verify build success.
 
 ## Verification Result
-- Android Build: **SUCCESS** (`./gradlew :app:assembleDebug`)
-- Issues Fixed: JDK version mismatch, missing imports, type mismatches.
+- Android Build: **SUCCESS** (`./gradlew assembleDebug`)
+- Android features: Read-only Dashboard, Interactive Practice Room, Network Integration.
+- Backend Status: **COMPLETE** (Go, Clean Architecture, SQLite)
+
+## Phase 3: Backend Implementation (Go)
+
+### Architecture
+- **Clean Architecture**: `cmd` -> `internal/handler` -> `internal/service` -> `internal/repository` -> `internal/model`.
+- **Database**: SQLite with GORM.
+- **API**: REST endpoints for getting weekly data (`GET`) and toggling practices (`POST`).
+
+### Key Components
+- `internal/model/practice.go`: `Practice` struct with ID (UUID), Week, Category, Title, Points, IsCompleted.
+- `internal/repository/practice_repo.go`: `PracticeRepository` with logic to fetch by week and toggle status. Includes **Seeding Logic** for initial data.
+- `internal/handler/practice_handler.go`: Aggregates flat practice list into `WeeklyData` hierarchy (Categories -> Items) for frontend consumption.
+- `cmd/server/main.go`: Registers `/api/v1/wisdom-garden` routes.
+
+## Phase 4: iOS Implementation (SwiftUI)
+
+### Goal
+Implement the Wisdom Garden feature on iOS, achieving parity with the Android and Web implementations.
+
+### Steps
+1.  **Data Layer**:
+    - Create `PracticeItem` and `WeeklyData` structs (`Codable`).
+    - Create `WisdomGardenRepository` protocol.
+    - Implement `NetworkWisdomGardenRepository` using `URLSession` to connect to Backend (`http://localhost:8080`).
+    - *Note*: iOS Simulator uses `localhost` directly to access Mac's ports.
+
+2.  **ViewModel**:
+    - Create `WisdomGardenViewModel` (`ObservableObject`).
+    - Expose `weeklyData` (`Published`).
+    - Implement `togglePractice(id)` method.
+
+3.  **UI Components** (SwiftUI):
+    - `WisdomGardenScreen.swift`: Main view with `NavigationView`? Or custom navigation state.
+    - `AppHeader.swift`: Title and Theme Toggle.
+    - `WeekSelector.swift`: Horizontal scroll or simple HStack for week numbers.
+    - `WisdomTree.swift`: Image/View representing tree growth.
+    - `PracticeChecklist.swift`: List of categories and items.
+    - `PracticeCard.swift`: Individual row with checkbox.
+
+4.  **Navigation**:
+    - Implement the "Read-only Dashboard" -> "Interactive Practice Room" flow if following Android's latest pattern.
+    - Or keep it simple if iOS patterns differ (e.g. standard NavigationLink). *Decision: Follow Android's "Dashboard + Practice Room" specific flow for consistency.*
+
+### Verification
+- Run via Xcode Simulator.
+- Verify connection to backend (ensure Server is running).
+- Verify Checkbox state persistence.
