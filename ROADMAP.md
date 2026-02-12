@@ -47,7 +47,7 @@
 | 3 | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [Infrastructure] Persistence Layer: LocalStorage/UserDefaults/DataStore | ✅ Complete |
 | 4 | [#16](https://github.com/oatrice/TheMiddleWay-Metadata/issues/16) | [Data] CSV Data Ingestion & Logic | ✅ Complete |
 | 5 | [#9](https://github.com/oatrice/TheMiddleWay-Metadata/issues/9) | [DevOps] CI/CD Pipeline Setup | ✅ Complete |
-| 6 | [#1](https://github.com/mdwmediaworld072/TheMiddleWay/issues/1) | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | 🔲 Todo |
+| 6 | [#1](https://github.com/mdwmediaworld072/TheMiddleWay/issues/1) | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | ✅ Complete |
 | 7 | [#2](https://github.com/mdwmediaworld072/TheMiddleWay/issues/2) | 📝 ห้องปฏิบัติธรรม (Weekly Practices & Checklist) | 🔲 Todo |
 | 8 | [#12](https://github.com/mdwmediaworld072/TheMiddleWay/issues/12) | Navigation System: Bottom Tab Bar & Week Navigation | 🔲 Todo |
 | 9 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | 🔲 Todo |

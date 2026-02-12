@@ -2,6 +2,8 @@
 
 > **Feature:** [Issue #1] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard)  
 > **Status:** Ready for Testing
+> **Preview:** Check PR Comment for *Stable Branch Alias* (Auto-generated)
+> **Production (Main Branch):** [https://the-middle-way.vercel.app/](https://the-middle-way.vercel.app/)
 
 ---
 
