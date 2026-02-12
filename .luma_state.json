@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "project_key": "6",
-  "phase": "coding",
+  "phase": "pr_pending",
   "active_issue": {
     "number": 1,
     "title": "🌿 [Feature] สร้างหน้า \"สวนแห่งปัญญา\" (Wisdom Garden Dashboard)",
@@ -15,7 +15,7 @@
   "started_at": "2026-02-11T17:42:02.219615",
   "checklist": {},
   "context": {},
-  "pr_url": null,
+  "pr_url": "https://github.com/oatrice/TheMiddleWay-Metadata/pull/33",
   "pr_number": null,
-  "last_updated": "2026-02-12T09:47:57.003076"
+  "last_updated": "2026-02-12T11:25:08.900300"
 }
