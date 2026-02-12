@@ -14,12 +14,11 @@ ASSETS = {
     "onboarding_daily_practice_1770896329650.png": "onboarding_practice"
 }
 
-def create_imageset(source_path, asset_name):
+def create_imageset(source_path: str, asset_name: str) -> None:
     imageset_dir = os.path.join(TARGET_DIR, f"{asset_name}.imageset")
     os.makedirs(imageset_dir, exist_ok=True)
 
     # Copy file (using 3x for simplicity as High Res, or 2x, or Universal)
-    # We'll treat it as universal 1x, 2x, 3x generic or just a single scale
     target_file = "image.png"
     shutil.copy(source_path, os.path.join(imageset_dir, target_file))
 
@@ -29,15 +28,15 @@ def create_imageset(source_path, asset_name):
             {
                 "filename": target_file,
                 "idiom": "universal",
-                "scale": "1x" # Assuming the generated images are large enough to be 1x base or specific scale. 
-                              # For simplicity in this script we just map it to 1x. 
-                              # Ideally we should resize or just specify it as 3x if it's high res.
+                "scale": "1x"
             },
-             {
+            {
+                "filename": target_file,
                 "idiom": "universal",
                 "scale": "2x"
             },
-             {
+            {
+                "filename": target_file,
                 "idiom": "universal",
                 "scale": "3x"
             }
@@ -48,15 +47,12 @@ def create_imageset(source_path, asset_name):
         }
     }
     
-    # Update to just use one slot for simplicity and let iOS scale if needed, or fill all slots with same image (wasteful but works for mock)
-    # Let's just put it in 1x slot.
-    
     with open(os.path.join(imageset_dir, "Contents.json"), "w") as f:
         json.dump(contents, f, indent=2)
 
     print(f"Created {asset_name}.imageset")
 
-def main():
+def main() -> None:
     if not os.path.exists(TARGET_DIR):
         print(f"Target directory {TARGET_DIR} does not exist.")
         return

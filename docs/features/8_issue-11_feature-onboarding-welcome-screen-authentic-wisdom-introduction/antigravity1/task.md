@@ -1,0 +1,29 @@
+# Task: Onboarding Feature Implementation
+
+- [x] **Asset Generation** <!-- id: 0 -->
+    - [x] Generate "Welcome" screen image <!-- id: 1 -->
+    - [x] Generate "Authentic Wisdom" concept image <!-- id: 2 -->
+    - [x] Generate "Discover Your Path" image <!-- id: 3 -->
+    - [x] Generate "Daily Practice" image <!-- id: 4 -->
+- [x] **Planning & Analysis** <!-- id: 5 -->
+    - [x] Document Backend Tradeoff Analysis (Client-side vs Server-side Sync) <!-- id: 6 -->
+    - [x] Update Implementation Plan with Web Level B requirements <!-- id: 7 -->
+    - [x] Update Implementation Plan with generated asset paths <!-- id: 8 -->
+    - [x] Create Backend backlog issue (gh cli) <!-- id: 22 -->
+- [x] **Implementation: Web (Level B)** <!-- id: 9 -->
+    - [x] Setup Onboarding Context/State Management <!-- id: 10 -->
+    - [x] Implement Onboarding Pages (Welcome + Carousel) <!-- id: 11 -->
+    - [x] Implement Persistence (LocalStorage) <!-- id: 12 -->
+- [x] **Implementation: Android** <!-- id: 13 -->
+    - [x] Implement Room/DataStore for Persistence <!-- id: 14 -->
+    - [x] Implement UI (Compose/XML) <!-- id: 15 -->
+- [x] **Implementation: iOS** <!-- id: 16 -->
+    - [x] Implement UserDefaults Persistence <!-- id: 17 -->
+    - [x] Implement UI (SwiftUI) <!-- id: 18 -->
+- [/] **Verification** <!-- id: 19 -->
+    - [ ] Verify persistence across app restarts <!-- id: 20 -->
+    - [ ] Verify UI flow and skipped state <!-- id: 21 -->
+    - [x] **Fix**: Handle 400 Error on Wisdom Tree loading (Android) <!-- id: 23 -->
+    - [x] **Fix**: Consolidate iOS Core duplicate folders <!-- id: 24 -->
+    - [x] **Analysis & Fix**: Implement iOS offline fallback logic <!-- id: 25 -->
+    - [x] **Analysis**: Check Web offline sync capability <!-- id: 26 -->
