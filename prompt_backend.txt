@@ -1,327 +1,207 @@
 # Role: Senior Backend Developer
-# Task: Implement backend components for Issue #5: [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content Use Go/Python. Implement API endpoints and business logic.
+# Task: Implement backend components for Issue #1: 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard) Use Go. Implement API endpoints and business logic.
 
 Please write the code for the following requirements.
 
 ## Context
 Project: TheMiddleWay-Root
-Issue: #5 [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content
+Issue: #1 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard)
 Body:
-No details provided.
+**สรุปภาพรวม (Summary):**
+
+Issue นี้คือการสร้าง **"หน้าแรก"** ของแอปพลิเคชัน ซึ่งเปรียบเสมือนศาลาต้อนรับญาติโยม หน้าที่หลักของหน้านี้คือแสดงผลความก้าวหน้าในการปฏิบัติธรรม (Progress) ในรูปแบบของ "ต้นไม้ที่กำลังโต" และแสดงรายการสิ่งที่ต้องปฏิบัติ (Checklist) ในแต่ละสัปดาห์
+
+**เป้าหมาย (Objective):**
+
+เพื่อให้ผู้ใช้งานเข้ามาแล้วรู้สึกสงบ เห็นผลลัพธ์ของการทำความดีที่เป็นรูปธรรม และรู้ทันทีว่าวันนี้ต้องทำอะไรบ้าง
+
+---
+
+### สิ่งที่ต้องทำ (Scope of Work)
+
+#### 1. ส่วนหัวและระบบนำทาง (Header & Navigation)
+
+- [ ] **ปุ่มเปลี่ยนภาษา (TH/EN):** มุมขวาบน เพื่อรองรับทั้งโยมคนไทยและชาวต่างชาติ
+- [ ] **ตัวเลือกสัปดาห์ (Week Selector):** ปุ่มกดเลข 1-8 เพื่อดูย้อนหลังหรือดูสิ่งที่จะต้องทำในอนาคต
+
+#### 2. ส่วนแสดงผล "สวนแห่งปัญญา" (The Wisdom Garden)
+
+- [ ] **กราฟิกต้นไม้:** สร้างพื้นที่ตรงกลางที่แสดง "ต้นไม้" หรือ "ดอกไม้" ที่จะเติบโตขึ้นตามคะแนนที่ทำได้
+- [ ] **คะแนนรวม (Score):** แสดงตัวเลขคะแนนสะสม (เช่น 14/70) ให้เห็นชัดเจน แต่ดูนุ่มนวล ไม่กดดันเหมือนสอบไล่
+
+#### 3. รายการปฏิบัติธรรม (Daily Practices Checklist)
+
+- [ ] **การ์ดรายการ (Practice Cards):** สร้างรายการสิ่งที่ต้องทำ (Checklist) แบ่งตามหมวดหมู่ เช่น Giving (ทาน), Ethics (ศีล)
+- [ ] **การเช็คชื่อ (Interaction):** เมื่อกดติ๊กถูก ✅ ให้มีความรู้สึก "สำเร็จ" (เช่น มีเสียงเบาๆ หรือปุ่มสว่างขึ้น) และคะแนนด้านบนต้องขยับขึ้นทันที
+
+---
+
+### ภาพตัวอย่างที่ต้องการ (Reference Designs)
+
+**Mood & Tone:**
+- สีน้ำเงินเข้ม สงบ (Deep Zen Blue) ตัดกับสีส้มจีวร (Saffron Orange)
+
+**Layout:**
+- ด้านบน: สรุปภาพรวม (สวน/กราฟ)
+- ด้านล่าง: รายการสิ่งที่ต้องทำ (เลื่อนขึ้นลงได้)
+
+---
+
+### หมายเหตุสำหรับ Developer (Technical Notes)
+
+- **UI Framework:** React + Tailwind CSS
+- **Icons:** Lucide React (เน้นความเรียบง่าย)
+- **Animation:** Framer Motion สำหรับตอนต้นไม้โต หรือตอน Progress bar ขยับ เพื่อให้ดูนุ่มนวล (Smooth)
+- **Data Mockup:** ในขั้นตอนนี้ให้ใช้ข้อมูลจำลอง (Mock Data) ไปก่อน ยังไม่ต้องต่อ Database จริง
+
+---
+
+### เกณฑ์การตรวจรับงาน (Acceptance Criteria)
+
+1. ✅ หน้าจอแสดงผลได้สวยงามทั้งบนมือถือและคอมพิวเตอร์
+2. ✅ กดเปลี่ยนภาษาแล้วข้อความเปลี่ยนถูกต้อง
+3. ✅ กดติ๊กถูกที่รายการ แล้วกราฟหรือคะแนนขยับทันที
+4. ✅ สลับดูสัปดาห์ต่างๆ ได้ (Week 1, Week 2...)
 
 ## Architecture & Plans (AUTHORITATIVE)
 The following content is from the approved design documents. **You MUST follow this design.**
 
-
-## Reference: analysis.md
-# Analysis Template
-
-> 📋 Template สำหรับการวิเคราะห์ก่อนเริ่มพัฒนา Feature
-
----
-
-## 📌 Feature Information
-
-| รายการ | รายละเอียด |
-|--------|-----------|
-| **Feature Name** | CSV Data Ingestion for 8-Week Content Program |
-| **Issue URL** | [#5](https://github.com/owner/repo/issues/5) |
-| **Date** | 2023-10-27 |
-| **Analyst** | Luma AI (Senior Technical Analyst) |
-| **Priority** | 🔴 High |
-| **Status** | 📝 Draft |
-
----
-
-## 1. Requirement Analysis
-
-### 1.1 Problem Statement
-
-> อธิบายปัญหาที่ต้องการแก้ไข
-
-```
-ปัจจุบันไม่มีกระบวนการที่เป็นระบบสำหรับการนำเข้าข้อมูลเนื้อหา (Content) จำนวนมากเข้าสู่ระบบ โดยเฉพาะข้อมูลโปรแกรม 8 สัปดาห์ที่มีโครงสร้างซับซ้อน (แบ่งเป็น 11 หมวดหมู่) ทำให้ทีม Content ต้องเพิ่มข้อมูลด้วยตนเองซึ่งช้าและเสี่ยงต่อความผิดพลาด ระบบจึงต้องการกลไกในการนำเข้าข้อมูลจากไฟล์ CSV เพื่อเพิ่มความรวดเร็ว ลดข้อผิดพลาด และทำให้การจัดการข้อมูลมีประสิทธิภาพมากขึ้น
-```
-
-### 1.2 User Stories
-
-| # | As a | I want to | So that |
-|---|------|-----------|---------|
-| 1 | Content Manager | upload a CSV file containing the 8-week program content | I can quickly populate or update the application's content without manual data entry. |
-| 2 | System Administrator | have a backend process that parses, validates, and maps CSV data to the database | data integrity is maintained and the process is reliable and auditable. |
-
-### 1.3 Acceptance Criteria
-
-- [ ] **AC1:** ระบบต้องมี Script หรือ API Endpoint สำหรับรับไฟล์ CSV เพื่อประมวลผล
-- [ ] **AC2:** Script/Endpoint ต้องสามารถตรวจสอบความถูกต้องของโครงสร้างไฟล์ CSV (เช่น ชื่อคอลัมน์, ประเภทข้อมูล) และเนื้อหา (เช่น Category ทั้ง 11 ประเภทต้องถูกต้อง, ข้อมูลครบ 8 สัปดาห์)
-- [ ] **AC3:** ข้อมูลที่ผ่านการตรวจสอบแล้ว จะต้องถูกบันทึกลงในตารางฐานข้อมูลที่เกี่ยวข้องอย่างถูกต้องตามโครงสร้าง Category และ Week
-- [ ] **AC4:** ในกรณีที่ไฟล์หรือข้อมูลไม่ถูกต้อง ระบบจะต้องจัดการข้อผิดพลาดอย่างเหมาะสม เช่น ไม่บันทึกข้อมูลส่วนที่ผิดพลาดลงฐานข้อมูล และมีการบันทึก Log ของข้อผิดพลาดอย่างละเอียด
-
----
-
-## 2. Feature Analysis
-
-### 2.1 User Flow
-
-> **Note:** This is a backend process, likely triggered by an admin or a scheduled job.
-
-```mermaid
-flowchart TD
-    A[Start: Admin triggers ingestion process via API/CLI] --> B[System reads the provided CSV file]
-    B --> C{Validate CSV structure and data}
-    C -->|✅ Valid| D[Parse and map data to database models]
-    D --> E[Perform upsert operation into the database]
-    E --> F[Log success and number of records processed]
-    F --> G[End]
-    C -->|❌ Invalid| H[Log detailed errors (e.g., row number, error message)]
-    H --> G
-```
-
-### 2.2 Screen/Page Requirements
-
-| หน้าจอ | Actions | Components |
-|--------|---------|------------|
-| N/A (Backend Process) | - Trigger ingestion via API call or CLI command.<br>- Provide path to CSV file. | - API Endpoint (e.g., `POST /api/v1/admin/content/ingest`)<br>- Command-Line Interface (CLI) script |
-
-> **Assumption:** A user-facing UI for file upload is not in the scope of this issue. If required, an "Admin Panel" with a file upload form would be a separate feature.
-
-### 2.3 Input/Output Specification
-
-#### Inputs
-
-| Field | Type | Required | Validation |
-|-------|------|----------|------------|
-| `csv_file` | File | ✅ | - Must be a valid `.csv` file.<br>- UTF-8 encoding.<br>- Max file size: 5MB (assumed).<br>- Must contain required columns: `week`, `day`, `category_name`, `content_title`, `content_body`. |
-
-#### Outputs
-
-> API Response Body (Example)
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `status` | string | "success" or "error" |
-| `message` | string | Summary of the operation, e.g., "Successfully processed 560 records." |
-| `records_processed` | number | The total number of rows successfully ingested. |
-| `errors` | array | An array of error objects if validation fails, e.g., `[{ "row": 15, "error": "Invalid category 'Health'" }]` |
-
----
-
-## 3. Impact Analysis
-
-### 3.1 Affected Components
-
-| Component | Impact Level | Description |
-|-----------|--------------|-------------|
-| **Backend (Python/Go)** | 🔴 High | Requires a new module/service for CSV parsing, data validation, business logic for mapping, and database interaction. |
-| **Database Schema** | 🔴 High | May require new tables (e.g., `program_content`, `categories`) or modification of existing ones to store the structured content. Schema must be finalized before development. |
-| **API Gateway** | 🟢 Low | A new route may need to be configured and secured for the ingestion endpoint. |
-| **Web/Mobile Apps** | 🟢 Low | No direct changes. The apps will consume the data populated by this feature, so they will benefit from having up-to-date content. |
-
-### 3.2 Breaking Changes
-
-- [ ] **BC1:** None. This is an additive feature creating a new data ingestion pathway and does not alter existing APIs or functionalities for end-users.
-
-### 3.3 Backward Compatibility Plan
-
-```
-Not applicable as this is a new, internal-facing feature.
-```
-
----
-
-## 4. Feasibility Analysis
-
-### 4.1 Technical Feasibility
-
-| คำถาม | คำตอบ | หมายเหตุ |
-|-------|-
-(truncated if too long)
-
-
 ## Reference: plan.md
-# Implementation Plan: CSV Content Ingestion System
+# Implementation Plan: 🌿 Wisdom Garden Dashboard
 
 > **Refers to**: [Spec Link](./spec.md)
 > **Status**: Draft
 
 ## 1. Architecture & Design
-The implementation will consist of a new backend API endpoint responsible for receiving, validating, and processing a CSV file. The logic will be encapsulated within dedicated services for validation and data import to ensure separation of concerns and testability. The entire import process will be wrapped in a single database transaction to guarantee atomicity as required by **FR4**.
+The implementation will follow a component-based, state-driven architecture. A central state holder (ViewModel/Hook) at the screen level will manage the application's state, including the selected week, language, and all practice data. UI components will be stateless, receiving data and callbacks as props, ensuring a predictable and testable data flow.
 
-The frontend will be a minimal, mock UI on the web-based admin panel, providing a simple file upload interface.
+For this initial phase, all data will be mocked and bundled with the application as per NFR-4. The development will proceed in three distinct phases: Web Mock UI, followed by full Android and iOS implementations.
 
 ### Component View
 > [!IMPORTANT]
 > **Platform Scope Policy:**
-> - **Web**: Mock UI only for this phase. The UI will provide the upload mechanism for the Content Manager.
-> - **Android**: No direct changes. The Android app will consume the content populated by this feature at a later stage.
-> - **iOS**: No direct changes. The iOS app will consume the content populated by this feature at a later stage.
+> - **Web**: Mock UI only for this phase. (React/Vue/Svelte)
+> - **Android**: Full implementation with production-ready code and tests. (Jetpack Compose)
+> - **iOS**: Full implementation with production-ready code and tests. (SwiftUI)
 >
-> **Development Order:** Web Mock UI FIRST → Backend API & Services SECOND.
+> **Development Order:** Web Mock UI FIRST → Android Full Implementation SECOND → iOS Full Implementation THIRD.
 
 - **Modified Components**:
-    - `admin/routes.py`: To add the new API endpoint route.
-    - `admin/templates/content_management.html`: To add the file upload form.
+- None. This is a new feature.
 
 - **New Components**:
-    - **Backend**:
-        - `models/content.py`: A new `Content` model to store the weekly categorized content.
-        - `api/content_upload_controller.py`: A new controller to handle the `/api/admin/content/upload` endpoint.
-        - `services/csv_processor.py`: A service containing two main classes:
-            - `CsvValidator`: Responsible for all validation logic (**FR2, FR3, FR5**).
-            - `ContentImporter`: Responsible for the transactional database upsert logic (**FR4, FR6**).
-        - `constants/content_categories.py`: A file to store the list of 11 predefined categories.
-    - **Database**:
-        - A new `content` table in the database.
+- `WisdomGardenScreen`: The main container screen that holds all other components and manages the overall state.
+- `AppHeader`: A reusable header component containing the language switcher and week selector.
+- `LanguageSwitcher`: A button to toggle between 'TH' and 'EN'.
+- `WeekSelector`: A component to display and select weeks 1-8.
+- `WisdomGardenVisualization`: Displays the tree/flower graphic and the score. It will react to score changes.
+- `PracticeChecklist`: A scrollable list that renders `PracticeCategory` sections.
+- `PracticeCategory`: A header component for a group of practices (e.g., "Giving").
+- `PracticeCard`: A component for an individual practice item, containing the description and an interactive checkbox.
 
 - **Dependencies**:
-    - `pandas`: A Python library will be used on the backend for efficient CSV parsing and data validation.
+- **Web**: No new external libraries needed. Standard React/Vue/Svelte setup.
+- **Android/iOS**: No new external libraries are anticipated. Standard UI toolkits (Compose/SwiftUI) are sufficient.
 
 ### Data Model Changes
-A new `Content` model will be created. The combination of `week` and `category` will be enforced as a unique key at the database level to facilitate the upsert logic.
+We will define new data structures to represent the practice data. This data will be hardcoded in a mock data source file.
 
-```python
-# File: models/content.py
+```typescript
+// Shared data structure concept (will be adapted for each platform)
 
-from django.db import models
+// Represents a single practice item
+interface PracticeItem {
+id: string                           ;
+title: { en: string                  ; th: string };
+points: number                       ;
+isCompleted: boolean                 ;
+}
 
-class Content(models.Model):
-    """
-    Stores the content for a specific week and category.
-    """
-    week = models.IntegerField(
-        help_text="The week number, from 1 to 8."
-    )
-    category = models.CharField(
-        max_length=100,
-        help_text="One of the 11 predefined content categories."
-    )
-    title = models.CharField(
-        max_length=255,
-        help_text="The title of the content piece."
-    )
-    content = models.TextField(
-        help_text="The main body of the content."
-    )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+// Represents a category of practices
+interface PracticeCategory {
+id: string                            ;
+title: { en: string                   ; th: string };
+items: PracticeItem[]                 ;
+}
 
-    class Meta:
-        # Enforces the unique key for the upsert logic (FR6)
-        unique_together = ('week', 'category')
-        verbose_name = "Weekly Content"
-        verbose_name_plural = "Weekly Content"
-
-    def __str__(self):
-        return f"Week {self.week} - {self.category}: {self.title}"
+// Represents the entire state for a given week
+interface WeeklyData {
+weekNumber: number                              ;
+categories: PracticeCategory[]                  ;
+// Calculated properties
+currentScore: number                            ;
+maxScore: number                                ;
+}
 ```
 
 ---
 
 ## 2. Step-by-Step Implementation
 
-### Step 1: Backend Foundation - Data Model and Constants
-- **Description**: Define the `Content` data model and the list of valid categories. Create and apply the database migration.
-- **Code**:
-    - Create `models/content.py` with the `Content` class as defined above.
-    - Create `constants/content_categories.py` to export the list of 11 category strings.
-    - Run `python manage.py makemigrations` and `python manage.py migrate` to apply the schema changes.
+### Phase 1: Web Mock UI (React)
+
+#### Step 1: Project Scaffolding & Data Modeling
+- **Description**: Set up a basic React project structure. Define the data models in TypeScript and create a mock data service that provides hardcoded data for all 8 weeks.
+- **Files**:
+- `src/models/practice.ts`: Define `PracticeItem`, `PracticeCategory`, `WeeklyData` interfaces.
+- `src/data/mockData.ts`: Create and export an array of `WeeklyData` for weeks 1-8.
+- `src/services/i18n.ts`: Create a simple translation service with JSON objects for 'en' and 'th' strings.
 - **Verification**:
-    - The migration runs successfully.
-    - Inspect the database schema to confirm the `content` table exists with the correct columns, types, and a unique constraint on `(week, category)`.
+- Run the project without errors.
+- Unit test the mock data service to ensure it returns data in the correct format.
 
-### Step 2: Backend Logic - CSV Validation Service
-- **Description**: Implement the service responsible for validating the CSV file's structure and data content. This service will not interact with the database.
-- **Code**:
-    - Create `services/csv_processor.py`.
-    - Implement the `CsvValidator` class within this file.
-    - The validator will have a primary method, `validate(file_stream)`, which performs the following checks:
-        1.  **Header Validation (FR2)**: Reads the CSV header and ensures `Week`, `Category`, `Title`, and `Content` are all present.
-        2.  **Row-by-Row Data Validation (FR3)**: Iterates through each row and validates:
-            - `Week` is an integer between 1 and 8.
-            - `Category` is present in the list from `constants/content_categories.py`.
-            - `Title` is not null or empty.
-    - The `validate` method will return a list of structured error messages (e.g., `[{'row': 3, 'error': 'Invalid category: Mindful
-(truncated if too long)
+#### Step 2: Build Static UI Components
+- **Description**: Create the visual components for the dashboard. These components will be stateless and receive all data via props. The tree visualization will be a set of static images (e.g., `tree-0.svg`, `tree-1.svg`, etc.) representing different growth stages.
+- **Files**:
+- `src/components/AppHeader.tsx`
+- `src/components/WeekSelector.tsx`
+- `src/components/LanguageSwitcher.tsx`
+- `src/components/WisdomGardenVisualization.tsx`
+- `src/components/PracticeChecklist.tsx`
+- `src/components/PracticeCard.tsx`
+- **Verification**:
+- Use Storybook or a similar tool to render each component with mock data.
+- Verify that components match the design specified in NFR-1 (colors, layout).
+- Verify responsiveness on mobile and desktop viewport sizes.
 
+#### Step 3: Implement Screen State & Interactivity
+- **Description**: Create the main `WisdomGardenScreen` component. Use React hooks (`useState`, `useContext`) to manage the current week, language, and the user's progress data. Wire up the event handlers (`onClick`, `onChange`) to update the state.
+- **Files**:
+- `src/screens/WisdomGardenScreen.tsx`:
+- Manage state for `selectedWeek` and `currentLanguage`.
+- Fetch data from `mockData.ts` based on `selectedWeek`.
+- Implement the `handleCheckItem` function which
 
 ## Reference: spec.md
-```markdown
-# Specification Document: spec.md
+# Specification
 
-| | |
-| --- | --- |
-| **Title** | [Data] CSV Data Ingestion & Logic: Mapping 11 Categories and 8-Week Content |
-| **URL** | https://github.com/mdwmediaworld072/TheMiddleWay/issues/5 |
-| **State** | `DRAFT` |
-| **Author** | @expert-pm |
-| **Reviewers** | @dev-lead, @qa-lead |
-| **Last Updated** | 2023-10-27 |
+**Title:** 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard)
+**Version:** 1.0
+**Status:** New
 
 ---
 
-### 1. Goal (The "Why")
+### 1. Goal
 
-**User Story:** As a Content Manager, I want to upload a single CSV file containing 8 weeks of content across 11 distinct categories, so that the system can automatically populate the application's content structure, saving time and preventing manual data entry errors.
+As a practitioner, I want to see a visual representation of my spiritual progress and a clear checklist for the week, so that I feel motivated, calm, and know exactly what practices to focus on. This dashboard should serve as a welcoming and serene home page for my journey.
 
-**Problem:** Manually creating, organizing, and linking content for 88 unique combinations (8 weeks x 11 categories) is a highly repetitive, time-consuming, and error-prone process. A small mistake can lead to inconsistent or incorrect content being displayed to end-users.
+### 2. User Journey
 
-**Benefit:** This feature will automate the entire content population process. It will ensure data consistency, dramatically reduce the time required for content setup, and enable easy bulk updates by simply modifying and re-uploading the CSV file.
+1. **Arrival:** The user opens the application and lands on the "Wisdom Garden" dashboard for the current week.
+2. **Observation:** The user immediately sees a visual representation of their progress (a growing tree or flower) and their total score for the week (e.g., "14/70").
+3. **Reviewing Tasks:** The user scrolls down to the "Daily Practices Checklist" to see what needs to be done. The list is organized by categories like "Giving" (ทาน) and "Ethics" (ศีล).
+4. **Action & Feedback:** The user identifies a practice they have just completed and taps its checkbox.
+5. **Instant Gratification:** The checkbox is marked as complete with a subtle, satisfying animation or sound. Simultaneously, the total score at the top of the screen increases, and the tree graphic grows slightly, providing immediate positive reinforcement.
+6. **Reflection:** The user decides to review a previous week's progress. They tap the "Week Selector" at the top and choose a past week number (e.g., "2").
+7. **Viewing History:** The entire dashboard updates to show the data for the selected week, including the final score, the state of the tree, and the completed checklist items for that period.
 
----
+### 3. Functional Requirements
 
-### 2. Actors (The "Who")
-
-*   **Content Manager (Admin):** The primary user who prepares the CSV file according to a defined template and uploads it into the system.
-*   **System:** The application responsible for receiving the file, validating its structure and content, processing the data, and storing it in the appropriate data model.
-
----
-
-### 3. User Journey (The "How")
-
-1.  The **Content Manager** prepares a CSV file containing the content for all 8 weeks and 11 categories. The file must adhere to a specific format and column structure.
-2.  The **Content Manager** navigates to the "Content Import" section of the admin dashboard.
-3.  They click an "Upload CSV" button and select the prepared file from their local machine.
-4.  The **System** receives the file and immediately performs a validation check on its structure and data.
-5.  **Happy Path:**
-    *   If the validation is successful, the **System** processes each row.
-    *   For each row, it identifies the `Week` and `Category` and either creates a new content entry or updates an existing one (upsert logic).
-    *   Upon completion, the **System** displays a success message to the **Content Manager**, such as: "Success! 88 content items were imported/updated."
-6.  **Unhappy Path:**
-    *   If any part of the validation fails (e.g., missing columns, invalid week number, unrecognized category), the **System** halts the import process *before* making any changes to the database.
-    *   The **System** displays specific, actionable error messages to the **Content Manager**, detailing which row and column caused the failure (e.g., "Error on Row 5: The value 'Mindfullness' in the 'Category' column is not a valid category.").
-    *   The **Content Manager** corrects the errors in their CSV file and re-attempts the upload.
-
----
-
-### 4. Requirements (The "What")
-
-#### Functional Requirements (FR)
-
-| ID | Requirement | Details |
-| --- | --- | --- |
-| **FR1** | **CSV Upload Interface** | The system must provide a user interface for an authenticated Content Manager to upload a file with a `.csv` extension. |
-| **FR2** | **CSV Structure Validation** | The system must validate that the uploaded CSV contains the following required header columns: `Week`, `Category`, `Title`, `Content`. The column order should not matter. |
-| **FR3** | **Data Type & Value Validation** | The system must validate the data in each row *before* processing the import: <br> - `Week`: Must be an integer between `1` and `8` (inclusive). <br> - `Category`: Must be one of the 11 predefined, case-sensitive category names. <br> - `Title`: Must not be empty. |
-| **FR4** | **Atomic Import Process** | The entire import operation must be atomic. If even one row fails validation, the entire process must be aborted, and no data should be saved or modified in the database. |
-| **FR5** | **Actionable Error Reporting** | If validation fails, the system must return clear, user-friendly error messages that specify the row number and the exact nature of the error. |
-| **FR6** | **Data Mapping & Upsert Logic** | For each valid row, the system must map the data to the internal content model. It will use the combination of `Week` and `Category` as a unique key. <br> - If an entry for that `Week`/`Category` combination already exists, it will be **updated** with the new `Title` and `Content`. <br> - If no entry exists, a **new** one will be created. |
-| **FR7** | **Success Confirmation** | Upon successful completion of the import, the system must display a confirmation message indicating the total number of records processed. |
-
-#### Predefined Categories
-The 11 valid, case-sensitive values for the `Category` column are:
-1.  `Mindfulness`
-2.  `Nutrition`
-3.  `Fitness`
-4.  `Sleep`
-5.  `Stress Management`
-6.  `Productivity`
-7.  `Relationships`
-
+| ID | Requirement | Details
 (truncated if too long)
 
-
 ## Default Guidance (Use only if not specified in Plans)
-- Tech Stack: Go/Python. Implement API endpoints and business logic.
+- Tech Stack: Go. Implement API endpoints and business logic.
 - Follow Clean Architecture
 - Ensure TDD (Test Driven Development)
 
