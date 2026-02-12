@@ -1,136 +1,257 @@
 # Role: Senior Backend Developer
-# Task: Implement backend components for Issue #1: 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard) Use Go. Implement API endpoints and business logic.
+# Task: Implement backend components for Issue #2: 📝 [Feature] สร้างหน้า "ห้องปฏิบัติธรรม" (Weekly Practices & Checklist) Use Go. Implement API endpoints and business logic.
 
 Please write the code for the following requirements.
 
 ## Context
 Project: TheMiddleWay-Root
-Issue: #1 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard)
+Issue: #2 📝 [Feature] สร้างหน้า "ห้องปฏิบัติธรรม" (Weekly Practices & Checklist)
 Body:
 **สรุปภาพรวม (Summary):**
 
-Issue นี้คือการสร้าง **"หน้าแรก"** ของแอปพลิเคชัน ซึ่งเปรียบเสมือนศาลาต้อนรับญาติโยม หน้าที่หลักของหน้านี้คือแสดงผลความก้าวหน้าในการปฏิบัติธรรม (Progress) ในรูปแบบของ "ต้นไม้ที่กำลังโต" และแสดงรายการสิ่งที่ต้องปฏิบัติ (Checklist) ในแต่ละสัปดาห์
+หลังจากที่เรามีหน้า "สวนแห่งปัญญา" (Dashboard) ไว้ดูผลลัพธ์แล้ว Issue นี้คือการสร้างหน้าสำหรับ **"การลงมือทำ"** โดยเฉพาะ เปรียบเสมือน "ห้องเรียน" หรือ "ลานปฏิบัติธรรม" ที่ผู้ใช้งานจะเข้ามาดูว่า **"สัปดาห์นี้ต้องทำอะไรบ้าง?"** และกดบันทึกเมื่อทำสำเร็จ
 
 **เป้าหมาย (Objective):**
 
-เพื่อให้ผู้ใช้งานเข้ามาแล้วรู้สึกสงบ เห็นผลลัพธ์ของการทำความดีที่เป็นรูปธรรม และรู้ทันทีว่าวันนี้ต้องทำอะไรบ้าง
+แยกส่วน "การติ๊กงาน" ออกมาจากหน้า Dashboard เพื่อให้หน้านี้เน้นความชัดเจน (Focus) อ่านง่าย ไม่รก และรองรับรายการปฏิบัติธรรมจำนวนมากในแต่ละสัปดาห์ได้ดีกว่า
 
 ---
 
 ### สิ่งที่ต้องทำ (Scope of Work)
 
-#### 1. ส่วนหัวและระบบนำทาง (Header & Navigation)
+#### 1. ส่วนเลือกสัปดาห์ (Week Selector)
 
-- [ ] **ปุ่มเปลี่ยนภาษา (TH/EN):** มุมขวาบน เพื่อรองรับทั้งโยมคนไทยและชาวต่างชาติ
-- [ ] **ตัวเลือกสัปดาห์ (Week Selector):** ปุ่มกดเลข 1-8 เพื่อดูย้อนหลังหรือดูสิ่งที่จะต้องทำในอนาคต
+- [ ] **แถบเลือกสัปดาห์:** แถบด้านบนให้กดเลือกได้ตั้งแต่ Week 1 ถึง Week 8 (เมื่อกดเลือก รายการด้านล่างต้องเปลี่ยนตามเนื้อหาของสัปดาห์นั้นๆ)
+- [ ] **การล็อคสัปดาห์ (Optional):** *คุยกับทีม Dev:* ในเฟสแรกอาจจะเปิดให้กดดูได้ทุกสัปดาห์ก่อน หรือจะล็อคไว้ให้ทำทีละสัปดาห์ (ตกลงกันอีกที)
 
-#### 2. ส่วนแสดงผล "สวนแห่งปัญญา" (The Wisdom Garden)
+#### 2. รายการเช็คลิสต์ (The Checklist)
 
-- [ ] **กราฟิกต้นไม้:** สร้างพื้นที่ตรงกลางที่แสดง "ต้นไม้" หรือ "ดอกไม้" ที่จะเติบโตขึ้นตามคะแนนที่ทำได้
-- [ ] **คะแนนรวม (Score):** แสดงตัวเลขคะแนนสะสม (เช่น 14/70) ให้เห็นชัดเจน แต่ดูนุ่มนวล ไม่กดดันเหมือนสอบไล่
+- [ ] **การแสดงผลเป็นหมวดหมู่:** ดึงข้อมูลจากไฟล์ CSV มาแสดง โดยต้องมี "ป้ายกำกับ" (Badge) บอกหมวดหมู่ชัดเจน เช่น 🎁 Giving (ทาน), 🛡️ Ethics (ศีล)
+- [ ] **Interaction (การตอบสนอง):**
+  - เมื่อกดติ๊กถูก ✅ ให้มีเสียง Effect เบาๆ หรือการสั่น (Haptic) บนมือถือ เพื่อให้รู้สึกถึงความสำเร็จ
+  - ข้อความอาจจะจางลง (Dim) หรือมีขีดฆ่าเล็กน้อย เพื่อให้รู้ว่าทำเสร็จแล้ว
+- [ ] **การบันทึกข้อมูล (Save):** เมื่อกดแล้ว ข้อมูลต้องถูกจำไว้ (Save to LocalStorage) แม้ปิดแอปแล้วเปิดใหม่ ติ๊กถูกต้องยังอยู่
 
-#### 3. รายการปฏิบัติธรรม (Daily Practices Checklist)
+#### 3. แถบสรุปผลรายสัปดาห์ (Mini Progress)
 
-- [ ] **การ์ดรายการ (Practice Cards):** สร้างรายการสิ่งที่ต้องทำ (Checklist) แบ่งตามหมวดหมู่ เช่น Giving (ทาน), Ethics (ศีล)
-- [ ] **การเช็คชื่อ (Interaction):** เมื่อกดติ๊กถูก ✅ ให้มีความรู้สึก "สำเร็จ" (เช่น มีเสียงเบาๆ หรือปุ่มสว่างขึ้น) และคะแนนด้านบนต้องขยับขึ้นทันที
+- [ ] **Progress Bar:** ด้านบนสุดของรายการ ควรมีหลอดพลังงานเล็กๆ บอกว่า "สัปดาห์นี้ทำไปแล้ว 8/10 ข้อ" เพื่อเป็นกำลังใจระยะสั้น
 
 ---
 
 ### ภาพตัวอย่างที่ต้องการ (Reference Designs)
 
-**Mood & Tone:**
-- สีน้ำเงินเข้ม สงบ (Deep Zen Blue) ตัดกับสีส้มจีวร (Saffron Orange)
+*อ้างอิงจาก Screenshot ที่ 3 (Weekly Practices):*
 
-**Layout:**
-- ด้านบน: สรุปภาพรวม (สวน/กราฟ)
-- ด้านล่าง: รายการสิ่งที่ต้องทำ (เลื่อนขึ้นลงได้)
+- **Mood:** สะอาดตา (Clean), อ่านง่าย, ปุ่มติ๊กถูกต้องกดง่าย (Finger-friendly targets)
+- **Elements:**
+  - ป้าย Tag สีต่างๆ แบ่งตามหมวดหมู่ (เช่น สีส้มสำหรับ Giving, สีเขียวสำหรับ Ethics)
+  - Card แยกแต่ละข้อปฏิบัติ เพื่อไม่ให้ลายตา
 
 ---
 
 ### หมายเหตุสำหรับ Developer (Technical Notes)
 
-- **UI Framework:** React + Tailwind CSS
-- **Icons:** Lucide React (เน้นความเรียบง่าย)
-- **Animation:** Framer Motion สำหรับตอนต้นไม้โต หรือตอน Progress bar ขยับ เพื่อให้ดูนุ่มนวล (Smooth)
-- **Data Mockup:** ในขั้นตอนนี้ให้ใช้ข้อมูลจำลอง (Mock Data) ไปก่อน ยังไม่ต้องต่อ Database จริง
+- **Logic:** หน้านี้คือ "Writer" (จุดแก้ไขข้อมูล) ส่วนหน้า Dashboard คือ "Reader" (จุดแสดงผลรวม) ข้อมูลต้อง Link ถึงกัน (Global State)
+- **Performance:** รายการอาจจะมีเยอะ (List rendering) ต้องระวังเรื่องความหน่วงเวลาเลื่อนหน้าจอ
+- **Data Source:** ใช้ข้อมูลจาก `Week 1-8 CSV` ตามที่ระบุใน Master Prompt
 
 ---
 
 ### เกณฑ์การตรวจรับงาน (Acceptance Criteria)
 
-1. ✅ หน้าจอแสดงผลได้สวยงามทั้งบนมือถือและคอมพิวเตอร์
-2. ✅ กดเปลี่ยนภาษาแล้วข้อความเปลี่ยนถูกต้อง
-3. ✅ กดติ๊กถูกที่รายการ แล้วกราฟหรือคะแนนขยับทันที
-4. ✅ สลับดูสัปดาห์ต่างๆ ได้ (Week 1, Week 2...)
+1. ✅ กดเลือก Week 1, 2, 3 แล้วรายการเปลี่ยนไปตามข้อมูลจริง
+2. ✅ สามารถกดติ๊กถูก และกดซ้ำเพื่อยกเลิกได้ (Toggle)
+3. ✅ มีป้ายกำกับ (Tag) บอกหมวดหมู่ถูกต้องตามไฟล์ Excel
+4. ✅ เมื่อเปลี่ยนหน้าไป Dashboard แล้วกลับมา ข้อมูลที่ติ๊กไว้ต้องไม่หาย
+
+---
+
+### 💡 Tip การใช้งาน
+
+Issue นี้จะช่วยบอกหลวงพี่ว่า **"เรากำลังสร้างสมุดการบ้านดิจิทัล"** ให้โยมครับ ส่วน Dashboard คือ **"บอร์ดประกาศผลสอบ/ผลบุญ"** การแยก 2 หน้านี้จะทำให้แอปใช้งานง่ายขึ้นมากครับบนมือถือ
+```
+
+---
+
+**สำหรับ Issue Title ให้ใส่แยกตอนสร้าง Issue:**
+```
+📝 [Feature] สร้างหน้า "ห้องปฏิบัติธรรม" (Weekly Practices & Checklist)
 
 ## Architecture & Plans (AUTHORITATIVE)
 The following content is from the approved design documents. **You MUST follow this design.**
 
+
+## Reference: analysis.md
+# Analysis Template
+
+> 📋 Template สำหรับการวิเคราะห์ก่อนเริ่มพัฒนา Feature
+
+---
+
+## 📌 Feature Information
+
+| รายการ | รายละเอียด |
+|--------|-----------|
+| **Feature Name** | สร้างหน้า "ห้องปฏิบัติธรรม" (Weekly Practices & Checklist) |
+| **Issue URL** | [#2](https://github.com/owner/repo/issues/2) |
+| **Date** | 2023-10-27 |
+| **Analyst** | Luma AI (Senior Technical Analyst) |
+| **Priority** | 🔴 High |
+| **Status** | 📝 Draft |
+
+---
+
+## 1. Requirement Analysis
+
+### 1.1 Problem Statement
+
+> อธิบายปัญหาที่ต้องการแก้ไข
+
+```
+ผู้ใช้งานต้องการหน้าจอที่ชัดเจนและเฉพาะเจาะจงสำหรับ "การลงมือทำ" หรือบันทึกการปฏิบัติธรรมประจำสัปดาห์ ปัจจุบันหน้า Dashboard เน้นการ "แสดงผลสรุป" ซึ่งไม่เหมาะกับการเป็น checklist ที่มีรายการจำนวนมากและต้องมีการโต้ตอบบ่อยครั้ง การรวมกันทำให้หน้าจอรกและใช้งานไม่สะดวก การแยกหน้านี้ออกมาจะช่วยให้ผู้ใช้มีสมาธิกับการทำกิจกรรมในแต่ละสัปดาห์ และทำให้แอปพลิเคชันใช้งานง่ายขึ้น
+```
+
+### 1.2 User Stories
+
+| # | As a | I want to | So that |
+|---|------|-----------|---------|
+| 1 | User | view a list of practices for a specific week | I know what tasks I need to complete. |
+| 2 | User | mark a practice as complete by tapping a checkbox | I can track my progress within the week. |
+| 3 | User | have my progress saved automatically | I can close the app and my completed tasks are not lost. |
+| 4 | User | see a summary of my weekly progress (e.g., a progress bar) | I feel motivated and can see how close I am to finishing the week's goals. |
+| 5 | User | easily switch between different weeks | I can review past practices or look ahead to upcoming ones. |
+
+### 1.3 Acceptance Criteria
+
+- [ ] **AC1:** ผู้ใช้สามารถกดเลือกสัปดาห์ที่ 1 ถึง 8 และรายการ checklist จะต้องอัปเดตตามข้อมูลของสัปดาห์ที่เลือกอย่างถูกต้อง
+- [ ] **AC2:** ผู้ใช้สามารถกดที่ checkbox เพื่อติ๊ก (ทำเสร็จ) และกดซ้ำเพื่อยกเลิก (ยังไม่เสร็จ) ได้ โดยสถานะต้องแสดงผลบน UI อย่างชัดเจน (เช่น มีเครื่องหมายถูก, ข้อความขีดฆ่า)
+- [ ] **AC3:** แต่ละรายการใน checklist ต้องแสดง "ป้ายกำกับ" (Tag/Badge) บอกหมวดหมู่ (เช่น ทาน, ศีล) ตรงตามข้อมูลที่ระบุในไฟล์ CSV
+- [ ] **AC4:** สถานะการติ๊กของทุกรายการต้องถูกบันทึกไว้ใน Local Storage และคงอยู่เหมือนเดิม แม้จะปิดแอปแล้วเปิดใหม่ หรือสลับไปหน้าอื่น (เช่น Dashboard) แล้วกลับมา
+
+---
+
+## 2. Feature Analysis
+
+### 2.1 User Flow
+
+```mermaid
+flowchart TD
+    A[User opens the app and navigates to "Weekly Practices" page] --> B{Page loads}
+    B --> C[Display checklist for the current/default week]
+    C --> D[User views the list of practices]
+    D --> E{User taps a checkbox?}
+    E -->|Yes| F[Update item's UI to 'completed']
+    F --> G[Play haptic/sound feedback]
+    G --> H[Save updated state to Local Storage]
+    H --> I[Update weekly progress bar]
+    I --> D
+    E -->|No| J{User taps Week Selector?}
+    J -->|Yes| K[Load data for the selected week]
+    K --> C
+    J -->|No| L[End]
+```
+
+### 2.2 Screen/Page Requirements
+
+| หน้าจอ | Actions | Components |
+|--------|---------|------------|
+| **Weekly Practices** | - Select Week<br>- Toggle Practice Completion | - **Week Selector:** Tab bar for Week 1-8.<br>- **Weekly Progress Bar:** Visual bar showing completion ratio (e.g., 8/10).<br>- **Practice Checklist:** A scrollable list of practice items.<br>- **Practice Item Card:** A card containing the practice description, a category badge, and a checkbox.<br>- **Category Badge:** A colored tag indicating the practice category (Giving, Ethics, etc.). |
+
+### 2.3 Input/Output Specification
+
+#### Inputs
+
+| Field | Type | Required | Validation |
+|-------|------|----------|------------|
+| User Tap on Week Selector | `number` (1-8) | ✅ | Must be a valid week number. |
+| User Tap on Checkbox | `boolean` (toggle) | ✅ | N/A |
+| Practice Data from CSV | `Array<Object>` | ✅ | Data must conform to the expected schema (description, category, week). |
+
+#### Outputs
+
+| Field | Type | Description |
+|-------|------|-------------|
+| Checklist State | `Object` | An object/map stored in Local Storage, mapping practice IDs to their completion status (`boolean`). Example: `{ "week1_item1": true, "week1_item2": false }`. |
+| UI State | `Visual` | The screen updates to reflect the current state (checked items, progress bar value). |
+| Haptic/Sound Feedback | `Device Action` | A brief vibration or sound effect upon checking an item. |
+
+---
+
+## 3. Impact Analysis
+
+### 3.1 Affected Components
+
+| Component | Impact Level | Description |
+|-----------|--------------|-------------|
+| **Global State Management** | 🔴 High | A new state slice is required to manage the completion status of all practices. This state must be accessible by both the new "Practices" page and the existing "Dashboard" page to ensure data consistency. |
+| **Local Storage Service** | 🔴 High | A new service/module for persisting and retrieving checklist state to/from the device's local storage is needed. A clear data schema and migration strategy (if any) must be defined. |
+| **Dashboard Page** | 🟡 Medium | The Dashboard will need to be refactored to read its data from the new global state in
+(truncated if too long)
+
+
 ## Reference: plan.md
-# Implementation Plan: 🌿 Wisdom Garden Dashboard
+# Implementation Plan: Weekly Practices & Checklist Page (ห้องปฏิบัติธรรม)
 
 > **Refers to**: [Spec Link](./spec.md)
 > **Status**: Draft
 
 ## 1. Architecture & Design
-The implementation will follow a component-based, state-driven architecture. A central state holder (ViewModel/Hook) at the screen level will manage the application's state, including the selected week, language, and all practice data. UI components will be stateless, receiving data and callbacks as props, ensuring a predictable and testable data flow.
+*High-level technical approach.*
 
-For this initial phase, all data will be mocked and bundled with the application as per NFR-4. The development will proceed in three distinct phases: Web Mock UI, followed by full Android and iOS implementations.
+The "Weekly Practices" page will be implemented as a new, self-contained feature module. It will follow a reactive, component-based architecture. A central state management service will be responsible for handling user progress, ensuring data integrity (NFR3) and persistence (FR4). This service will act as the single source of truth for checklist completion status, which can be consumed by both this new page and the existing Dashboard.
+
+Practice data will be loaded from the provided CSV files by a dedicated data service, which will parse and cache the data for efficient access.
 
 ### Component View
 > [!IMPORTANT]
 > **Platform Scope Policy:**
-> - **Web**: Mock UI only for this phase. (React/Vue/Svelte)
-> - **Android**: Full implementation with production-ready code and tests. (Jetpack Compose)
-> - **iOS**: Full implementation with production-ready code and tests. (SwiftUI)
+> - **Web**: Mock UI only for this phase. A static, non-interactive version will be created to establish the visual layout.
+> - **Android**: Full implementation with production-ready code and tests.
+> - **iOS**: Full implementation with production-ready code and tests.
 >
 > **Development Order:** Web Mock UI FIRST → Android Full Implementation SECOND → iOS Full Implementation THIRD.
 
 - **Modified Components**:
-- None. This is a new feature.
+    - `AppNavigator`: To add a new route and tab bar/menu entry for the "ห้องปฏิบัติธรรม" page.
+    - `DashboardPage`: Will be modified later to read from the new `PracticeStateService` to ensure progress consistency. This is out of scope for the initial build of this feature but is a key architectural consideration.
 
 - **New Components**:
-- `WisdomGardenScreen`: The main container screen that holds all other components and manages the overall state.
-- `AppHeader`: A reusable header component containing the language switcher and week selector.
-- `LanguageSwitcher`: A button to toggle between 'TH' and 'EN'.
-- `WeekSelector`: A component to display and select weeks 1-8.
-- `WisdomGardenVisualization`: Displays the tree/flower graphic and the score. It will react to score changes.
-- `PracticeChecklist`: A scrollable list that renders `PracticeCategory` sections.
-- `PracticeCategory`: A header component for a group of practices (e.g., "Giving").
-- `PracticeCard`: A component for an individual practice item, containing the description and an interactive checkbox.
+    - `WeeklyPracticesPage`: The main screen container component. It will orchestrate the other components and manage the currently selected week state.
+    - `WeekSelector`: A horizontal list or segmented control component that displays buttons for Week 1 to Week 8. Emits an event when a new week is selected.
+    - `ProgressSummary`: A component that displays the progress bar and the "X/Y Completed" text. It will receive the total and completed counts as props.
+    - `PracticeChecklist`: A virtualized/recycling list view to display the practice items for the selected week, ensuring smooth scrolling (NFR2).
+    - `PracticeItem`: A card component for a single practice. It will display the practice text, category tag, and a custom checkbox. It will manage its own visual state (checked/unchecked) based on props and emit events on user interaction.
 
-- **Dependencies**:
-- **Web**: No new external libraries needed. Standard React/Vue/Svelte setup.
-- **Android/iOS**: No new external libraries are anticipated. Standard UI toolkits (Compose/SwiftUI) are sufficient.
+- **New Services / Utilities**:
+    - `PracticeDataService`: A singleton service responsible for fetching, parsing, and caching the practice data from the weekly CSV files. It will provide a method like `getPracticesForWeek(weekNumber)`.
+    - `PracticeStateService`: A singleton service that manages the user's progress. It will:
+        - Load the completion state from the device's local storage on app startup.
+        - Provide methods like `isPracticeComplete(week, practiceId)`, `togglePracticeStatus(week, practiceId)`.
+        - Persist any changes back to local storage immediately.
+        - Expose the progress state reactively so that UI components can subscribe to changes.
+    - `FeedbackService`: A utility to handle non-visual feedback (sound effects, haptics) in a platform-agnostic way.
 
 ### Data Model Changes
-We will define new data structures to represent the practice data. This data will be hardcoded in a mock data source file.
-
 ```typescript
-// Shared data structure concept (will be adapted for each platform)
-
-// Represents a single practice item
-interface PracticeItem {
-id: string                           ;
-title: { en: string                  ; th: string };
-points: number                       ;
-isCompleted: boolean                 ;
+// Represents a single practice item parsed from CSV
+interface Practice {
+  id: string;       // A unique identifier, e.g., "week1_item3"
+  week: number;     // The week this practice belongs to (1-8)
+  category: 'Giving' | 'Ethics' | 'Meditation' | 'Wisdom'; // Enum for categories
+  description: string; // The text of the practice, e.g., "สวดมนต์ทำวัตรเช้า"
 }
 
-// Represents a category of practices
-interface PracticeCategory {
-id: string                            ;
-title: { en: string                   ; th: string };
-items: PracticeItem[]                 ;
-}
+// Structure for storing user progress in LocalStorage.
+// A simple JSON object where keys are week numbers and values are arrays of completed practice IDs.
+// Example: { "1": ["week1_item1", "week1_item5"], "3": ["week3_item2"] }
+type PracticeProgress = {
+  [weekNumber: number]: string[];
+};
 
-// Represents the entire state for a given week
-interface WeeklyData {
-weekNumber: number                              ;
-categories: PracticeCategory[]                  ;
-// Calculated properties
-currentScore: number                            ;
-maxScore: number                                ;
+// State managed by PracticeStateService
+interface AppState {
+  practiceProgress: PracticeProgress;
+  lastSelectedWeek: number;
 }
 ```
 
@@ -138,67 +259,63 @@ maxScore: number                                ;
 
 ## 2. Step-by-Step Implementation
 
-### Phase 1: Web Mock UI (React)
+### Step 1: Data Layer Foundation
+- **Description**: Create the core services for managing practice data and user progress state. This step involves no UI work but is critical for all subsequent steps.
+- **Code**:
+    - **Create `services/PracticeDataService`**:
+        - Implement logic to read and parse all 8 `week_N.csv` files. The CSVs should be bundled as assets within the mobile apps.
+        - Create a method `getPracticesForWeek(week: number): Promise<Practice[]>`.
+        - Add in-memory caching to avoid re-parsing files.
+    - **Create `services/PracticeStateService`**:
+        - Implement `loadProgress()` and `saveProgress()` methods that interact with the device's local storage (`SharedPreferences` on Android, `UserDefaults` on iOS).
+        - Implement `togglePracticeStatus(week: number, practiceId: string)`. This method will update the
+(truncated if too long)
 
-#### Step 1: Project Scaffolding & Data Modeling
-- **Description**: Set up a basic React project structure. Define the data models in TypeScript and create a mock data service that provides hardcoded data for all 8 weeks.
-- **Files**:
-- `src/models/practice.ts`: Define `PracticeItem`, `PracticeCategory`, `WeeklyData` interfaces.
-- `src/data/mockData.ts`: Create and export an array of `WeeklyData` for weeks 1-8.
-- `src/services/i18n.ts`: Create a simple translation service with JSON objects for 'en' and 'th' strings.
-- **Verification**:
-- Run the project without errors.
-- Unit test the mock data service to ensure it returns data in the correct format.
-
-#### Step 2: Build Static UI Components
-- **Description**: Create the visual components for the dashboard. These components will be stateless and receive all data via props. The tree visualization will be a set of static images (e.g., `tree-0.svg`, `tree-1.svg`, etc.) representing different growth stages.
-- **Files**:
-- `src/components/AppHeader.tsx`
-- `src/components/WeekSelector.tsx`
-- `src/components/LanguageSwitcher.tsx`
-- `src/components/WisdomGardenVisualization.tsx`
-- `src/components/PracticeChecklist.tsx`
-- `src/components/PracticeCard.tsx`
-- **Verification**:
-- Use Storybook or a similar tool to render each component with mock data.
-- Verify that components match the design specified in NFR-1 (colors, layout).
-- Verify responsiveness on mobile and desktop viewport sizes.
-
-#### Step 3: Implement Screen State & Interactivity
-- **Description**: Create the main `WisdomGardenScreen` component. Use React hooks (`useState`, `useContext`) to manage the current week, language, and the user's progress data. Wire up the event handlers (`onClick`, `onChange`) to update the state.
-- **Files**:
-- `src/screens/WisdomGardenScreen.tsx`:
-- Manage state for `selectedWeek` and `currentLanguage`.
-- Fetch data from `mockData.ts` based on `selectedWeek`.
-- Implement the `handleCheckItem` function which
 
 ## Reference: spec.md
-# Specification
+# Specification: 📝 สร้างหน้า "ห้องปฏิบัติธรรม" (Weekly Practices & Checklist)
 
-**Title:** 🌿 [Feature] สร้างหน้า "สวนแห่งปัญญา" (Wisdom Garden Dashboard)
-**Version:** 1.0
-**Status:** New
+## 1. Overview
 
----
+This document specifies the requirements for a new feature: the "Weekly Practices" page, referred to in Thai as "ห้องปฏิบัติธรรม" (Practice Room). This page will serve as the primary interface for users to view and track their assigned spiritual practices for each week. It is designed to be a focused "action" area, separating the task of recording progress from the "Dashboard" page ("สวนแห่งปัญญา"), which is dedicated to viewing overall results. The goal is to create a clean, simple, and encouraging user experience for daily and weekly engagement.
 
-### 1. Goal
+## 2. User Goal
 
-As a practitioner, I want to see a visual representation of my spiritual progress and a clear checklist for the week, so that I feel motivated, calm, and know exactly what practices to focus on. This dashboard should serve as a welcoming and serene home page for my journey.
+As a practitioner, I want a dedicated page to see my list of practices for any given week and easily check them off as I complete them. This will help me stay focused on my current tasks, feel a sense of accomplishment, and keep my progress accurately recorded without the distractions of the main dashboard.
 
-### 2. User Journey
+## 3. User Journey
 
-1. **Arrival:** The user opens the application and lands on the "Wisdom Garden" dashboard for the current week.
-2. **Observation:** The user immediately sees a visual representation of their progress (a growing tree or flower) and their total score for the week (e.g., "14/70").
-3. **Reviewing Tasks:** The user scrolls down to the "Daily Practices Checklist" to see what needs to be done. The list is organized by categories like "Giving" (ทาน) and "Ethics" (ศีล).
-4. **Action & Feedback:** The user identifies a practice they have just completed and taps its checkbox.
-5. **Instant Gratification:** The checkbox is marked as complete with a subtle, satisfying animation or sound. Simultaneously, the total score at the top of the screen increases, and the tree graphic grows slightly, providing immediate positive reinforcement.
-6. **Reflection:** The user decides to review a previous week's progress. They tap the "Week Selector" at the top and choose a past week number (e.g., "2").
-7. **Viewing History:** The entire dashboard updates to show the data for the selected week, including the final score, the state of the tree, and the completed checklist items for that period.
+1.  **Accessing the Page**: The user navigates from the main menu or tab bar to the "ห้องปฏิบัติธรรม" (Weekly Practices) page.
+2.  **Viewing Practices**: By default, the page displays the checklist of practices for the current week (e.g., Week 1). A progress bar at the top immediately shows the user their completion status for this week (e.g., "3/10 Completed").
+3.  **Selecting a Week**: The user can tap on the week selector at the top of the page (e.g., "Week 2", "Week 3") to view the practices for a different week. The checklist and progress bar below update instantly to reflect the selected week's content and saved progress.
+4.  **Completing a Practice**: The user reads a practice item in the list. After completing it in real life, they tap the checkbox next to it.
+5.  **Receiving Feedback**: Upon tapping, the system provides immediate feedback:
+    *   The checkbox is filled (✅).
+    *   The list item's text is dimmed or struck through.
+    *   A subtle sound effect or haptic feedback (on mobile) occurs.
+    *   The progress bar at the top updates to reflect the new count (e.g., from "3/10" to "4/10").
+6.  **Un-doing a Practice**: If the user taps a completed item by mistake, they can tap it again. The item reverts to its original, un-completed state, and the progress bar updates accordingly.
+7.  **Persistent State**: The user navigates away to the Dashboard and then returns to the "Weekly Practices" page. All their previously checked items remain checked, exactly as they left them.
 
-### 3. Functional Requirements
+## 4. Functional Requirements
 
-| ID | Requirement | Details
+| ID | Requirement | Details |
+| :--- | :--- | :--- |
+| **FR1** | **Week Selector** | - A component at the top of the screen shall allow users to select any week from Week 1 to Week 8.<br>- Selecting a week must dynamically update the checklist content and progress bar to show the data for that specific week.<br>- The system must remember and display the last selected week when the user returns to the page. |
+| **FR2** | **Checklist Display** | - The system must fetch and display a list of practices for the selected week from the specified data source (CSV files).<br>- Each practice item must be displayed in its own card for clarity.<br>- Each item must display a colored category tag/badge (e.g., 🎁 Giving, 🛡️ Ethics) corresponding to its category in the data source. |
+| **FR3** | **Checklist Interaction** | - Each practice item must have a tappable checkbox.<br>- Tapping an unchecked item marks it as "complete".<br>- Tapping a checked item marks it as "incomplete" (toggle functionality). |
+| **FR4** | **State Persistence** | - The completion status (checked/unchecked) of every practice for all weeks must be saved locally on the user's device (e.g., using LocalStorage).<br>- This state must persist even if the user closes and reopens the application or navigates to other pages. |
+| **FR5** | **Weekly Progress Summary** | - A progress bar must be displayed at the top of the checklist area.<br>- The bar must visually represent the ratio of completed tasks to total tasks for the currently selected week.<br>- A text label must accompany the bar, showing the exact numbers (e.g., "8/10 Completed"). |
+| **FR6** | **User Feedback** | - When a user checks an item, the UI for that item must visually change (e.g., text becomes dimmed, a strikethrough is applied).<br>- When a user checks an item, the system should provide non-visual feedback, such as a subtle sound effect or haptic feedback on supported devices. |
+
+## 5. Non-Functional Requirements
+
+| ID | Requirement | Details |
+| :--- | :--- | :--- |
+| **NFR1** | **Usability** | - The UI must be clean, uncluttered, and easy to read.<br>- All interactive elements, especially checkboxes, must have large enough tap targets to be easily used on mobile devices (finger-friendly). |
+| **NFR2** | **Performance** | - The list of practices must scroll smoothly, even if a week contains a large number of items.<br>- Switching between weeks should feel instantaneous with no noticeable lag.
 (truncated if too long)
+
 
 ## Default Guidance (Use only if not specified in Plans)
 - Tech Stack: Go. Implement API endpoints and business logic.

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0] - 2026-02-12
+
+### Added
+- **Feature Planning (Weekly Practices Checklist):**
+  - Added comprehensive documentation for the upcoming "Weekly Practices Checklist" feature.
+  - Includes detailed analysis, implementation plan, specifications, and a pending features report to guide development.
+
 ## [0.6.0] - 2026-02-12
 
 ### Added
