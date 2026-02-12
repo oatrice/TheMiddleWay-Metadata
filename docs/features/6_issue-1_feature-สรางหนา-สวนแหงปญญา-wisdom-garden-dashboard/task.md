@@ -1,0 +1,23 @@
+# Task List
+
+- [x] Explain documentation structure and prompt files
+- [x] Implemenet Wisdom Garden Dashboard (Web Mock UI)
+- [/] Implement Wisdom Garden Dashboard (Android)
+    - [x] Implement Home Screen Replacement in `MainActivity` (English Only) <!-- id: 4 -->
+- [x] Create Dummy Data Models & Repository <!-- id: 5 -->
+- [x] Implement Hilt DI Module <!-- id: 6 -->
+- [x] Create ViewModel & UI State <!-- id: 7 -->
+- [x] Implement UI Components (WisdomTree, Checklist, etc.) <!-- id: 8 -->
+- [x] Verify Build (Resolve Gradle/Kotlin issues) <!-- id: 9 -->
+- [x] Restore Bottom Navigation and Theme Toggle
+    - [x] Fix `MainActivity.kt` and `MainScreenBackup.kt`
+    - [x] Fix `AppHeader.kt` imports and logic
+- [x] Implement Android Persistence (Room)
+    - [x] Define Data Models (Entities)
+    - [x] Create DAO
+    - [x] Setup AppDatabase
+    - [x] Implement Repository
+    - [x] Update DI Module
+- [ ] Implement Unit Tests <!-- id: 12 -->
+    - [ ] Repository Tests
+    - [ ] ViewModel Tests
