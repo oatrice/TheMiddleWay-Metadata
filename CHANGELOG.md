@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0] - 2026-02-12
+
+### Added
+- **Feature Planning (Onboarding Experience):**
+  - Added comprehensive planning documents for the new user welcome screen and introductory flow.
+  - Includes detailed analysis, implementation plan, and specifications to guide future development.
+
 ## [0.7.0] - 2026-02-12
 
 ### Added
