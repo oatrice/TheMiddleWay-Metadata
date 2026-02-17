@@ -73,6 +73,7 @@
 | 12 | [#28](https://github.com/oatrice/TheMiddleWay-Metadata/issues/28) | [Feature] Category Management UI: CRUD for 11 Core Categories | 🔲 Todo |
 | 13 | [#27](https://github.com/oatrice/TheMiddleWay-Metadata/issues/27) | [Feature] Multi-format Data Import: Excel & JSON | 🔲 Todo |
 | 14 | [#29](https://github.com/oatrice/TheMiddleWay-Metadata/issues/29) | [Feature] Data Deletion & Cleanup: Remove/Archive Ingested Content | 🔲 Todo |
+| 15 | [#41](https://github.com/oatrice/TheMiddleWay-Metadata/issues/41) | [Mobile] Setup Deep Linking for Magic Link (Android/iOS) | 🔲 Todo |
 
 ---
 
@@ -106,6 +107,15 @@
 | 1 | - | App Store / Play Store Submission | 🔲 Todo |
 | 2 | [#5](https://github.com/oatrice/TheMiddleWay-Metadata/issues/5) | Vercel Production Deployment | 🔲 Todo |
 | 3 | [#6](https://github.com/oatrice/TheMiddleWay-Metadata/issues/6) | GoDaddy Domain Configuration | 🔲 Todo |
+
+---
+
+### 📌 Future / Backlog
+**Target:** To be prioritized
+
+| Priority | ID | Title | Status |
+|----------|---|---|---|
+| 1 | [#42](https://github.com/oatrice/TheMiddleWay-Metadata/issues/42) | [Infrastructure] Migrate Data Layer from Firestore to Neon (PostgreSQL) | 🔲 Backlog |
 
 ---
 
