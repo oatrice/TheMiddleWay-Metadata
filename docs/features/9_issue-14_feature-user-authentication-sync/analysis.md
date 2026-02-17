@@ -141,9 +141,9 @@ flowchart TD
 
 | คำถาม | คำตอบ | หมายเหตุ |
 |-------|-------|----------|
-| เทคโนโลยีรองรับหรือไม่? | ✅ | NextAuth.js และ Supabase (PostgreSQL) เป็นเครื่องมือมาตรฐานและมีเอกสารประกอบที่ดีเยี่ยมสำหรับงานนี้ |
-| ทีมมี Skills เพียงพอหรือไม่? | ✅ | (Assumption) ทีมมีความเชี่ยวชาญใน Next.js และการทำงานกับฐานข้อมูล SQL ซึ่งเป็นทักษะพื้นฐานสำหรับฟีเจอร์นี้ |
-| Infrastructure รองรับหรือไม่? | ✅ | Vercel และ Supabase เป็น Managed services ที่สามารถรองรับการขยายตัวได้ดีในช่วงเริ่มต้น |
+| เทคโนโลยีรองรับหรือไม่? | ✅ | **Firebase** (Recommended) หรือ **Neon** (Postgres) ร่วมกับ NextAuth.js เป็นเครื่องมือมาตรฐาน |
+| ทีมมี Skills เพียงพอหรือไม่? | ✅ | (Assumption) ทีมมีความเชี่ยวชาญใน Next.js/React และการทำงานกับฐานข้อมูล NoSQL/SQL |
+| Infrastructure รองรับหรือไม่? | ✅ | Vercel และ Firebase/Neon เป็น Managed services ที่สามารถรองรับการขยายตัวได้ดี |
 
 ### 4.2 Time Feasibility
 
@@ -158,9 +158,9 @@ flowchart TD
 
 | รายการ | ค่าใช้จ่าย | หมายเหตุ |
 |--------|-----------|----------|
-| **Auth Library (NextAuth.js)** | Free | Open Source |
-| **Database (Supabase)** | Free Tier (เริ่มต้น) | ค่าใช้จ่ายจะเพิ่มขึ้นตามจำนวนผู้ใช้และการใช้งาน |
-| **Email Service (Resend/SES)** | Free Tier (เริ่มต้น) | สำหรับส่ง Magic Link ค่าใช้จ่ายจะเพิ่มตามจำนวนอีเมลที่ส่ง |
+| **Auth Library (Firebase/NextAuth)** | Free | Open Source / Free Tier |
+| **Database (Firebase/Neon)** | Free Tier (เริ่มต้น) | Firebase Firestore Spark Plan (Free) หรือ Neon Free Tier |
+| **Email Service (Firebase Auth/Resend)** | Free Tier (เริ่มต้น) | Firebase Authentication (Email/Magic Link) มี Free Tier ที่ดีเยี่ยม |
 | **Total** | **~ $0/month (เริ่มต้น)** | **ค่าใช้จ่ายจะเกิดขึ้นเมื่อมีการใช้งานเกิน Free Tier** |
 
 ---
@@ -252,16 +252,16 @@ flowchart TD
 
 ### 9.2 Recommendations
 
-1. **เลือกใช้ NextAuth.js ร่วมกับ Supabase:** เป็นชุดเครื่องมือที่ทำงานร่วมกันได้ดี, ประหยัดค่าใช้จ่ายในช่วงแรก, และอยู่บนมาตรฐานเปิด Supabase มี Row-Level Security ที่ยอดเยี่ยมซึ่งช่วยลดความเสี่ยงด้านการเข้าถึงข้อมูล
+1. **เลือกใช้ Firebase (Recommended) หรือ Neon:** Firebase (Authentication + Firestore) เป็นตัวเลือกที่ดีที่สุดสำหรับการทำ Data Synchronization และรองรับ Offline sync ได้ดีเยี่ยม หากต้องการใช้ SQL, แนะนำ **Neon** ร่วมกับ NextAuth.js
 2. **ให้ความสำคัญกับแผนการย้ายข้อมูล (Data Migration):** พัฒนา script การย้ายข้อมูลที่ทดสอบได้, ไม่ทำลายข้อมูลเดิม, และมีระบบบันทึกข้อผิดพลาด (Logging) เพื่อรับมือกับกรณีที่การย้ายข้อมูลล้มเหลว
 3. **ใช้แนวทาง Progressive Onboarding:** ทำตามคำแนะนำใน Issue คือไม่บังคับให้ผู้ใช้ Login ทันที แต่ใช้การเชิญชวนเมื่อผู้ใช้ใช้งานไปได้ระยะหนึ่งแล้ว เพื่อสร้างประสบการณ์ที่ดีและเพิ่มอัตราการลงทะเบียน
 
 ### 9.3 Next Steps
 
-- [ ] ออกแบบ Database Schema สำหรับตาราง `users`, `accounts`, `sessions`, และ `user_progress` ให้สมบูรณ์
-- [ ] ดำเนินการตั้งค่า OAuth Credentials สำหรับ Google และ Apple
-- [ ] สร้าง Proof-of-Concept (POC) เพื่อทดสอบการเชื่อมต่อระหว่าง Next.js, NextAuth.js, และ Supabase
-- [ ] ออกแบบ UI Mockups สำหรับหน้า Login และ Profile ตามธีม "The Warm Sanctuary"
+- [ ] ออกแบบ Database Schema (Firestore Collection Design หรือ PostgreSQL Schema)
+- [ ] ดำเนินการตั้งค่า OAuth Credentials สำหรับ Google และ Apple ใน Firebase Console
+- [ ] สร้าง Proof-of-Concept (POC) เพื่อทดสอบการเชื่อมต่อระหว่าง Next.js และ Firebase/Neon
+- [ ] ออกแบบ UI Mockups สำหรับหน้า Login และ Profile ตามธีม **Deep Cosmos (Dark)**
 
 ---
 
