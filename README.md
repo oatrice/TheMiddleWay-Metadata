@@ -54,13 +54,47 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 │   ├── Web/             # Next.js 16 + Tailwind v4
 │   ├── Android/         # Jetpack Compose + Material 3
 │   ├── iOS/             # SwiftUI + iOS 17
-│   └── Backend/         # (Planned)
+│   └── Backend/         # Go (Master Data Authority)
 ├── docs/                # Shared documentation
 │   └── features/        # Feature specifications
 ├── README.md            # This file
 ├── ROADMAP.md           # Project roadmap
 └── CHANGELOG.md         # Changelog
 ```
+
+## 🏗️ Architecture (Hybrid Strategy)
+
+We use a **Hybrid Approach** leveraging the strengths of **NoSQL (Firestore)** for client performance and **SQL (Neon)** for data integrity:
+
+```mermaid
+flowchart TB
+ subgraph Clients["Clients"]
+        Web["🌐 Web App Next.js"]
+        Android["📱 Android App"]
+  end
+ subgraph Firebase_Ecosystem["Firebase Ecosystem"]
+        Auth["🔐 Firebase Auth"]
+        Firestore[("🔥 Firestore")]
+        note1["Stores: User Progress<br>&amp; Cached Master Data"]
+  end
+ subgraph Backend_Services["Backend Services"]
+        Go["⚙️ Go Backend Cloud Run"]
+        Neon[("🐘 Neon Postgres")]
+        note2["Stores: Master Data<br>&amp; Complex Relations"]
+  end
+    Web --> Auth & Firestore
+    Android --> Auth & Firestore
+    Go -- Primary Storage --> Neon
+    Go -- Sync/Mirror --> Firestore
+
+    style Firestore fill:#ffca28,stroke:#333
+    style Go fill:#00add8,stroke:#333
+    style Neon fill:#00e599,stroke:#333
+```
+
+1.  **Clients (Web/Mobile):** Talk purely to **Firebase** for fast, reactive UI.
+2.  **Go Backend:** Acts as the **Bridge**. It manages the "Hard Truth" in **Neon (SQL)** and syncs a read-optimized version to **Firestore** for clients to consume.
+3.  **Neon DB:** The long-term storage for analytics, history, and complex relationships that NoSQL doesn't handle well.
 
 ## 🚀 Quick Start
 
