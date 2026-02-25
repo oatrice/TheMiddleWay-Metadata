@@ -122,6 +122,7 @@ Available via **TestFlight** (Coming Soon).
 - **[DEPLOYMENT_URLS.md](./docs/DEPLOYMENT_URLS.md)** - Live deployment URLs for QA and preview
 - **[code_review.md](./code_review.md)** - Luma AI code review and issue report
 - **[docs/features/](./docs/features/)** - Feature specifications
+- **[docs/decisions/](./docs/features/9_issue-14_feature-user-authentication-sync/decisions/001-data-sync-pattern.md)** - Architecture Decision Records (ADR)
 
 ## 🔗 Related
 

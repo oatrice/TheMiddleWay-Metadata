@@ -13,7 +13,7 @@
 | **Date** | 2023-10-27 |
 | **Analyst** | Luma AI (Senior Technical Analyst) |
 | **Priority** | 🔴 High |
-| **Status** | 📝 Draft |
+| **Status** | ✅ Implemented (MVP) |
 
 ---
 
@@ -257,11 +257,12 @@ flowchart TD
 3. **ใช้แนวทาง Progressive Onboarding:** ทำตามคำแนะนำใน Issue คือไม่บังคับให้ผู้ใช้ Login ทันที แต่ใช้การเชิญชวนเมื่อผู้ใช้ใช้งานไปได้ระยะหนึ่งแล้ว เพื่อสร้างประสบการณ์ที่ดีและเพิ่มอัตราการลงทะเบียน
 
 ### 9.3 Next Steps
-
-- [ ] ออกแบบ Database Schema (Firestore Collection Design หรือ PostgreSQL Schema)
-- [ ] ดำเนินการตั้งค่า OAuth Credentials สำหรับ Google และ Apple ใน Firebase Console
-- [ ] สร้าง Proof-of-Concept (POC) เพื่อทดสอบการเชื่อมต่อระหว่าง Next.js และ Firebase/Neon
-- [ ] ออกแบบ UI Mockups สำหรับหน้า Login และ Profile ตามธีม **Deep Cosmos (Dark)**
+- [x] **Database:** Implemented Firestore & Neon (PostgreSQL) with Auth Middleware.
+- [x] **Google Auth:** Implemented on Web, Android, and iOS.
+- [x] **Data Sync:** Implemented lazy copy and bidirectional sync logic.
+- [ ] **Apple Sign-in:** Deferred to [Issue #43](https://github.com/oatrice/TheMiddleWay-Metadata/issues/43).
+- [ ] **Magic Link:** Deferred to [Issue #44](https://github.com/oatrice/TheMiddleWay-Metadata/issues/44).
+- [x] **UI:** Login and Profile pages implemented with Deep Cosmos theme.
 
 ---
 
