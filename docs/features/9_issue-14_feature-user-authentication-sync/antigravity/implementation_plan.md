@@ -1,76 +1,31 @@
-# Implementation Plan: iOS Feature Parity
+# Implementation Plan: API-Centric Architecture & Network Switcher
 
 ## Goal
-Bring the iOS application to feature parity with Web and Android by implementing:
-1.  **User Authentication**: Firebase Auth with Google Sign-In.
-2.  **Wisdom Garden Sync**: Support for both Firestore-based sync and Authenticated API calls.
-3.  **Developer Settings**:- [x] Test switching between API and Firestore mode
-- [x] Verify data sync between iOS and Web/Android
--   **Certificates**: Ensure iOS Bundle ID matches Firebase Console and GoogleService-Info.plist.
--   **Dependencies**: Need to add `Firebase/Auth` and `Firebase/Firestore` via Swift Package Manager.
+To transition the application to a fully API-centric architecture, removing direct Firestore dependencies from clients and implementing a flexible environment switcher for backend URLs across all platforms (Web, Android, iOS).
 
-## Proposed Changes
+## Key Architectural Decisions
+1. **Remove Direct Client-to-Firestore Communication**: All clients will exclusively communicate with the Go backend API. The Go backend is solely responsible for interacting with the database.
+2. **Dynamic Network Environment Switcher**: Replaced the binary (Firestore/API) toggles with a multi-state environment switcher.
 
-### 1. Firebase Setup
-#### [MODIFY] `TheMiddleWay/Sources/App/TheMiddleWayApp.swift`
--   Import `FirebaseCore`.
--   Add `FirebaseApp.configure()` in `init` or `AppDelegate` adapter.
+## Client Implementations
 
-#### [NEW] `TheMiddleWay/Sources/Core/Auth/AuthService.swift`
--   Implement `AuthService` class to handle:
-    -   `signInWithGoogle()`
-    -   `signOut()`
-    -   `currentUser` state publishing.
-    -   `getAuthToken()` for API calls.
+### 1. Web Platform (Next.js)
+- **Removal**: Removed `firebase/firestore` imports and code from `useWisdomGarden.ts`.
+- **Store**: Updated `useDevSettingsStore.ts` to manage `apiEnvironment` (`render`, `local`, `custom`) and `customApiUrl`.
+- **UI**: Added a custom `DevSettingsToggle` in the Profile page using Radio buttons to select the network environment.
 
-### 2. Wisdom Garden Repository
-#### [MODIFY] `TheMiddleWay/Sources/Features/WisdomGarden/Data/NetworkWisdomGardenRepository.swift`
--   Inject `AuthService`.
--   Add `Authorization: Bearer <token>` header to all requests.
+### 2. Android Platform (Kotlin / Jetpack Compose)
+- **Removal**: Deleted `FirestoreWisdomGardenRepository` and `HybridWisdomGardenRepository`.
+- **Store**: Added `apiEnvironment` and `customApiUrl` state management to the `DataStore` via `PersistenceRepository`.
+- **Injection**: Added an `Interceptor` in `NetworkModule.kt` to dynamically intercept and rewrite the Retrofit base URL on every request based on the selected environment.
+- **UI**: Added Radio buttons to `ProfileScreen` for environment selection.
 
-#### [NEW] `TheMiddleWay/Sources/Features/WisdomGarden/Data/FirestoreWisdomGardenRepository.swift`
--   Implement `WisdomGardenRepository` protocol using `FirebaseFirestore`.
--   Logic:
-    -   `getWeeklyData`: Listen to `users/{uid}/weekly_practices/{week}`.
-    -   Fallback: specific fetching of `master_weeks/{week}` if user data missing.
-    -   `togglePractice`: Update local optimistic state then write to Firestore.
+### 3. iOS Platform (Swift / SwiftUI)
+- **Removal**: Deleted `FirestoreWisdomGardenRepository.swift`.
+- **Store**: Updated `DevSettingsViewModel` to utilize an `ApiEnvironment` enum backed by `@AppStorage`.
+- **Injection**: Refactored `WisdomGardenViewModel` to strictly initialize the `NetworkWisdomGardenRepository`. The repository reads the base URL dynamically from the ViewModel.
+- **UI**: Replaced the Toggle in `DevSettingsView` with a `Picker` controlling the API Environment.
 
-#### [MODIFY] `TheMiddleWay/Sources/Features/WisdomGarden/ViewModels/WisdomGardenViewModel.swift`
--   Inject a `RepositoryFactory` or switching logic based on Dev Settings.
-
-### 3. Developer Settings
-#### [NEW] `TheMiddleWay/Sources/Features/Settings/DevSettingsViewModel.swift`
--   `@Published var useApiMode: Bool`.
--   Persist preference in `UserDefaults`.
-
-## Verification Plan
-### Manual Verification
-1.  **Auth**:
-    -   Tap "Sign in with Google".
-    -   Verify user is logged in and sees Profile.
-2.  **API Mode (Go Backend)**:
-    -   Enable "Use API Mode" in settings.
-    -   Toggle an item -> Verify Backend Log (Audit Log) & Firestore update (via backend sync).
-3.  **Firestore Mode**:
-    -   Disable "Use API Mode".
-    -   Toggle an item -> Verify immediate Firestore update.
-    -   Toggle an item -> Verify immediate Firestore update.
-
-### 4. Code Review Fixes
-#### Backend
-- [ ] **Security**: Remove `service-account.json` and add to `.gitignore`.
-- [ ] **Config**: Fix `.env.local` syntax.
-- [ ] **Middleware**: Use `c.Request.Context()` in `AuthMiddleware`.
-- [ ] **Health Check**: Dynamic DB type response.
-
-#### iOS
-- [ ] **Logic**: Fix `extractWeekFromID` to handle `w1_i1` format.
-- [ ] **Error Handling**: Propagate errors in `NetworkWisdomGardenRepository`.
-
-#### Android
-- [ ] **Optimization**: Use `flatMapLatest` in `WisdomGardenViewModel`.
-- [ ] **State**: Observe `authRepository.currentUser` in `AuthViewModel`.
-
-#### Web
-- [ ] **Refactor**: Fix `require` import in `ProfilePage`.
-- [ ] **Content**: Static date for Policy pages.
+## Backend Implementations
+- Resolving CORS issues (`gin-contrib/cors`) for `PATCH` requests.
+- Deploying the Go API to Render.com connected to the unified Neon Postgres database.
