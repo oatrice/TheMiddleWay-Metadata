@@ -1,0 +1,85 @@
+#!/bin/sh
+# .git/hooks/pre-commit
+
+echo "🚧 Running Pre-commit checks..."
+# Ensure PATH includes common locations for node/npm/go
+export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin:/usr/local/go/bin
+EXIT_CODE=0
+
+# 0. Secret Scanning (gitleaks) — runs first to prevent secret leaks
+if command -v gitleaks &> /dev/null; then
+    echo "🔐 Scanning for secrets..."
+    gitleaks protect --staged --no-banner
+    if [ $? -ne 0 ]; then
+        echo "❌ Secret leak detected! Please remove secrets before committing."
+        echo "   Tip: Use gitignored config files (local.properties, Secrets.swift, .env.local)"
+        exit 1  # Hard exit — don't allow commit with secrets
+    fi
+    echo "   ✅ No secrets found"
+else
+    echo "⚠️  gitleaks not installed. Run: brew install gitleaks"
+fi
+
+# 1. Web Platform (Lint & Test)
+if [ -d "Platforms/Web" ]   ; then
+    echo "🌐 Checking Web..."
+    cd Platforms/Web
+
+    if [ -f "package-lock.json" ] || [ -f "yarn.lock" ] ; then
+        # Run Lint
+        echo "   Running Lint..."
+        npm run lint
+        if [ $? -ne 0 ]                                     ; then
+            echo "❌ Web Lint Failed!"
+            EXIT_CODE=1
+        fi
+
+        # Run Tests (if script exists) (Optional: usually test is nice but might be slow)
+        # npm test -- --watchAll=false
+    fi
+    cd ../..
+fi
+
+# 2. Backend Platform (Test)
+if [ -d "Platforms/Backend" ]   ; then
+    echo "🔙 Checking Backend..."
+    cd Platforms/Backend
+
+    if [ -f "go.mod" ]               ; then
+        echo "   Running Go Tests..."
+        # Run tests (excluding vendor)
+        go test ./...
+        if [ $? -ne 0 ]                  ; then
+            echo "❌ Backend Tests Failed!"
+            EXIT_CODE=1
+        fi
+    fi
+    cd ../..
+fi
+
+# 3. Android Platform (Lint)
+if [ -d "Platforms/Android" ]   ; then
+    echo "🤖 Checking Android..."
+    cd Platforms/Android
+
+    if [ -f "gradlew" ]               ; then
+        # Use Android Studio bundled JDK
+        export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+        # Run Lint (Debug variant is usually faster)
+        echo "   Running Lint (Debug) & Unit Tests..."
+        ./gradlew lintDebug testDebugUnitTest --continue
+        if [ $? -ne 0 ]                       ; then
+            echo "❌ Android Unit Tests Failed!"
+            EXIT_CODE=1
+        fi
+    fi
+    cd ../..
+fi
+
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "✅ All checks passed! Committing..."
+else
+    echo "❌ Some checks failed. Please fix them before committing."
+fi
+
+exit $EXIT_CODE
