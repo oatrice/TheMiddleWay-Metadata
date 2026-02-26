@@ -31,3 +31,12 @@ We decided to proceed with **Option 4 (Render.com)** the central Go backend for 
 ## Consequences
 - Web, iOS, and Android clients will no longer read/write to Firestore directly. They will fetch and update data exclusively via REST APIs pointing to the Go Backend.
 - Firebase Auth remains the authentication provider, issuing tokens that the Go backend verifies.
+
+## Future Outlook (Scale & Cloud Agnosticism)
+When traffic grows (PROD Phase / Scale), the MVP Render infrastructure will be migrated to a more robust, highly-scalable environment such as **Google Cloud Run** or **AWS (AppRunner / EKS)**. 
+
+To ensure this transition is seamless, the backend must adhere to **Cloud Agnostic Principles:**
+- **No Vendor Lock-in:** We rely on standard Docker containers (`Dockerfile`) to package the Go application.
+- **Statelessness:** The Go API must remain 100% stateless. Session data, if any, lives in the DB or JWTs, not memory.
+- **Portability:** Configuration is injected strictly via Environment Variables (12-Factor App rules).
+This allows us to lift and shift the exact same Docker container from Render to Google Cloud Run to AWS without rewriting business logic.

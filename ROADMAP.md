@@ -20,7 +20,36 @@
 | Web | 0.4.0 | `v0.4.0` | 🔄 Foundation (Vercel Deploy ✅) |
 | Android | 0.3.1 | `v0.3.1` | 🔄 Foundation (CI ✅) |
 | iOS | 0.3.1 | `v0.3.1` | 🔄 Foundation (CI ✅) |
-| Backend | 0.1.0 | — | 🔄 Foundation (CI ✅) |
+| Backend | 0.1.0 | — | 🔄 Foundation (Render ✅) |
+
+---
+
+## ✅ Definition of Done (DoD) per Phase
+
+เพื่อความชัดเจนในการทดสอบและส่งมอบให้ "หลวงพี่" (User) หรือ QA ทดสอบในแต่ละช่วงเวลา:
+
+### 1. DEV Phase (Development)
+- **Environment:** Localhost หรือ Vercel Preview URL / Backend บนเครื่องนักพัฒนา
+- **DoD:** 
+  - ฟีเจอร์ผ่านการทดสอบระดับ Unit Test / Developer Test เบื้องต้น
+  - โค้ดถูกสร้าง PR และผ่าน Code Review เบื้องต้น (Lint/Type Check)
+  - ยังไม่คาดหวังความเสถียร 100% มีไว้เพื่อโชว์ความคืบหน้าแก่นักพัฒนาด้วยกัน
+
+### 2. SIT/UAT Phase (System Integration & User Acceptance Testing)
+- **Environment:** Vercel Production (`the-middle-way.vercel.app`), APIs บน Render.com (`themiddleway-backend-djw7.onrender.com`)
+- **DoD:** 
+  - โค้ดถูก Merge เข้า `main` branch
+  - ฟีเจอร์ระดับ UI และ Infrastructure ใช้งานได้จริง (ต่อ Database ของจริง)
+  - ✅ **พร้อมให้หลวงพี่ (User) เข้ามาทดสอบการใช้งานจริง**
+  - ไม่ล่ม (No Blocker Bugs) แต่อาจมี Edge Cases รั่วไหลได้
+
+### 3. PROD Phase (Scale & Massive Traffic)
+- **Environment:** Cloud Run (Google) หรือ AWS (EKS/AppRunner) สำหรับ Backend, Vercel/CDN สำหรับ Web
+- **DoD:**
+  - แอปพลิเคชันถูกกระจายบน App Store / Play Store
+  - โครงสร้างเซิร์ฟเวอร์ย้ายสเกล รองรับผู้ใช้งานระดับหมื่น-แสนคน
+  - มีระบบ Monitor & Alert เต็มรูปแบบ (Crashlytics, Datadog/Grafana)
+  - ไม่มี Single Point of Failure ง่ายๆ
 
 ---
 
@@ -115,7 +144,8 @@
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | [#42](https://github.com/oatrice/TheMiddleWay-Metadata/issues/42) | [Infrastructure] Migrate Data Layer from Firestore to Neon (PostgreSQL) | 🔲 Backlog |
+| 1 | [#42](https://github.com/oatrice/TheMiddleWay-Metadata/issues/42) | [Infrastructure] Migrate Backend to highly-scalable Cloud Provider (Cloud Run/AWS) | 🔲 Backlog |
+| 2 | - | [Infrastructure] Cloud Provider Vendor Lock-in Prevention Check | 🔲 Backlog |
 
 ---
 
