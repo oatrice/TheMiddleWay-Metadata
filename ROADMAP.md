@@ -88,7 +88,7 @@
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | [#14](https://github.com/mdwmediaworld072/TheMiddleWay/issues/14) | 🔐 User Authentication & Sync | ✅ MVP Complete (Google only) |
+| 1 | [#14](https://github.com/mdwmediaworld072/TheMiddleWay/issues/14) | 🔐 User Authentication & Sync | ✅ Complete (Go Backend + Postgres API) |
 | 2 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
 | 3 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
 | 4 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
@@ -193,6 +193,7 @@
 - **Cross-platform consistency** - Web, Android, iOS ต้องมี UI/UX เหมือนกัน
 - **Testing Guide** — ดูที่ [TESTING_GUIDE.md](./TESTING_GUIDE.md)
 - **Feature Docs** — ดูที่ [docs/features/](./docs/features/)
+- **Architecture Shift** — ย้ายระบบ Data Sync จาก Firebase Firestore ไปเป็น Go Backend + PostgreSQL (Issue #14) เต็มรูปแบบ เพื่อให้ Backend เป็น Single Source of Truth
 
 ---
 

@@ -159,7 +159,7 @@ flowchart TD
 | รายการ | ค่าใช้จ่าย | หมายเหตุ |
 |--------|-----------|----------|
 | **Auth Library (Firebase/NextAuth)** | Free | Open Source / Free Tier |
-| **Database (Firebase/Neon)** | Free Tier (เริ่มต้น) | Firebase Firestore Spark Plan (Free) หรือ Neon Free Tier |
+| **Database (Postgres)** | Free Tier (เริ่มต้น) | Neon Free Tier |
 | **Email Service (Firebase Auth/Resend)** | Free Tier (เริ่มต้น) | Firebase Authentication (Email/Magic Link) มี Free Tier ที่ดีเยี่ยม |
 | **Total** | **~ $0/month (เริ่มต้น)** | **ค่าใช้จ่ายจะเกิดขึ้นเมื่อมีการใช้งานเกิน Free Tier** |
 
@@ -252,12 +252,12 @@ flowchart TD
 
 ### 9.2 Recommendations
 
-1. **เลือกใช้ Firebase (Recommended) หรือ Neon:** Firebase (Authentication + Firestore) เป็นตัวเลือกที่ดีที่สุดสำหรับการทำ Data Synchronization และรองรับ Offline sync ได้ดีเยี่ยม หากต้องการใช้ SQL, แนะนำ **Neon** ร่วมกับ NextAuth.js
+1. **เลือกใช้ Neon (Postgres) และ REST API:** การแยก Database ผ่าน REST API ของ Go Backend ช่วยให้สามารถใช้โค้ดชุดเดียวกันบริการ Clients ทุกรูปแบบโดยไม่ต้องผูกติดกับ Firebase Firestore SDK.
 2. **ให้ความสำคัญกับแผนการย้ายข้อมูล (Data Migration):** พัฒนา script การย้ายข้อมูลที่ทดสอบได้, ไม่ทำลายข้อมูลเดิม, และมีระบบบันทึกข้อผิดพลาด (Logging) เพื่อรับมือกับกรณีที่การย้ายข้อมูลล้มเหลว
 3. **ใช้แนวทาง Progressive Onboarding:** ทำตามคำแนะนำใน Issue คือไม่บังคับให้ผู้ใช้ Login ทันที แต่ใช้การเชิญชวนเมื่อผู้ใช้ใช้งานไปได้ระยะหนึ่งแล้ว เพื่อสร้างประสบการณ์ที่ดีและเพิ่มอัตราการลงทะเบียน
 
 ### 9.3 Next Steps
-- [x] **Database:** Implemented Firestore & Neon (PostgreSQL) with Auth Middleware.
+- [x] **Database:** Implemented Neon (PostgreSQL) with Go Backend API.
 - [x] **Google Auth:** Implemented on Web, Android, and iOS.
 - [x] **Data Sync:** Implemented lazy copy and bidirectional sync logic.
 - [ ] **Apple Sign-in:** Deferred to [Issue #43](https://github.com/oatrice/TheMiddleWay-Metadata/issues/43).

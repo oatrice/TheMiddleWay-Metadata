@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0] - 2026-02-26
+
+### Changed
+- **Architecture (Firestore Removal):** Completely migrated user profile synchronization from Firebase Firestore to the custom Go Backend (PostgreSQL).
+  - Web & Android platforms now safely call `POST /api/v1/auth/sync` directly instead of dealing with Firestore.
+  - Eliminated `firebase-firestore` dependencies, reducing app footprint and improving security.
+  - Go Backend now serves as the Single Source of Truth for user profiles.
+
 ## [0.8.0] - 2026-02-12
 
 ### Added
