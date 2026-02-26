@@ -62,39 +62,41 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 └── CHANGELOG.md         # Changelog
 ```
 
-## 🏗️ Architecture (Hybrid Strategy)
+## 🏗️ Architecture (API-Centric Strategy)
 
-We use a **Hybrid Approach** leveraging the strengths of **NoSQL (Firestore)** for client performance and **SQL (Neon)** for data integrity:
+We use an **API-Centric Approach** where all clients route their data requests through the Go backend, ensuring a single source of truth and centralized business logic.
 
 ```mermaid
 flowchart TB
  subgraph Clients["Clients"]
-        Web["🌐 Web App Next.js"]
+        Web["🌐 Web App (Vercel)"]
+        iOS["🍎 iOS App"]
         Android["📱 Android App"]
   end
  subgraph Firebase_Ecosystem["Firebase Ecosystem"]
         Auth["🔐 Firebase Auth"]
-        Firestore[("🔥 Firestore")]
-        note1["Stores: User Progress<br>&amp; Cached Master Data"]
   end
  subgraph Backend_Services["Backend Services"]
-        Go["⚙️ Go Backend Cloud Run"]
+        Go["⚙️ Go Backend (Render)"]
         Neon[("🐘 Neon Postgres")]
-        note2["Stores: Master Data<br>&amp; Complex Relations"]
   end
-    Web --> Auth & Firestore
-    Android --> Auth & Firestore
+    Web --> Auth
+    iOS --> Auth
+    Android --> Auth
+    
+    Web -- REST API --> Go
+    iOS -- REST API --> Go
+    Android -- REST API --> Go
     Go -- Primary Storage --> Neon
-    Go -- Sync/Mirror --> Firestore
 
-    style Firestore fill:#ffca28,stroke:#333
     style Go fill:#00add8,stroke:#333
     style Neon fill:#00e599,stroke:#333
+    style Auth fill:#ffca28,stroke:#333
 ```
 
-1.  **Clients (Web/Mobile):** Talk purely to **Firebase** for fast, reactive UI.
-2.  **Go Backend:** Acts as the **Bridge**. It manages the "Hard Truth" in **Neon (SQL)** and syncs a read-optimized version to **Firestore** for clients to consume.
-3.  **Neon DB:** The long-term storage for analytics, history, and complex relationships that NoSQL doesn't handle well.
+1.  **Clients (Web/Mobile):** Authenticate via Firebase Auth, then communicate exclusively with the Go Backend via REST APIs.
+2.  **Go Backend (Render):** Acts as the central brain. It handles business logic, data fetching, and prevents direct database exposure to clients. Deployed on Render for cost-effective 24/7 availability during the MVP phase.
+3.  **Neon DB:** The primary SQL storage for master data, user progress, and complex relationships.
 
 ## 🚀 Quick Start
 
@@ -122,7 +124,7 @@ Available via **TestFlight** (Coming Soon).
 - **[DEPLOYMENT_URLS.md](./docs/DEPLOYMENT_URLS.md)** - Live deployment URLs for QA and preview
 - **[code_review.md](./code_review.md)** - Luma AI code review and issue report
 - **[docs/features/](./docs/features/)** - Feature specifications
-- **[docs/decisions/](./docs/features/9_issue-14_feature-user-authentication-sync/decisions/001-data-sync-pattern.md)** - Architecture Decision Records (ADR)
+- **[docs/decisions/](./docs/features/9_issue-14_feature-user-authentication-sync/decisions/)** - Architecture Decision Records (ADR)
 
 ## 🔗 Related
 
