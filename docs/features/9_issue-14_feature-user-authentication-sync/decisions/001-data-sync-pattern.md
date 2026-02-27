@@ -1,7 +1,9 @@
 # Architecture Decision Record (ADR): Wisdom Garden Data Sync Strategy
 
+> **[DEPRECATED]** This Architecture Decision Record is deprecated and superseded by the new API-centric architecture described in `002-backend-infrastructure-render.md`. The Go backend and PostgreSQL are now the single source of truth, and Firestore is no longer used for user data.
+
 **Date:** 2026-02-19
-**Status:** Accepted (Copy Pattern for MVP)
+**Status:** Deprecated (Superceded by API Sync Pattern)
 
 ## Context
 We need to design how "Weekly Practices" (Wisdom Garden) data is synced and stored for each user. There is "Master Data" (the template of tasks for Week 1-8) and "User Data" (progress/completion status).

@@ -21,9 +21,11 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 ![#EFF6FF](https://placehold.co/15x15/EFF6FF/EFF6FF)
 
 
+
  | `#EFF6FF` | Background |
 | Bright Blue | 
 ![#2563EB](https://placehold.co/15x15/2563EB/2563EB)
+
 
 
  | `#2563EB` | Primary / Accent |
@@ -31,9 +33,11 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 ![#1E3A5F](https://placehold.co/15x15/1E3A5F/1E3A5F)
 
 
+
  | `#1E3A5F` | Text Primary |
 | Sky Surface | 
 ![#DBEAFE](https://placehold.co/15x15/DBEAFE/DBEAFE)
+
 
 
  | `#DBEAFE` | Surface/Cards |
@@ -64,7 +68,7 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 
 ## 🏗️ Architecture (API-Centric Strategy)
 
-We use an **API-Centric Approach** where all clients route their data requests through the Go backend, ensuring a single source of truth and centralized business logic.
+We use a **API-Centric Approach**. The Go backend and PostgreSQL are the single source of truth for all user data and master content synchronization.
 
 ```mermaid
 flowchart TB
@@ -87,16 +91,16 @@ flowchart TB
     Web -- REST API --> Go
     iOS -- REST API --> Go
     Android -- REST API --> Go
-    Go -- Primary Storage --> Neon
+    Go -- User Data & Master Data --> Neon
 
     style Go fill:#00add8,stroke:#333
     style Neon fill:#00e599,stroke:#333
     style Auth fill:#ffca28,stroke:#333
 ```
 
-1.  **Clients (Web/Mobile):** Authenticate via Firebase Auth, then communicate exclusively with the Go Backend via REST APIs.
-2.  **Go Backend (Render):** Acts as the central brain. It handles business logic, data fetching, and prevents direct database exposure to clients. Deployed on Render for cost-effective 24/7 availability during the MVP phase.
-3.  **Neon DB:** The primary SQL storage for master data, user progress, and complex relationships.
+1.  **Clients (Web/Mobile):** Authenticate via Firebase Auth. Communicate exclusively with the Go Backend for all operations, including reading master data and syncing progress.
+2.  **Go Backend (Render):** Acts as the central brain for user data, master data delivery, and business logic. Deployed on Render for cost-effective 24/7 availability.
+3.  **Neon DB:** The primary SQL storage for all application structured data, fully managed by the Go backend.
 
 ## 🚀 Quick Start
 
