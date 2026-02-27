@@ -25,3 +25,8 @@ worktrees/
 firebase-debug.log
 firestore-debug.log
 ui-debug.log
+
+# Luma UI Files
+draft_pr_*.md
+.luma_state.json
+draft_code_review.md
