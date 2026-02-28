@@ -20,7 +20,36 @@
 | Web | 0.4.0 | `v0.4.0` | 🔄 Foundation (Vercel Deploy ✅) |
 | Android | 0.3.1 | `v0.3.1` | 🔄 Foundation (CI ✅) |
 | iOS | 0.3.1 | `v0.3.1` | 🔄 Foundation (CI ✅) |
-| Backend | 0.1.0 | — | 🔄 Foundation (CI ✅) |
+| Backend | 0.1.0 | — | 🔄 Foundation (Render ✅) |
+
+---
+
+## ✅ Definition of Done (DoD) per Phase
+
+เพื่อความชัดเจนในการทดสอบและส่งมอบให้ "หลวงพี่" (User) หรือ QA ทดสอบในแต่ละช่วงเวลา:
+
+### 1. DEV Phase (Development)
+- **Environment:** Localhost หรือ Vercel Preview URL / Backend บนเครื่องนักพัฒนา
+- **DoD:** 
+  - ฟีเจอร์ผ่านการทดสอบระดับ Unit Test / Developer Test เบื้องต้น
+  - โค้ดถูกสร้าง PR และผ่าน Code Review เบื้องต้น (Lint/Type Check)
+  - ยังไม่คาดหวังความเสถียร 100% มีไว้เพื่อโชว์ความคืบหน้าแก่นักพัฒนาด้วยกัน
+
+### 2. SIT/UAT Phase (System Integration & User Acceptance Testing)
+- **Environment:** Vercel Production (`the-middle-way.vercel.app`), APIs บน Render.com (`themiddleway-backend-djw7.onrender.com`)
+- **DoD:** 
+  - โค้ดถูก Merge เข้า `main` branch
+  - ฟีเจอร์ระดับ UI และ Infrastructure ใช้งานได้จริง (ต่อ Database ของจริง)
+  - ✅ **พร้อมให้หลวงพี่ (User) เข้ามาทดสอบการใช้งานจริง**
+  - ไม่ล่ม (No Blocker Bugs) แต่อาจมี Edge Cases รั่วไหลได้
+
+### 3. PROD Phase (Scale & Massive Traffic)
+- **Environment:** Cloud Run (Google) หรือ AWS (EKS/AppRunner) สำหรับ Backend, Vercel/CDN สำหรับ Web
+- **DoD:**
+  - แอปพลิเคชันถูกกระจายบน App Store / Play Store
+  - โครงสร้างเซิร์ฟเวอร์ย้ายสเกล รองรับผู้ใช้งานระดับหมื่น-แสนคน
+  - มีระบบ Monitor & Alert เต็มรูปแบบ (Crashlytics, Datadog/Grafana)
+  - ไม่มี Single Point of Failure ง่ายๆ
 
 ---
 
@@ -50,7 +79,7 @@
 | 6 | [#1](https://github.com/mdwmediaworld072/TheMiddleWay/issues/1) | 🌿 สวนแห่งปัญญา (Wisdom Garden Dashboard) | ✅ Complete |
 | 7 | [#2](https://github.com/mdwmediaworld072/TheMiddleWay/issues/2) | 📝 ห้องปฏิบัติธรรม (Weekly Practices & Checklist) | ✅ Complete |
 | 8 | [#12](https://github.com/mdwmediaworld072/TheMiddleWay/issues/12) | Navigation System: Bottom Tab Bar & Week Navigation | ✅ Complete |
-| 9 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | 🔲 Todo |
+| 9 | [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11) | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction | ✅ Complete |
 
 ---
 
@@ -59,7 +88,7 @@
 
 | Priority | ID | Title | Status |
 |----------|---|---|---|
-| 1 | [#14](https://github.com/mdwmediaworld072/TheMiddleWay/issues/14) | 🔐 User Authentication & Sync | 🔲 Todo |
+| 1 | [#14](https://github.com/oatrice/TheMiddleWay-Metadata/issues/14) | 🔐 User Authentication & Sync | ✅ Complete (Go Backend + Postgres API) |
 | 2 | [#12](https://github.com/oatrice/TheMiddleWay-Metadata/issues/12) | [Architecture] iOS SPM Modularization | 🔲 Todo |
 | 3 | [#11](https://github.com/oatrice/TheMiddleWay-Metadata/issues/11) | [Architecture] Android Multi-Module Setup | 🔲 Todo |
 | 4 | [#10](https://github.com/oatrice/TheMiddleWay-Metadata/issues/10) | [DevOps] Automated Testing Framework | 🔲 Todo |
@@ -73,6 +102,7 @@
 | 12 | [#28](https://github.com/oatrice/TheMiddleWay-Metadata/issues/28) | [Feature] Category Management UI: CRUD for 11 Core Categories | 🔲 Todo |
 | 13 | [#27](https://github.com/oatrice/TheMiddleWay-Metadata/issues/27) | [Feature] Multi-format Data Import: Excel & JSON | 🔲 Todo |
 | 14 | [#29](https://github.com/oatrice/TheMiddleWay-Metadata/issues/29) | [Feature] Data Deletion & Cleanup: Remove/Archive Ingested Content | 🔲 Todo |
+| 15 | [#41](https://github.com/oatrice/TheMiddleWay-Metadata/issues/41) | [Mobile] Setup Deep Linking for Magic Link (Android/iOS) | 🔲 Todo |
 
 ---
 
@@ -106,6 +136,16 @@
 | 1 | - | App Store / Play Store Submission | 🔲 Todo |
 | 2 | [#5](https://github.com/oatrice/TheMiddleWay-Metadata/issues/5) | Vercel Production Deployment | 🔲 Todo |
 | 3 | [#6](https://github.com/oatrice/TheMiddleWay-Metadata/issues/6) | GoDaddy Domain Configuration | 🔲 Todo |
+
+---
+
+### 📌 Future / Backlog
+**Target:** To be prioritized
+
+| Priority | ID | Title | Status |
+|----------|---|---|---|
+| 1 | [#42](https://github.com/oatrice/TheMiddleWay-Metadata/issues/42) | [Infrastructure] Migrate Backend to highly-scalable Cloud Provider (Cloud Run/AWS) | 🔲 Backlog |
+| 2 | - | [Infrastructure] Cloud Provider Vendor Lock-in Prevention Check | 🔲 Backlog |
 
 ---
 
@@ -153,6 +193,7 @@
 - **Cross-platform consistency** - Web, Android, iOS ต้องมี UI/UX เหมือนกัน
 - **Testing Guide** — ดูที่ [TESTING_GUIDE.md](./TESTING_GUIDE.md)
 - **Feature Docs** — ดูที่ [docs/features/](./docs/features/)
+- **Architecture Shift** — ย้ายระบบ Data Sync จาก Firebase Firestore ไปเป็น Go Backend + PostgreSQL (Issue #14) เต็มรูปแบบ เพื่อให้ Backend เป็น Single Source of Truth
 
 ---
 

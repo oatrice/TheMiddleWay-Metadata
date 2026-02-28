@@ -1,0 +1,11 @@
+// [DEPRECATED] Data has been moved to PostgreSQL via Go Backend.
+// Firestore is no longer used for application user data.
+rules_version = '2';
+service cloud.firestore {
+    match /databases/{database}/documents {
+        // Deny all by default to prevent accidental data exposure
+        match /{document=**} {
+            allow read, write: if false;
+        }
+    }
+}

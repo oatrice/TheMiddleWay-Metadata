@@ -21,9 +21,11 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 ![#EFF6FF](https://placehold.co/15x15/EFF6FF/EFF6FF)
 
 
+
  | `#EFF6FF` | Background |
 | Bright Blue | 
 ![#2563EB](https://placehold.co/15x15/2563EB/2563EB)
+
 
 
  | `#2563EB` | Primary / Accent |
@@ -31,9 +33,11 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 ![#1E3A5F](https://placehold.co/15x15/1E3A5F/1E3A5F)
 
 
+
  | `#1E3A5F` | Text Primary |
 | Sky Surface | 
 ![#DBEAFE](https://placehold.co/15x15/DBEAFE/DBEAFE)
+
 
 
  | `#DBEAFE` | Surface/Cards |
@@ -54,13 +58,49 @@ Central repository for shared metadata, documentation, and multi-platform coordi
 │   ├── Web/             # Next.js 16 + Tailwind v4
 │   ├── Android/         # Jetpack Compose + Material 3
 │   ├── iOS/             # SwiftUI + iOS 17
-│   └── Backend/         # (Planned)
+│   └── Backend/         # Go (Master Data Authority)
 ├── docs/                # Shared documentation
 │   └── features/        # Feature specifications
 ├── README.md            # This file
 ├── ROADMAP.md           # Project roadmap
 └── CHANGELOG.md         # Changelog
 ```
+
+## 🏗️ Architecture (API-Centric Strategy)
+
+We use a **API-Centric Approach**. The Go backend and PostgreSQL are the single source of truth for all user data and master content synchronization.
+
+```mermaid
+flowchart TB
+ subgraph Clients["Clients"]
+        Web["🌐 Web App (Vercel)"]
+        iOS["🍎 iOS App"]
+        Android["📱 Android App"]
+  end
+ subgraph Firebase_Ecosystem["Firebase Ecosystem"]
+        Auth["🔐 Firebase Auth"]
+  end
+ subgraph Backend_Services["Backend Services"]
+        Go["⚙️ Go Backend (Render)"]
+        Neon[("🐘 Neon Postgres")]
+  end
+    Web --> Auth
+    iOS --> Auth
+    Android --> Auth
+    
+    Web -- REST API --> Go
+    iOS -- REST API --> Go
+    Android -- REST API --> Go
+    Go -- User Data & Master Data --> Neon
+
+    style Go fill:#00add8,stroke:#333
+    style Neon fill:#00e599,stroke:#333
+    style Auth fill:#ffca28,stroke:#333
+```
+
+1.  **Clients (Web/Mobile):** Authenticate via Firebase Auth. Communicate exclusively with the Go Backend for all operations, including reading master data and syncing progress.
+2.  **Go Backend (Render):** Acts as the central brain for user data, master data delivery, and business logic. Deployed on Render for cost-effective 24/7 availability.
+3.  **Neon DB:** The primary SQL storage for all application structured data, fully managed by the Go backend.
 
 ## 🚀 Quick Start
 
@@ -88,6 +128,7 @@ Available via **TestFlight** (Coming Soon).
 - **[DEPLOYMENT_URLS.md](./docs/DEPLOYMENT_URLS.md)** - Live deployment URLs for QA and preview
 - **[code_review.md](./code_review.md)** - Luma AI code review and issue report
 - **[docs/features/](./docs/features/)** - Feature specifications
+- **[docs/decisions/](./docs/features/9_issue-14_feature-user-authentication-sync/decisions/)** - Architecture Decision Records (ADR)
 
 ## 🔗 Related
 

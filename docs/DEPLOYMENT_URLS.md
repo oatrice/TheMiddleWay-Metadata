@@ -9,10 +9,11 @@
 
 | ประเภท | URL | ใช้เมื่อไหร่ |
 |--------|-----|-------------|
-| 🟢 **Production** | https://the-middle-way.vercel.app | เวอร์ชัน Stable ล่าสุด (main branch) |
-| 🏷️ **Version Tag** | `https://v{X-Y-Z}.the-middle-way.vercel.app` | ทดสอบเวอร์ชันเฉพาะ |
-| 🔀 **PR Preview** | ดูจาก PR comment ของ Vercel bot | ทดสอบ PR ก่อน merge |
-| 🖥️ **Local Dev** | http://localhost:3000 | dev บนเครื่องตัวเอง |
+| 🟢 **Web: Production** | https://the-middle-way.vercel.app | เวอร์ชัน Stable ล่าสุด (main branch) |
+| 🏷️ **Web: Version Tag** | `https://v{X-Y-Z}.the-middle-way.vercel.app` | ทดสอบเวอร์ชันเฉพาะ |
+| 🔀 **Web: PR Preview** | ดูจาก PR comment ของ Vercel bot | ทดสอบ PR ก่อน merge |
+| 🖥️ **Web: Local Dev** | http://localhost:3000 | dev บนเครื่องตัวเอง |
+| ⚙️ **Backend: MVP API** | https://themiddleway-backend-djw7.onrender.com | API หลักที่ Web/iOS/Android ยิงหา |
 
 ### ตัวอย่าง Version URLs
 

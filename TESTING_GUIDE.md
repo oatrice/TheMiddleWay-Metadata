@@ -131,6 +131,7 @@
 | 💾 Persistence Layer | [#15](https://github.com/oatrice/TheMiddleWay-Metadata/issues/15) | [📋 testing-guide.md](./docs/features/4_issue-6_infrastructure-persistence-layer-localstorage-system-for-progress-tracking/testing-guide.md) |
 | 🌿 Wisdom Garden (Dashboard) | [#1](https://github.com/oatrice/TheMiddleWay-Metadata/issues/1) | [📋 testing-guide.md](./docs/features/6_issue-1_feature-สรางหนา-สวนแหงปญญา-wisdom-garden-dashboard/testing_guide.md) |
 | ✅ Weekly Practices (Room) | [#2](https://github.com/oatrice/TheMiddleWay-Metadata/issues/2) | [📋 testing-guide.md](./docs/features/7_issue-2_feature-weekly-practices-checklist/testing_guide.md) |
+| 🔐 User Authentication & Sync | [#14](https://github.com/mdwmediaworld072/TheMiddleWay/issues/14) | [📋 testing-guide.md](./docs/features/9_issue-14_feature-user-authentication-sync/testing_guide.md) |
 
 > 💡 เมื่อมี feature ใหม่ จะเพิ่ม testing guide เฉพาะ feature ไว้ใน `docs/features/<feature>/testing-guide.md`
 

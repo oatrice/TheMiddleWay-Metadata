@@ -1,17 +1,54 @@
-# Role: Senior Ios Developer
-# Task: Implement ios components for Issue #11: [Feature] Onboarding: Welcome Screen & "Authentic Wisdom" Introduction Use Swift/SwiftUI. Implement iOS UI + MVVM. Use XCTest.
+# Role: Senior iOS Developer
+# Task: Implement iOS components for Issue #14: 🔐 [Feature] ระบบสมาชิกและการรักษาความปลอดภัย (User Authentication & Sync) Use Swift/SwiftUI. Implement Mobile UI and ViewModel.
 
 Please write the code for the following requirements.
 
 ## Context
 Project: TheMiddleWay-Root
-Issue: #11 [Feature] Onboarding: Welcome Screen & "Authentic Wisdom" Introduction
+Issue:                                                                                                                                                                                                                                                                                                                                                                                                                                              #14 🔐 [Feature] ระบบสมาชิกและการรักษาความปลอดภัย (User Authentication & Sync)
 Body:
-No details provided.
+📋 สรุปภาพรวม
+สร้างระบบที่อนุญาตให้ผู้ใช้งานสมัครสมาชิกและเข้าสู่ระบบ เพื่อบันทึกความก้าวหน้าในการปฏิบัติธรรม (Progress) ลงบน Cloud แทนการเก็บไว้แค่ในเครื่อง (LocalStorage) อย่างเดียว
+
+🎯 เป้าหมาย
+เพื่อให้ผู้ใช้งานไม่สูญเสียข้อมูลเมื่อเปลี่ยนเครื่อง หรือล้าง Cache ของ Browser และเพื่อรองรับฟีเจอร์ "สมาชิกพรีเมียม" ในอนาคต
+
+✅ Tasks
+1. วิธีการเข้าสู่ระบบ (Auth Providers)
+
+รองรับ Social Login ด้วย Google และ Apple ID
+
+รองรับ Magic Link (ส่ง Link เข้า Email เพื่อ Login โดยไม่ต้องจำ Password)
+2. ส่วนติดต่อผู้ใช้ (UI Components)
+
+สร้างหน้า Login/Sign-up (Minimalist design ใช้โทนสี **Deep Cosmos (Dark)**)
+
+สร้างหน้า Profile (แสดงข้อมูลพื้นฐาน + ปุ่ม Log out)
+3. การเชื่อมโยงข้อมูล (Data Migration)
+
+สร้าง Sync Logic: เมื่อ User เข้าสู่ระบบครั้งแรก ดึงข้อมูลจาก LocalStorage ขึ้น Database
+
+สร้าง Database Schema สำหรับเก็บ User data และ Progress (70 แต้ม)
+🔧 Technical Notes
+Recommended Stack:
+
+Auth Provider: Firebase Auth
+Database: Firebase Firestore
+Auth Methods: Google OAuth, Apple Sign-in, Magic Link
+UX Consideration:
+
+อย่าบังคับให้ User ต้อง Login ตั้งแต่หน้าแรก
+ใช้ Progressive Profiling: ปล่อยให้ลองใช้งานแบบ Guest ก่อน
+Prompt การสมัครสมาชิกเมื่อ User เริ่มมีคะแนนสะสม
+❓ Questions to Resolve
+จะใช้ระบบ Login ของ Google Workspace (องค์กร) หรือแบบทั่วไป (Gmail ส่วนตัว)?
+ต้องการ Database Schema รายละเอียดสำหรับตาราง Users และ Progress หรือไม่?
+📎 Related
+ขึ้นอยู่กับ: LocalStorage Implementation (MVP)
+เกี่ยวข้องกับ: Premium Features (Future)
 
 ## Architecture & Plans (AUTHORITATIVE)
 The following content is from the approved design documents. **You MUST follow this design.**
-
 
 ## Reference: analysis.md
 # Analysis Template
@@ -24,8 +61,8 @@ The following content is from the approved design documents. **You MUST follow t
 
 | รายการ | รายละเอียด |
 |--------|-----------|
-| **Feature Name** | Onboarding: Welcome Screen & "Authentic Wisdom" Introduction |
-| **Issue URL** | [#11](https://github.com/owner/repo/issues/11) |
+| **Feature Name** | ระบบสมาชิกและการรักษาความปลอดภัย (User Authentication & Data Sync) |
+| **Issue URL** | [                                                                                                                                       #14](https://github.com/owner/repo/issues/14) |
 | **Date** | 2023-10-27 |
 | **Analyst** | Luma AI (Senior Technical Analyst) |
 | **Priority** | 🔴 High |
@@ -40,27 +77,28 @@ The following content is from the approved design documents. **You MUST follow t
 > อธิบายปัญหาที่ต้องการแก้ไข
 
 ```
-Currently, new users opening the application for the first time are not provided with a structured introduction. They are immediately directed to a login/signup screen or the main interface without any context about the app's core value proposition, "Authentic Wisdom". This can lead to user confusion, a poor first impression, and a higher churn rate for new users who don't immediately grasp the app's purpose.
+ปัจจุบันข้อมูลความก้าวหน้าของผู้ใช้ (Progress) ถูกจัดเก็บไว้ใน LocalStorage ของเบราว์เซอร์เท่านั้น ซึ่งมีความเสี่ยงสูงต่อการสูญหายหากผู้ใช้เปลี่ยนอุปกรณ์, ล้างแคช, หรืออุปกรณ์เสียหาย ทำให้ผู้ใช้สูญเสียข้อมูลที่สะสมมาทั้งหมด ปัญหานี้ยังเป็นอุปสรรคต่อการพัฒนาฟีเจอร์ที่ต้องการข้อมูลข้ามอุปกรณ์ในอนาคต เช่น ระบบสมาชิกพรีเมียม
 ```
 
 ### 1.2 User Stories
 
-| # | As a | I want to | So that |
+|                                                                                                                                                                                 # | As a | I want to | So that |
 |---|------|-----------|---------|
-| 1 | new user | see a welcoming screen and a brief introduction when I first open the app | I feel engaged and understand the app's primary purpose and value. |
-| 2 | new user | learn about the "Authentic Wisdom" concept | I can understand how the app will benefit me and what to expect from it. |
-| 3 | new user | easily navigate or skip the introduction | I can get to the main functionality of the app at my own pace. |
+| 1 | New or existing user | sign up or log in using my Google or Apple account | I can create an account easily and securely without needing to remember a new password. |
+| 2 | New or existing user | log in by clicking a link sent to my email (Magic Link) | I can access my account without a password, which is convenient and secure. |
+| 3 | Logged-in user | have my progress automatically saved to the cloud | I don't lose my data when I switch devices or clear my browser cache. |
+| 4 | First-time logged-in user | have my existing progress from my device migrated to my new account | I don't have to start over and can seamlessly continue my journey. |
+| 5 | Guest user | try the application and accumulate progress without being forced to log in | I can experience the value of the app before committing to creating an account. |
 
 ### 1.3 Acceptance Criteria
 
-- [ ] **AC1:** On the very first launch after installation, the app must display a multi-screen onboarding flow.
-- [ ] **AC2:** The flow must start with a "Welcome Screen" and be followed by a series of screens (e.g., 2-3) explaining the "Authentic Wisdom" concept.
-- [ ] **AC3:** Users must be able to navigate between screens using swipe gestures or on-screen buttons (Next/Back).
-- [ ] **AC4:** A visual indicator (e.g., dots) must show the user's progress through the onboarding flow.
-- [ ] **AC5:** A "Skip" button must be present on all introductory screens, allowing the user to exit the flow and proceed to the login/signup screen.
-- [ ] **AC6:** The final screen of the flow must have a clear Call-To-Action (CTA) button, such as "Get Started", which directs the user to the login/signup screen.
-- [ ] **AC7:** Once the user completes or skips the onboarding, it must not be shown again on subsequent app launches.
-- [ ] **AC8:** The state of onboarding completion must be persisted locally on the user's device.
+- [ ] **AC1:** ผู้ใช้สามารถลงทะเบียนและเข้าสู่ระบบผ่าน Google OAuth ได้สำเร็จ
+- [ ] **AC2:** ผู้ใช้สามารถลงทะเบียนและเข้าสู่ระบบผ่าน Apple Sign-in ได้สำเร็จ
+- [ ] **AC3:** ผู้ใช้สามารถเข้าสู่ระบบผ่าน Magic Link ที่ส่งไปยังอีเมลได้สำเร็จ
+- [ ] **AC4:** เมื่อผู้ใช้เข้าสู่ระบบครั้งแรก ข้อมูลที่มีอยู่ใน LocalStorage จะต้องถูกย้าย (Migrate) ไปยังฐานข้อมูลบนคลาวด์ของบัญชีผู้ใช้นั้นๆ
+- [ ] **AC5:** หลังจากเข้าสู่ระบบแล้ว ความคืบหน้าใหม่ๆ ทั้งหมดจะถูกบันทึกลงฐานข้อมูลโดยตรง
+- [ ] **AC6:** ผู้ใช้ที่เข้าสู่ระบบสามารถดูข้อมูลโปรไฟล์พื้นฐาน (ชื่อ, อีเมล) และออกจากระบบได้
+- [ ] **AC7:** ระบบต้องรองรับผู้ใช้ทั่วไป (Guest) และมีกลไกเชิญชวนให้สมัครสมาชิกเมื่อผู้ใช้มีคะแนนสะสมถึงเกณฑ์ที่กำหนด โดยไม่เป็นการบังคับ
 
 ---
 
@@ -70,220 +108,164 @@ Currently, new users opening the application for the first time are not provided
 
 ```mermaid
 flowchart TD
-    A[User launches app for the first time] --> B[Display Welcome Screen]
-    B --> C[Display Intro Screen 1: What is Authentic Wisdom?]
-    C --> D{User Action}
-    D -->|Swipe/Tap Next| E[Display Intro Screen 2: How it works]
-    D -->|Tap Skip| I[Navigate to Login/Signup Screen]
-    E --> F{User Action}
-    F -->|Swipe/Tap Next| G[Display Final Screen with "Get Started" CTA]
-    F -->|Tap Skip| I
-    G --> H{User Action}
-    H -->|Tap "Get Started"| I
-    H -->|Tap Skip| I
-    I --> J[Set 'onboarding_completed' flag to true]
-    J --> K[End of Onboarding Flow]
+subgraph Guest Flow
+A[Start App] --> B[Use App as Guest]
+B --> C{Has progress in LocalStorage?}
+C -->|Yes| D[Continue using app]
+C -->|No| B
+end
 
+subgraph Authentication Flow
+D --> E{Prompt to save progress?}
+E -->|User agrees| F[Show Login/Sign-up Page]
+E -->|User ignores| D
+F --> G{Choose Provider}
+G -->|Google/Apple| H[Redirect to OAuth Provider]
+G -->|Email| I[Enter Email for Magic Link]
+H --> J[Authenticate & Callback]
+I --> K[Receive & Click Magic Link]
+H --> J[Authenticate & Callback]
+I --> K[Receive & Click Magic Link]
+J --> L{Authentication Success?}
+K --> L
+L -->|No| M[Show Error Message] --> F
+L -->|Yes| N{First time login?}
+N -->|Yes| O[Sync LocalStorage to Database] --> P[Load Profile & Data from DB]
+N -->|No| P
+P --> Q[Continue using app as Logged-in User]
+end
+
+Q --> R[All new progress saved to DB]
+R --> S[User visits Profile Page] --> T[Logout] --> A
 ```
 
-### 2.2 Screen/Page Requirements
-
-| หน้าจอ | Actions | Components |
-|--------|---------|------------|
-| **Welcome/Intro Screens (Carousel)** | - Swipe left/right<br>- Tap "Next" button<br>- Tap "Skip" button | - Full-screen background image/animation<br>- Title Text<br>- Body/Description Text<br>- Page Indicator (dots)<br>- "Next" Button<br>- "Skip" Button |
-| **Final Intro Screen** | - Tap "Get Started" (CTA) | - Compelling final message/image<br>- Primary "Get Started" Button |
-
-### 2.3 Input/Output Specification
-
-#### Inputs
-
-*This feature is primarily presentational and does not require user data input.*
-
-| Field | Type | Required | Validation |
-|-------|------|----------|------------|
-| User Navigation | Tap/Swipe | ✅ | N/A |
-
-#### Outputs
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `hasCompletedOnboarding` | boolean | A flag stored in local device storage (e.g., SharedPreferences on Android, UserDefaults on iOS, LocalStorage on Web) to indicate the user has seen the flow. |
-
----
-
-## 3. Impact Analysis
-
-### 3.1 Affected Components
-
-| Component | Impact Level | Description |
-|-----------|--------------|-------------|
-| **App Entry Point Logic** (All Clients) | 🔴 High | The initial routing logic of the app must be modified to check for the `hasCompletedOnboarding` flag and direct users to either the onboarding flow or the existing home/login screen. |
-| **UI Component Library** | 🟡 Medium | New reusable components will be needed: a screen carousel/pager, page indicators, and potentially new button styles for the CTA. |
-| **Local Storage Management** | 🟡 Medium | A new key-value pair for tracking onboarding completion needs to be added and managed. A migration strategy for existing users is needed (i.e., treat them as if they have completed it). |
-| **Analytics Service** | 🟡 Medium
-(truncated if too long)
-
-
 ## Reference: plan.md
-# Implementation Plan: Onboarding - Welcome Screen & "Authentic Wisdom" Introduction
+# Implementation Plan: User Authentication & Sync
 
 > **Refers to**: [Spec Link](./spec.md)
 > **Status**: Draft
 
 ## 1. Architecture & Design
-The implementation will introduce a dedicated onboarding module responsible for handling the first-time user experience. The application's entry point will be modified to include a routing mechanism that checks a persistent flag (`hasCompletedOnboarding`). If the flag is not set, the user is directed to the new onboarding flow. Otherwise, they proceed directly to the main application screen.
+This plan outlines the implementation of a user authentication and data synchronization system using **Firebase** (Authentication & Cloud Firestore) as the Backend-as-a-Service (BaaS) platform. This choice provides a robust, real-time sync engine (Firestore) and comprehensive authentication support (Google, Apple, Email Link), addressing the cross-platform synchronization requirements effectively.
 
-The onboarding flow itself will be managed by a dedicated Activity (Android) / View (iOS) that orchestrates two main states: the initial Welcome Screen and the multi-page Introduction Carousel. A `ViewModel` will manage the state (e.g., current page index) and user interactions (next, skip, finish). The `hasCompletedOnboarding` flag will be managed via a simple Repository pattern that abstracts `SharedPreferences` (Android) and `UserDefaults` (iOS).
+The client-side application will interact with Firebase via the `firebase` modular SDK. A new set of services and UI components will be created to manage authentication state and handle data synchronization between LocalStorage and Firestore.
 
 ### Component View
-> [!IMPORTANT]
-> **Platform Scope Policy:**
-> - **Web**: Mock UI only for this phase.
-> - **Android**: Full implementation with production-ready code and tests.
-> - **iOS**: Full implementation with production-ready code and tests.
->
-> **Development Order:** Web Mock UI FIRST → Android Full Implementation SECOND → iOS Full Implementation THIRD.
 
 - **Modified Components**:
-    - `MainActivity.kt` / `MainView.swift`: To incorporate the initial routing logic that decides whether to show the onboarding flow or the main app screen.
+- `ProgressTracker`: The existing logic that manages user progress will be modified to interact with the new `ProgressSyncService`.
+
 - **New Components**:
-    - **Persistence**:
-        - `OnboardingRepository`: A class to abstract the reading/writing of the `hasCompletedOnboarding` boolean flag from the device's persistent storage.
-    - **State Management**:
-        - `OnboardingViewModel`: A view model to hold the state of the onboarding flow, including the list of intro slides, the current page index, and to handle user actions.
-    - **UI (Android)**:
-        - `OnboardingActivity.kt`: The main activity to host the entire onboarding flow.
-        - `WelcomeFragment.kt`: A fragment for the initial welcome screen.
-        - `IntroCarouselFragment.kt`: A fragment containing a `ViewPager2` to display the introduction slides.
-        - `IntroSlideFragment.kt`: A reusable fragment to display the content of a single introduction slide.
-        - `layout/activity_onboarding.xml`, `layout/fragment_welcome.xml`, `layout/fragment_intro_carousel.xml`, `layout/fragment_intro_slide.xml`: Associated layout files.
-    - **UI (iOS - SwiftUI)**:
-        - `OnboardingView.swift`: The main view that conditionally displays either the `WelcomeView` or the `IntroCarouselView`.
-        - `WelcomeView.swift`: A view for the initial welcome screen.
-        - `IntroCarouselView.swift`: A view containing a `TabView` with `PageTabViewStyle` to create the swipeable carousel.
-        - `IntroSlideView.swift`: A reusable view for the content of a single introduction slide.
+- **Backend (Firebase Project)**:
+- **Authentication**: Configuration for Google, Apple, and Email (Magic Link) providers.
+- **Firestore Database**: NoSQL database with `users` and `user_progress` collections, secured by Firestore Security Rules.
+- **Frontend (Client Application)**:
+- `lib/firebase.ts`: Firebase App initialization.
+- `services/auth.service.ts`: Service to handle Firebase Authentication (signInWithPopup, isSignInWithEmailLink, etc.).
+- `services/progress.service.ts`: Service to handle Firestore CRUD operations and offline persistence.
+- `store/user.store.ts`: Global state management for user session and profile.
+- `pages/login.vue` (or `.tsx`): Login page with "Deep Cosmos" theme.
+- `pages/profile.vue` (or `.tsx`): Profile page.
+- `components/SignUpPrompt.vue`: Non-intrusive sign-up prompt.
+
 - **Dependencies**:
-    - **Android**: `androidx.viewpager2:viewpager2` for the carousel implementation.
-    - **iOS**: No new external dependencies. Native SwiftUI components (`TabView`, `UserDefaults`) will be used.
+- `firebase`: The official Firebase JS SDK.
 
-### Data Model Changes
-```python
-# A simple data structure to represent the content of each intro slide.
-# This will be defined in Kotlin (data class) and Swift (struct).
+### Data Model (Firestore)
 
-class IntroSlide:
-    title: String
-    body: String
-    # A placeholder for the associated visual asset name
-    image_asset_name: String 
+**Collection: `users`** (Document ID: `uid`)
+```json
+{
+"email": "user@example.com",
+"displayName": "User Name",
+"photoURL": "https://...",
+"providerId": "google.com",
+"createdAt": "Timestamp"
+}
+```
+
+**Collection: `user_progress`** (Document ID: `uid`)
+```json
+{
+"points": 70,
+"meditationMinutes": 1500,
+"streak": 5,
+"progressData": { ... }, // Extended JSON data
+"updatedAt": "Timestamp"
+}
+```
+
+**Security Rules**:
+```
+rules_version = '2';
+service cloud.firestore {
+match /databases/{database}/documents {
+match /users/{userId} {
+allow read, write: if request.auth != null && request.auth.uid == userId ;
+}
+match /user_progress/{userId} {
+allow read, write: if request.auth != null && request.auth.uid == userId ;
+}
+}
+}
 ```
 
 ---
 
 ## 2. Step-by-Step Implementation
 
-### Step 1: Persistence Layer for Onboarding Status
-- **Goal**: Create a repository to manage the `hasCompletedOnboarding` flag in persistent storage.
-- **Android**:
-    - **Code**: Create `data/repository/OnboardingRepository.kt`. It will use `SharedPreferences` to get and set a boolean value.
-    - **Tests**: Create `OnboardingRepositoryTest.kt`. Write unit tests to verify that the flag can be written and read correctly.
-- **iOS**:
-    - **Code**: Create `Services/OnboardingService.swift`. It will use `UserDefaults` to get and set a boolean value.
-    - **Tests**: Create `OnboardingServiceTests.swift`. Write unit tests to verify the service logic.
-- **Verification**: All unit tests for the repository/service pass.
+### Step 1: Firebase Setup
+- **Description**: Initialize the Firebase project and enable necessary services.
+- **Tasks**:
+1. Create a project on [console.firebase.google.com](https://console.firebase.google.com).
+2. Enable **Authentication**:
+- Turn on **Google** provider.
+- Turn on **Apple** provider (requires Apple Developer Account).
+- Turn on **Email/Passwordless** (Magic Link).
+3. Enable **Cloud Firestore**:
+- Create database in production mode.
+- Apply the Security Rules defined above.
+4. Get Firebase Config object (apiKey, authDomain, etc.) and add to environment variables (`.env`).
 
-### Step 2: Onboarding ViewModels and Data Structures
-- **Goal**: Define the data for the intro slides and create the ViewModel to manage the onboarding state.
-- **Android**:
-    - **Code**:
-        - Create `model/IntroSlide.kt` data class.
-        - Create `ui/onboarding/OnboardingViewModel.kt`. It will hold a list of `IntroSlide` objects, the current page index, and expose functions like `onNextClicked()`, `onSkipClicked()`, `onFinishOnboarding()`.
-    - **Tests**: Create `OnboardingViewModelTest.kt`. Unit test the logic for page navigation and state changes.
-- **iOS**:
-    - **Code**:
-        - Create `Models/IntroSlide.swift` struct.
-        - Create `ViewModels/Onb
-(truncated if too long)
+### Step 2: Frontend Integration
+- **Description**: Install SDK and set up auth service.
+- **Tasks**:
+1. `npm install firebase`.
+2. Create `lib/firebase.ts` to initialize `initializeApp`.
+3. Implement `services/auth.service.ts`:
+- `loginWithGoogle()`: `signInWithPopup(auth, googleProvider)`
+- `loginWithApple()`: `signInWithPopup(auth, appleProvider)`
+- `sendMagicLink(email)`: `sendSignInLinkToEmail(auth, email, actionCodeSettings)`
+- `finishMagicLinkLogin(url)`: `signInWithEmailLink(auth, email, url)`
+- `logout()`: `signOut(auth)`
 
+### Step 3: UI Implementation (Deep Cosmos Theme)
+- **Description**: Create Login and Profile pages matching the new dark theme.
+- **Tasks**:
+1. **Login Page**: Minimalist, dark background (Deep Cosmos), Auth buttons (Google, Apple, Email).
+2. **Profile Page**: User info, Logout button.
+3. **SignUp Prompt**: "Save your progress to the cloud" banner.
 
-## Reference: spec.md
-```markdown
-# Specification: Onboarding - Welcome Screen & "Authentic Wisdom" Introduction
+### Step 4: Data Sync Logic
+- **Description**: Sync LocalStorage <-> Firestore.
+- **Tasks**:
+1. **Initial Migration**:
+- On `auth.onAuthStateChanged`: if `user` exists and it is the **first login** (check if Firestore doc exists or via flag), read `LocalStorage`.
+- If `LocalStorage` has data, write to `user_progress/{uid}` in Firestore.
+2. **Continuous Sync**:
+- Use `onSnapshot` (real-time listener) on `user_progress/{uid}`.
+- When data changes in Firestore -> Update Store/LocalStorage (as cache).
+- When user updates progress locally -> Write to Firestore (if online).
 
-- **Title:** [Feature] Onboarding: Welcome Screen & "Authentic Wisdom" Introduction
-- **Status:** `Proposed`
-- **Version:** `1.0`
-- **Author:** Expert Product Manager
-- **Issue:** [#11](https://github.com/mdwmediaworld072/TheMiddleWay/issues/11)
-
----
-
-### 1. Goal
-
-The goal of this feature is to create a welcoming and informative first-time user experience (FTUE). By introducing new users to the app's core value proposition—"Authentic Wisdom"—we aim to set clear expectations, increase user understanding, and encourage initial engagement. A successful onboarding flow will reduce early user drop-off and guide users smoothly into the main application.
-
-### 2. Actors
-
--   **New User:** An individual who has installed and is opening the application for the very first time. They have no prior context about the app's features or philosophy.
-
-### 3. User Journey
-
-1.  A **New User** downloads and opens "The Middle Way" app for the first time.
-2.  They are greeted by a visually appealing **Welcome Screen** that introduces the app's name and brand.
-3.  The user taps the "Get Started" button to begin the introduction.
-4.  They are then presented with a short, multi-screen carousel (3-4 steps) that explains the concept of "Authentic Wisdom" in a simple and engaging way.
-5.  The user can navigate forward through the screens or choose to skip the introduction at any point.
-6.  Upon completing or skipping the flow, the user is directed to the main screen of the app (e.g., the Home/Dashboard).
-7.  The system flags that the user has completed the onboarding, ensuring they do not see this flow on subsequent app launches.
-
-### 4. Requirements
-
-#### Functional Requirements
-
--   **FR1: First-Launch Trigger:** The system **shall** display the onboarding flow exclusively to users launching the app for the first time.
--   **FR2: Welcome Screen:** The system **shall** present a single Welcome Screen as the first view. This screen must contain:
-    -   The application's logo or name.
-    -   A welcoming message.
-    -   A primary Call-to-Action (CTA) button, e.g., "Get Started".
--   **FR3: Multi-Step Introduction:** After the Welcome Screen, the system **shall** display a sequence of at least two introductory screens explaining the core concept of "Authentic Wisdom".
--   **FR4: Navigation:** The user **shall** be able to navigate through the introductory screens using "Next" and "Back" controls.
--   **FR5: Skip Functionality:** The system **shall** provide a "Skip" button on all introductory screens, allowing the user to exit the onboarding flow and proceed directly to the main app.
--   **FR6: Final CTA:** The final screen of the introduction **shall** have a clear and conclusive CTA, e.g., "Begin Journey" or "Finish".
--   **FR7: Onboarding Persistence:** The system **shall** permanently hide the onboarding flow for a user after they have completed it or skipped it.
-
-#### Non-Functional Requirements
-
--   **NFR1: Visual Design:** The onboarding screens must be visually appealing, on-brand, and consistent with the app's overall design language.
--   **NFR2: Performance:** Transitions between screens must be smooth and responsive, with no noticeable lag.
--   **NFR3: Accessibility:** All text and controls must be accessible, supporting dynamic font sizes and screen reader technology.
-
----
-
-### 5. Specification by Example (SBE)
-
-#### Scenario 1: New User Completes the Full Onboarding Flow
-
-**GIVEN** Anya is a new user who has just opened the app for the first time.
-**WHEN** she follows the entire onboarding process.
-**THEN** she will understand the app's core concept and land on the main dashboard.
-
-| Step | User Action | System Response | Screen Content |
-| :--- | :--- | :--- | :--- |
-| 1 | Opens the app. | Displays the **Welcome Screen**. | **Title:** "Welcome to The Middle Way" <br> **Visual:** App Logo <br> **Button:** `[ Get Started ]` |
-| 2 | Taps "Get Started". | Displays **Intro Screen 1**. | **Title:** "What is Authentic Wisdom?" <br> **Body:** "It's more than just quotes. It's timeless knowledge, verified and applied to modern life." <br> **Controls:** `[ Next ]` `[ Skip ]` |
-| 3 | Taps "Next". | Displays **Intro Screen 2**. | **Title:** "Discover Your Path" <br> **Body:** "Explore curated insights from philosophy, science, and art to find clarity." <br> **Controls:** `[ Back ]` `[ Next ]` `[ Skip ]` |
-| 4 | Taps "Next". | Displays **Intro Screen 3 (Final)**. | **Title:** "A Daily Practice" <br> **Body:** "Engage with one profound idea each day to build a more meaningful life." <br> **Controls:** `[ Back ]` `[ Begin Your Journey ]` |
-| 5 | Taps "Begin Your Journey". | Hides the onboarding flow permanently and navigates the user to the **Main App Screen** (e.g., Dashboard). | (Main App UI is now visible) |
-| 6 | Closes and re-opens the app. | The app opens directly to the **Main App Screen**. | (Onboarding is not shown again) |
-
----
-
-#### Sc
-(truncated if too long)
-
+### Step 5: Testing & SBE Scenarios
+- **Description**: Verify against SBE scenarios.
+- **Tasks**:
+1. **Scenario 1 (Migration)**: Test guest with data -> Login -> Data in Firestore.
+2. **Scenario 2 (New Device)**: Login on new browser -> Data fetched from Firestore.
+3. **Scenario 3 (Error)**: Test invalid Magic Link.
 
 ## Default Guidance (Use only if not specified in Plans)
-- Tech Stack: Swift/SwiftUI. Implement iOS UI + MVVM. Use XCTest.
+- Tech Stack: Swift/SwiftUI. Use Firebase SDK.
 - Follow Clean Architecture
 - Ensure TDD (Test Driven Development)
 

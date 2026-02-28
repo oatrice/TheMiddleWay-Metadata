@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.9.0] - 2026-02-27
+
+### Added
+- **Guest Mode:** Enabled public read access to core "master weeks" data in Firestore, allowing for a non-authenticated user experience.
+- **Security:** Introduced a `pre-commit` hook with `gitleaks` to prevent secrets from being accidentally committed to the repository.
+- **Feature Planning (User Authentication):** Added comprehensive analysis, specifications, and Architectural Decision Records (ADRs) for the user authentication and data synchronization feature (#14).
+
+### Changed
+- **Architecture:** Documented a major strategic shift towards a Go API-centric model on Render. This lays the groundwork for migrating user data from Firestore to a PostgreSQL backend, establishing the backend as the single source of truth.
+- **Architecture (Firestore Removal):** Completely migrated user profile synchronization from Firebase Firestore to the custom Go Backend (PostgreSQL).
+  - Web & Android platforms now safely call `POST /api/v1/auth/sync` directly instead of dealing with Firestore.
+  - Eliminated `firebase-firestore` dependencies, reducing app footprint and improving security.
+  - Go Backend now serves as the Single Source of Truth for user profiles.
+- **Firestore Security:** Implemented and refined security rules for the `master_weeks` collection to support the new guest mode feature.
+- **Developer Prompts:** Updated AI prompts for all platforms (Android, Backend, etc.) to reflect the new API-centric architecture and user authentication requirements.
+
 ## [0.8.0] - 2026-02-12
 
 ### Added
